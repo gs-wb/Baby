@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#EEEEEE" >
+
+    <com.yikang.health.ui.main.SlideMenu
+        android:id="@+id/slide_menu"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <include layout="@layout/sliding_menu_layout" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <View
+                android:id="@+id/idr_StatusBar"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:background="@color/main_bg" >
+            </View>
+
+            <RelativeLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_ffffff"
+                android:layout_above="@+id/rg_tab_bottom"
+                android:layout_below="@+id/idr_StatusBar" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/rg_tab_bottom"
+                android:background="#DBD9DA" />
+
+            <RadioGroup
+                android:id="@+id/rg_tab_bottom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#FBF8F5"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp" >
+
+                <RadioButton
+                    android:id="@+id/rb_baby"
+                    style="@style/main_tab_radio_style"
+                    android:checked="true"
+                    android:text="宝贝" />
+
+                <RadioButton
+                    android:id="@+id/rb_knowledge"
+                    style="@style/main_tab_radio_style"
+                    android:text="知识库" />
+
+                <RadioButton
+                    android:id="@+id/rb_find"
+                    style="@style/main_tab_radio_style"
+                    android:text="发现" />
+
+                <RadioButton
+                    android:id="@+id/rb_me"
+                    style="@style/main_tab_radio_style"
+                    android:text="我" />
+            </RadioGroup>
+        </RelativeLayout>
+    </com.yikang.health.ui.main.SlideMenu>
+
+</RelativeLayout>

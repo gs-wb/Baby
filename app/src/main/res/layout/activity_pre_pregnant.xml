@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_light"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/idr_StatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/main_bg" >
+    </View>
+
+    <include layout="@layout/headtitle_plus" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/button_corner_shape_whilte"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/ll_btns"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/pre_pregnant_button_corner_shape_noselect"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/btn_1"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="月经持续天数"
+                    android:textColor="@color/color_red"
+                    android:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/btn_2"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/pre_pregnant_button_corner_shape_select"
+                    android:gravity="center"
+                    android:text="月经周期"
+                    android:textColor="@color/color_ffffff" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/ll_btns"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_baby_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="宝宝出生日期"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/txt_light2"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/tv_baby_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:textSize="22sp"
+                    android:textColor="@color/color_red" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_time_selector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_msg"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="25dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/pre_pregnant_button_corner_shape_select"
+                android:text="完成"
+                android:textColor="@android:color/white"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_born_state"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
+            android:src="@drawable/baby_not_born_select" />
+    </FrameLayout>
+
+</LinearLayout>

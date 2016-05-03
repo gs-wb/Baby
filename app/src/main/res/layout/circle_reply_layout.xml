@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/issue_bottom_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/llbottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/issue_bottom_bg"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/msg_express"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/workcircle_face_xml" />
+
+        <!-- 自定义EditText -->
+
+        <LinearLayout
+            android:id="@+id/ll_show1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:gravity="center_vertical" >
+
+            <com.yikang.health.widget.MyEditText
+                android:id="@+id/msg_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/im_send_text"
+                android:gravity="center_vertical"
+                android:maxLength="50"
+                android:maxLines="3"
+                android:text=""
+                android:textColor="#2A2A2A" />
+
+            <Button
+                android:id="@+id/msg_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:text="提交"
+                android:textColor="@color/color_ffffff"
+                android:background="@drawable/fu_send" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/facelayout"
+        android:layout_width="fill_parent"
+        android:layout_height="130dip"
+        android:background="#eef1f4"
+        android:visibility="gone" >
+
+        <!-- 表情左右滑动区域 -->
+
+        <LinearLayout
+            android:id="@+id/face_ll"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/faceTabLayout"
+            android:layout_marginTop="5dip"
+            android:layout_marginBottom="5dip"
+            android:orientation="vertical" >
+
+            <com.yikang.health.ui.circle.JazzyViewPager
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/tabpager"
+                app:style="cubeout"
+                android:layout_width="fill_parent"
+                android:layout_height="110.0dip"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="5dip"
+                android:flipInterval="30"
+                android:persistentDrawingCache="animation" />
+
+            <com.yikang.health.ui.circle.CirclePageIndicator
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/indicator"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                 />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

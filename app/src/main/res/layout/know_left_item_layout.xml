@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="90dp"
+    android:layout_height="100dp"
+    android:background="@color/color_ffffff" >
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="86dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_know_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_know_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备孕"
+            android:textColor="@color/txt_dark" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/left_line"
+        android:layout_width="4dp"
+        android:layout_height="80dp"
+        android:layout_toRightOf="@+id/ll"
+        android:layout_centerVertical="true"
+        android:background="@drawable/green_line" />
+
+</RelativeLayout>

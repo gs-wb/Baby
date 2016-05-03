@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dip"
+    android:paddingBottom="5dip"
+    android:layout_marginLeft="30dip"
+    android:layout_marginRight="30dip"
+    android:orientation="horizontal"
+    android:background="@drawable/workcircle_pop_bg"
+    >
+    <!-- 点赞 -->
+      <RelativeLayout 
+ 	     android:id="@+id/rl_praise_icon"
+ 	    android:layout_width="0dip"
+ 	    android:layout_weight="1"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_marginLeft="3dip"
+ 	    >
+
+ 	     <ImageView
+ 	         android:id="@+id/pity_icon"
+ 	         android:layout_width="wrap_content"
+ 	         android:layout_height="wrap_content"
+ 	         android:layout_centerInParent="true"
+ 	         android:layout_marginLeft="10dip"
+ 	         android:background="@drawable/heart_pre" />
+ 	     <ImageView
+ 	         android:id="@+id/no_pity_icon"
+ 	         android:layout_width="wrap_content"
+ 	         android:layout_height="wrap_content"
+ 	         android:layout_centerInParent="true"
+ 	         android:layout_marginLeft="10dip"
+ 	         android:visibility="gone"
+ 	         android:background="@drawable/no_heart_pre" />
+ 	</RelativeLayout>
+    
+    <!-- 评论 -->
+     <RelativeLayout 
+ 	     android:id="@+id/rl_reply_icon"
+ 	    android:layout_width="0dip"
+ 	    android:layout_weight="1"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_marginLeft="5dip"
+ 	   >
+
+ 	     <ImageView
+ 	         android:id="@+id/replay_icon"
+ 	         android:layout_width="wrap_content"
+ 	         android:layout_height="wrap_content"
+ 	         android:layout_centerInParent="true"
+ 	         android:layout_marginLeft="5dip"
+ 	         android:background="@drawable/replay_pre" />
+ 	</RelativeLayout>
+ 	<!-- 分享 -->
+ 	<RelativeLayout 
+ 	     android:id="@+id/rl_share_icon"
+ 	    android:layout_width="0dip"
+ 	    android:layout_weight="1"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_marginLeft="3dip"
+ 	    >
+
+ 	     <ImageView
+ 	         android:id="@+id/share_icon"
+ 	         android:layout_width="wrap_content"
+ 	         android:layout_height="wrap_content"
+ 	         android:layout_centerInParent="true"
+ 	         android:layout_marginLeft="5dip"
+ 	         android:background="@drawable/share_icon_pressed" />
+
+ 	</RelativeLayout>
+    <!-- 收藏 -->
+    <RelativeLayout 
+ 	     android:id="@+id/rl_save_icon"
+ 	    android:layout_width="0dip"
+ 	    android:layout_weight="1"
+ 	    android:layout_height="wrap_content"
+ 	    android:layout_marginLeft="3dip"
+ 	    android:layout_marginRight="3dip"
+ 	    >
+
+ 	     <ImageView
+ 	         android:id="@+id/sc_icon"
+ 	         android:layout_width="wrap_content"
+ 	         android:layout_height="wrap_content"
+ 	         android:layout_centerInParent="true"
+ 	         android:layout_marginLeft="5dip"
+ 	         android:background="@drawable/shcang_pre" />
+ 	     <ImageView
+ 	         android:id="@+id/no_sc_icon"
+ 	         android:layout_width="wrap_content"
+ 	         android:layout_height="wrap_content"
+ 	         android:layout_centerInParent="true"
+ 	         android:layout_marginLeft="5dip"
+ 	         android:visibility="gone"
+ 	         android:background="@drawable/no_heart_pre" />
+ 	</RelativeLayout>
+    
+</LinearLayout>

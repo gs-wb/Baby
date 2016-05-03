@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_ffffff"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_expert_online"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="专家在线"
+            android:textColor="@color/txt_light" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#DBD9DA" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:src="@drawable/ehome_icon01"
+                android:textColor="#A16A18" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingLeft="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="世界自闭日：儿童情绪管理"
+                    android:textColor="@color/txt_dark"
+                    android:textSize="16sp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="石原李华、王天专家(水立方青少年成长中立方青少年成长中立方青少年成长中"
+                    android:ellipsize="end"
+                    android:layout_marginTop="5dp"
+                    android:lines="1"
+                    android:textColor="@color/txt_light"
+                    android:textSize="14sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="04月01日   11:30~12:30"
+                    android:layout_marginTop="5dp"
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textColor="@color/txt_light"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#DBD9DA" />
+
+        <TextView
+            android:id="@+id/tv_expert_more"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="查看更多"
+            android:textColor="#485A89" />
+    </LinearLayout>
+
+</LinearLayout>

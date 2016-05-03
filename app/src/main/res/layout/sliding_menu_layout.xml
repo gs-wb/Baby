@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="260dip"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/ll_head"
+        android:layout_width="260dip"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@color/main_red"
+        android:orientation="vertical"
+        android:paddingBottom="20dp" >
+
+        <ImageView
+            android:id="@+id/iv_swich_baby"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/menu_baby_header" />
+
+        <ImageView
+            android:id="@+id/iv_baby_header"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/menu_baby_header" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/iv_baby_header"
+            android:text="宝贝名字"
+            android:textColor="@color/color_ffffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="260dip"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/ll_head"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/ll_menu_dongtai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp" >
+
+            <ImageView
+                android:id="@+id/iv_dongtai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/menu_dongtai"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tv_dongtai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数胎动"
+                android:textColor="@color/txt_dark"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/solid_deliver" />
+
+        <LinearLayout
+            android:id="@+id/ll_menu_shipu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp" >
+
+            <ImageView
+                android:id="@+id/iv_menu_shipu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/menu_shipu"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tv_menu_shipu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="孕期食谱"
+                android:textColor="@color/txt_dark"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/solid_deliver" />
+
+        <LinearLayout
+            android:id="@+id/ll_menu_bchao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp" >
+
+            <ImageView
+                android:id="@+id/iv_menu_bchao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/menu_bchao"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tv_menu_bchao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="看懂B超单"
+                android:textColor="@color/txt_dark"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/solid_deliver" />
+
+        <LinearLayout
+            android:id="@+id/ll_menu_chanjian_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp" >
+
+            <ImageView
+                android:id="@+id/iv_menu_chanjian_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/menu_chanjian_time"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tv_menu_chanjian_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="产检时间表"
+                android:textColor="@color/txt_dark"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/solid_deliver" />
+
+        <LinearLayout
+            android:id="@+id/ll_menu_tianqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp" >
+
+            <ImageView
+                android:id="@+id/iv_menu_tianqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/menu_tianqi"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/tv_menu_tianqi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="天气及其他"
+                android:textColor="@color/txt_dark"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,124 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/idr_StatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/main_bg" >
+    </View>
+
+    <include layout="@layout/headtitle_plus" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#F0F0F0" />
+
+    <LinearLayout
+        android:id="@+id/ll_baby"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/common_list_selector"
+        android:paddingLeft="15dp" >
+
+        <ImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/find_baby_circle"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="宝贝圈"
+            android:textColor="@color/txt_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#F0F0F0" />
+
+    <LinearLayout
+        android:id="@+id/ll_find"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:orientation="horizontal"
+        android:background="@drawable/common_list_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp" >
+
+        <ImageView
+            android:id="@+id/iv_find"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/find_found"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/tv_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="找一找"
+            android:textColor="@color/txt_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#F0F0F0" />
+
+    <LinearLayout
+        android:id="@+id/ll_coin_box"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:orientation="horizontal"
+        android:background="@drawable/common_list_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp" >
+
+        <ImageView
+            android:id="@+id/iv_coin_box"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/find_baibaox"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/tv_coin_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="百宝箱"
+            android:textColor="@color/txt_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F0F0F0" />
+</LinearLayout>

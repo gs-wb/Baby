@@ -1,0 +1,162 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/idr_StatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="#f2f2f2" >
+    </View>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/red"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_tellphone"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/pre_pregnant_button_corner_shape_noselect"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+				<ImageView 
+				    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_phone_icon"
+				    />
+                <EditText
+                    android:id="@+id/edit_tellphone"
+                    android:layout_width="fill_parent"
+                    android:layout_height="46dp"
+                    android:background="@null"
+                    android:hint="仅支持中国大陆手机号码"
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:inputType="phone"
+                    android:textColorHint="#b4b4b4" >
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_yzm"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/pre_pregnant_button_corner_shape_noselect"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" >
+				<ImageView 
+				    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/login_yzm_icon"
+				    />
+                <EditText
+                    android:id="@+id/edit_yzm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:layout_marginLeft="10dp"
+                    android:background="@null"
+                    android:hint="验证码"
+                    android:textColorHint="#b4b4b4" />
+                <Button
+                    android:id="@+id/btn_yzm"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1.5"
+                     android:background="@drawable/login_btn_selector"
+                    android:text="获取验证码"
+                    android:textColor="@android:color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+			<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+				<CheckBox 
+				    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+				    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:gravity="center"
+                    android:text="@string/user_agreement_msg"
+                    android:textColor="@color/txt_dark"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="@string/user_agreement_msg2"
+                    android:textColor="#719FFC"
+                    android:textSize="16sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/button_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                     android:background="@drawable/login_btn_selector"
+                    android:text="@string/login_msg"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <Button
+                    android:id="@+id/btn_psd_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:text="密码登录"
+                    android:textColor="@color/blue_light"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,120 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:gravity="center"
+    android:orientation="vertical" >
+	<View
+        android:id="@+id/idr_StatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="#f2f2f2"></View>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/red"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/ll_username"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/edit_user_name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="46dp"
+                    android:background="@null"
+                    android:drawableBottom="@drawable/dotted_line"
+                    android:hint="请输入用户名"
+                    android:singleLine="true"
+                    android:textColorHint="#b4b4b4" >
+
+                    <requestFocus />
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_password"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/edit_password"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:drawableBottom="@drawable/dotted_line"
+                    android:hint="请输入密码"
+                    android:inputType="textPassword"
+                    android:textColorHint="#b4b4b4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/button_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:background="@drawable/login_btn_selector"
+                    android:text="@string/login_msg"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <Button
+                    android:id="@+id/button_regester"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/login_grey_btn_selector"
+                    android:text="@string/reg_msg"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp" />
+
+                <Button
+                    android:id="@+id/btn_forget_psd"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/forget_psd_msg"
+                    android:background="@null"
+                    android:textColor="@color/red"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

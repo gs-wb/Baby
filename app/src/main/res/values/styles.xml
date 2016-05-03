@@ -1,0 +1,109 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+    </style>
+	<style name="AppTheme" parent="AppBaseTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    
+    <style name="top_lay">
+        <item name="android:id">@id/lay_top_title</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/spacing_size_44</item>
+        <item name="android:layout_alignParentTop">true</item>
+    </style>
+    
+    <style name="top_left_btn">
+        <item name="android:padding">@dimen/spacing_size_7</item>
+        <item name="android:textSize">@dimen/spacing_size_15</item>
+        <item name="android:layout_width">@dimen/spacing_size_38</item>
+        <item name="android:layout_height">@dimen/spacing_size_38</item>
+        <item name="android:id">@id/btn_top_left</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@null</item>
+    </style>
+    
+        <style name="top_text">
+        <item name="android:id">@id/txt_top_title</item>
+        <item name="android:textSize">@dimen/spacing_size_18</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    
+    <style name="top_txt_right_btn" parent="@style/top_btn_text">
+        <item name="android:id">@id/tv_top_right</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/spacing_size_5</item>
+        <item name="android:layout_marginRight">@dimen/spacing_size_5</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:visibility">gone</item>
+    </style>
+    
+    <style name="top_btn_text">
+        <item name="android:textSize">@dimen/text_size_15</item>
+        <item name="android:layout_width">@dimen/spacing_size_70</item>
+        <item name="android:layout_height">@dimen/spacing_size_44</item>
+    </style>
+    
+    <style name="top_right_btn" parent="@style/top_btn_text">
+        <item name="android:id">@id/btn_top_right</item>
+        <item name="android:padding">@dimen/spacing_size_7</item>
+        <item name="android:layout_width">@dimen/spacing_size_38</item>
+        <item name="android:layout_height">@dimen/spacing_size_38</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:visibility">gone</item>
+    </style>
+        
+    
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    
+        <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+    <style name="separate_line_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dip</item>
+        <item name="android:background">@color/color_c8c8c8</item>
+    </style>
+     <style name="FullTransparent" parent="@android:style/Theme.Translucent.NoTitleBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+    
+     <style name="main_tab_radio_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:scaleType">matrix</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/main_tab_color_selector</item>
+        <item name="android:textSize">14dp</item>
+    </style>
+    
+     <style name="AnimationPreview">
+        <item name="android:windowEnterAnimation">@anim/controller_enter</item>
+        <item name="android:windowExitAnimation">@anim/controller_exit</item>
+    </style>
+</resources>

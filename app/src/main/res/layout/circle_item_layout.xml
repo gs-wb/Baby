@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <!-- 头像 -->
+
+    <ImageView
+        android:id="@+id/headImageView"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:layout_margin="10dip"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_launcher" />
+
+    <!-- 用户名 -->
+
+    <TextView
+        android:id="@+id/userNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_toRightOf="@id/headImageView"
+        android:text=" 张三"
+        android:textColor="#4c5991"
+        android:textSize="15sp" />
+
+    <!-- 内容区域 -->
+
+    <RelativeLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userNameTextView"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="8dip"
+        android:layout_toRightOf="@id/headImageView" >
+
+        <RelativeLayout
+            android:id="@+id/rl_long_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <!-- 文本 -->
+
+            <TextView
+                android:id="@+id/textTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:maxLines="4"
+                android:text="在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#在一切变好之前，我们总要经历一些不开心的日子，不要因为一点瑕疵而放弃一段坚持，即使没有人为你鼓掌，也要优雅的谢幕，感谢自己认真的付出。#跟森碟一家去捉妖#"
+                android:textColor="@color/txt_dark" />
+
+            <TextView
+                android:id="@+id/button_select"
+                android:layout_width="60dip"
+                android:layout_height="30dip"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textTextView"
+                android:layout_margin="5dip"
+                android:background="@drawable/item_login_button"
+                android:gravity="center"
+                android:text="展开"
+                android:textColor="@color/color_ffffff"
+                android:visibility="visible" />
+        </RelativeLayout>
+
+        <!-- 图片区域 -->
+
+        <com.yikang.health.widget.NoScrollGridView
+            android:id="@+id/photoGridView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_long_text"
+            android:layout_marginTop="8dip"
+            android:horizontalSpacing="5dip"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dip"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!-- 时间 -->
+
+    <TextView
+        android:id="@+id/tv_circle_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contentLayout"
+        android:layout_marginTop="8dip"
+        android:layout_toRightOf="@id/headImageView"
+        android:text="2014-03-13"
+        android:textColor="#ff666666"
+        android:textSize="10sp" />
+
+    <!-- 功能按钮 -->
+
+    <ImageView
+        android:id="@+id/replyImageView"
+        android:layout_width="35dip"
+        android:layout_height="30dip"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/contentLayout"
+        android:paddingRight="10dip"
+        android:paddingTop="5dip"
+        android:src="@drawable/reply_xml" />
+
+    <LinearLayout
+        android:id="@+id/ll_praise_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/replyImageView"
+        android:layout_toRightOf="@+id/headImageView"
+        android:orientation="horizontal"
+        android:padding="4dip"
+        android:visibility="gone" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/like" />
+
+        <TextView
+            android:id="@+id/tv_praise_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dip"
+            android:text="喝红酒"
+            android:textColor="#ff666666" />
+    </LinearLayout>
+
+    <!-- 评论列表区域 -->
+
+    <com.yikang.health.ui.circle.MyCommentListView
+        android:id="@+id/replyListView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/ll_praise_list"
+        android:layout_marginBottom="5dip"
+        android:layout_marginRight="10dip"
+        android:layout_toRightOf="@id/headImageView"
+        android:background="@drawable/reply_bg"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="1dip"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:padding="3dip"
+        android:scrollbars="none"
+        android:visibility="gone" />
+
+</RelativeLayout>

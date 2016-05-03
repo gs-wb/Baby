@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yikang.health"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 打电话 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <!-- 联动 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 支付宝 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <application
+        android:name="com.yikang.health.YIKApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="1O3yXiiGkOePbj41wZHifUP1" />
+        <activity
+            android:name="com.yikang.health.ui.main.MainTabActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/FullTransparent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- 首页tab -->
+        <activity
+            android:name="com.yikang.health.ui.login.MessageLoginActivity"
+            android:theme="@style/FullTransparent"/>
+
+        <!-- 短信登录 -->
+        <activity
+            android:name="com.yikang.health.ui.login.LoginActivity"
+            android:theme="@style/FullTransparent"/>
+        <!-- 注册 -->
+        <activity
+            android:name="com.yikang.health.ui.login.RegistActivity"
+            android:theme="@style/FullTransparent"/>
+        <!-- 忘记密码 -->
+        <activity
+            android:name="com.yikang.health.ui.login.ForgetActivity"
+            android:theme="@style/FullTransparent"/>
+        <!-- 选择宝宝 -->
+        <activity
+            android:name="com.yikang.health.ui.login.ChoseBabyActivity"
+            android:theme="@style/FullTransparent"/>
+        <!-- 备孕中 -->
+        <activity
+            android:name="com.yikang.health.ui.login.PrePregnantActivity"
+            android:theme="@style/FullTransparent"/>
+
+        <!--设置我的信息-->
+        <activity
+            android:name="com.yikang.health.ui.me.MyInfoSetintActivity"
+            android:theme="@style/FullTransparent"/>
+        <!--照片管理-->
+        <activity
+            android:name="com.yikang.health.ui.me.PhotoManageActivity"
+            android:theme="@style/FullTransparent"/>
+        <!--找一找-->
+        <activity
+            android:name="com.yikang.health.ui.fount.LookForActivity"
+            android:theme="@style/FullTransparent"/>
+        <!--百宝箱-->
+        <activity
+            android:name="com.yikang.health.ui.fount.TreasureBoxActivity"
+            android:theme="@style/FullTransparent"/>
+
+        <!-- 圈子 -->
+        <activity
+            android:name="com.yikang.health.ui.circle.CircleActivity"
+            android:theme="@style/FullTransparent"/>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:permission="android.permission.BAIDU_LOCATION_SERVICE"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.4" >
+                </action>
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>
