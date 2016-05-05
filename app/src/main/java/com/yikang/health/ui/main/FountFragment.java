@@ -21,14 +21,12 @@ public class FountFragment extends BaseFragment implements OnClickListener {
 
     @Override
     protected void mSetTitleText(TextView mTitle) {
-        // TODO Auto-generated method stub
         super.mSetTitleText(mTitle);
         mTitle.setText("发现");
     }
 
     @Override
     public void initControl(View view) {
-        // TODO Auto-generated method stub
         llBaby = view.findViewById(R.id.ll_baby);
         llCoinBox = view.findViewById(R.id.ll_coin_box);
         llFind = view.findViewById(R.id.ll_find);
