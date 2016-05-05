@@ -18,6 +18,7 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 	private Fragment[] fragments;
 	private BabyFragment babyFragment;
 	private KnowledgeFragment knowledgeFragment;
+	private StoryFragment storyFragment;
 	private FountFragment findFragment;
 	private MeFragment meFragment;
 	private RadioButton[] mTabs;
@@ -44,35 +45,37 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 		SlideMenu slideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		babyFragment = new BabyFragment(slideMenu);
 		knowledgeFragment = new KnowledgeFragment();
-//		motherFragment = new MotherFragment();
+		storyFragment = new StoryFragment();
 		findFragment = new FountFragment();
 		meFragment = new MeFragment();
-		fragments = new Fragment[] { babyFragment, knowledgeFragment,
+		fragments = new Fragment[] { babyFragment, knowledgeFragment,storyFragment,
 				 findFragment, meFragment };
 		// 添加显示第一个fragment
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.fragment_container, babyFragment)
-				.add(R.id.fragment_container, knowledgeFragment)
-				.hide(knowledgeFragment)
-				.add(R.id.fragment_container, findFragment)
-				.hide(findFragment).add(R.id.fragment_container, meFragment)
-				.hide(meFragment).show(babyFragment).commit();
+				.add(R.id.fragment_container, knowledgeFragment).hide(knowledgeFragment)
+				.add(R.id.fragment_container, storyFragment).hide(storyFragment)
+				.add(R.id.fragment_container, findFragment).hide(findFragment)
+				.add(R.id.fragment_container, meFragment).hide(meFragment)
+				.show(babyFragment).commit();
 		
 	}
 	/**
 	 * 初始化组件
 	 */
 	private void initView() {
-		tabImgs = new int[4];
+		tabImgs = new int[5];
 		tabImgs[0] = R.drawable.main_tab_selector1;
 		tabImgs[1] = R.drawable.main_tab_selector2;
-		tabImgs[2] = R.drawable.main_tab_selector3;
-		tabImgs[3] = R.drawable.main_tab_selector4;
-		mTabs = new RadioButton[4];
+		tabImgs[2] = R.drawable.main_tab_selector2;
+		tabImgs[3] = R.drawable.main_tab_selector3;
+		tabImgs[4] = R.drawable.main_tab_selector4;
+		mTabs = new RadioButton[5];
 		mTabs[0] = (RadioButton) findViewById(R.id.rb_baby);
 		mTabs[1] = (RadioButton) findViewById(R.id.rb_knowledge);
-		mTabs[2] = (RadioButton) findViewById(R.id.rb_find);
-		mTabs[3] = (RadioButton) findViewById(R.id.rb_me);
+		mTabs[2] = (RadioButton) findViewById(R.id.rb_story);
+		mTabs[3] = (RadioButton) findViewById(R.id.rb_find);
+		mTabs[4] = (RadioButton) findViewById(R.id.rb_me);
 		// 把第一个tab设为选中状态
 		for (int i = 0; i < mTabs.length; i++) {
 			mTabs[i].setOnClickListener(this);
@@ -106,12 +109,16 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 			index = 1;
 			swichFragment();
 			setBarColor(getResources().getColor(R.color.main_bg));
-		} else if (id == R.id.rb_find) {
+		} else if (id == R.id.rb_story) {
 			index = 2;
 			swichFragment();
 			setBarColor(getResources().getColor(R.color.main_bg));
-		} else if (id == R.id.rb_me) {
+		} else if (id == R.id.rb_find) {
 			index = 3;
+			swichFragment();
+			setBarColor(getResources().getColor(R.color.main_bg));
+		} else if (id == R.id.rb_me) {
+			index = 4;
 			swichFragment();
 			setBarColor(getResources().getColor(R.color.main_red));
 		}

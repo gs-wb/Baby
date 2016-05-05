@@ -45,7 +45,6 @@ public class PublicHttpData {
 	/**
 	 * 轮播图列表
 	 * system/bannerList
-	 * @param pageId
 	 */
 	public void getAdBannerList(Context context,TaskExpandListener listener) {
 		ServerConnect.getInstance().requestToServer(context, listener,
@@ -93,9 +92,9 @@ public class PublicHttpData {
 		map = new HashMap<String, Object>();
 		map.put("username", username);
 		map.put("password", password);
-		map.put("mobileToken", "");
+//		map.put("mobileToken", "");
 		ServerConnect.getInstance().requestToServer(context, listener,
-				Constants.ADD_CODE, map,YIKApplication.getContext().getResources()
+				Constants.GET_USER_LOGIN, map,YIKApplication.getContext().getResources()
 				.getString(R.string.request_dialog_loading_content));
 
 	}
@@ -124,6 +123,48 @@ public class PublicHttpData {
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.GET_NOTICE_DETAIL, map,YIKApplication.getContext().getResources()
 				.getString(R.string.request_dialog_loading_content));
+
+	}
+
+	/**
+	 * 查询文章信息
+	 * content/getContentList
+	 * [currentPage] 当前页
+	 */
+	public void getContentList(Context context, String currentPage,TaskExpandListener listener) {
+		map = new HashMap<String, Object>();
+		map.put("currentPage", currentPage);
+		ServerConnect.getInstance().requestToServer(context, listener,
+				Constants.GET_CONTENT_LIST, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
+
+	}
+
+	/**
+	 * 查询音频信息
+	 * /content/getMp3List
+	 * [currentPage] 当前页
+	 */
+	public void getMp3List(Context context, String currentPage,TaskExpandListener listener) {
+		map = new HashMap<String, Object>();
+		map.put("currentPage", currentPage);
+		ServerConnect.getInstance().requestToServer(context, listener,
+				Constants.GET_MP3_LIST, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
+
+	}
+
+	/**
+	 * 查询视频信息
+	 * /content/getVideoList
+	 * [currentPage] 当前页
+	 */
+	public void getVideoList(Context context, String currentPage,TaskExpandListener listener) {
+		map = new HashMap<String, Object>();
+		map.put("currentPage", currentPage);
+		ServerConnect.getInstance().requestToServer(context, listener,
+				Constants.GET_VIDEO_LIST, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
 
 	}
 	

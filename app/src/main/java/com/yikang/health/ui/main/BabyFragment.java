@@ -23,7 +23,10 @@ import com.yikang.health.ui.BaseFragment;
 
 public class BabyFragment extends BaseFragment implements OnClickListener ,TaskExpandListener{
 	private SlideMenu slideMenu;
-
+	public BabyFragment(){
+		super();
+		layoutResID = R.layout.fragment_main_baby_layout;
+	}
 	public BabyFragment(SlideMenu slideMenu) {
 		super();
 		layoutResID = R.layout.fragment_main_baby_layout;
@@ -85,7 +88,7 @@ public class BabyFragment extends BaseFragment implements OnClickListener ,TaskE
 			readInfos.add(new TodayReadInfo("", "", 1, ""));
 		}
 		mainAdapter.setData(readInfos);
-		YIKApplication.client.getNoticeList(getActivity(),"1",this);
+//		YIKApplication.client.getNoticeList(getActivity(),"1",this);
 	}
 
 	@Override

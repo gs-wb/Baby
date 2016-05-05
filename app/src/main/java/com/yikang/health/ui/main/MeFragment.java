@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.yikang.health.R;
 import com.yikang.health.ui.BaseFragment;
+import com.yikang.health.ui.login.LoginActivity;
 import com.yikang.health.ui.me.MyInfoSetintActivity;
 import com.yikang.health.ui.me.PhotoManageActivity;
 
@@ -54,13 +55,13 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_me:
-                startActivity(new Intent(getActivity(), MyInfoSetintActivity.class));
+                startActivity(new Intent(getActivity(), LoginActivity.class));
                 break;
             case R.id.tv_collect:
 
                 break;
             case R.id.tv_points:
-
+                startActivity(new Intent(getActivity(), MyInfoSetintActivity.class));
                 break;
             case R.id.tv_message:
 

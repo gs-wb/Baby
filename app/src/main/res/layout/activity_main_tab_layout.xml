@@ -60,6 +60,11 @@
                     android:text="知识库" />
 
                 <RadioButton
+                    android:id="@+id/rb_story"
+                    style="@style/main_tab_radio_style"
+                    android:text="故事" />
+
+                <RadioButton
                     android:id="@+id/rb_find"
                     style="@style/main_tab_radio_style"
                     android:text="发现" />

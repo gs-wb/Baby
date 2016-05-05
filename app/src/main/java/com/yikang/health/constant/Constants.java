@@ -78,5 +78,13 @@ public class Constants {
 	public static final int VALIDATE_CODE = 218;
 	// 重置密码   user/resetPwd
 	public static final int RESET_PWD = 219;
+
+	/*--------内容模块接口  常量3开始--------*/
+	// 查询文章信息  content/getContentList
+	public static final int GET_CONTENT_LIST = 31;
+	// 查询音频信息  content/getMp3List
+	public static final int GET_MP3_LIST = 32;
+	// 查询视频信息 content/getVideoList
+	public static final int GET_VIDEO_LIST = 33;
 	
 }
