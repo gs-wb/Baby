@@ -102,6 +102,10 @@
         <activity
             android:name="com.yikang.health.ui.circle.CircleActivity"
             android:theme="@style/FullTransparent"/>
+        <!-- 意见反馈 -->
+        <activity
+            android:name="com.yikang.health.ui.me.OptionActivity"
+            android:theme="@style/FullTransparent"/>
 
         <service
             android:name="com.baidu.location.f"

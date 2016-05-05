@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.yikang.health.R;
 import com.yikang.health.ui.BaseFragment;
 import com.yikang.health.ui.me.MyInfoSetintActivity;
+import com.yikang.health.ui.me.OptionActivity;
 import com.yikang.health.ui.me.PhotoManageActivity;
 
 public class MeFragment extends BaseFragment implements View.OnClickListener {
@@ -72,7 +73,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(new Intent(getActivity(), PhotoManageActivity.class));
                 break;
             case R.id.ll_opinion:
-
+                startActivity(new Intent(getActivity(), OptionActivity.class));
                 break;
             case R.id.ll_about:
 

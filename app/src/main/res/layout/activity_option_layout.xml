@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/idr_StatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/main_bg"></View>
+
+    <include layout="@layout/headtitle_plus" />
+    <EditText
+        android:id="@+id/edit_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="5dp"
+        android:minHeight="220dp"
+        android:background="@drawable/button_corner_shape_whilte"/>
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/login_btn_selector"
+        android:text="提交"
+        android:textSize="18sp"
+        android:textColor="@color/whell_gray"
+        android:layout_margin="20dp"/>
+
+</LinearLayout>

@@ -162,6 +162,12 @@ public class ServerConnect {
 			return "user/validateCode";
 		case Constants.RESET_PWD:
 			return "user/resetPwd";
+		case Constants.GET_CONTENT_LIST:
+			return "content/getContentList";
+		case Constants.GET_MP3_LIST:
+			return "content/getMp3List";
+		case Constants.GET_VIDEO_LIST:
+			return "content/getVideoList";
 		default:
 			return "";
 		}

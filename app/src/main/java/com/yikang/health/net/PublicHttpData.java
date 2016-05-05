@@ -11,9 +11,9 @@ import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 
 /**
- * 
+ *
  * @author zwb
- * 
+ *
  */
 
 public class PublicHttpData {
@@ -24,8 +24,8 @@ public class PublicHttpData {
 	private static PublicHttpData instance = null;
 
 	public static PublicHttpData getInstance() {
-		if (instance == null) { 
-			instance = new PublicHttpData(); 
+		if (instance == null) {
+			instance = new PublicHttpData();
 		}
 		return instance;
 	}
@@ -39,18 +39,17 @@ public class PublicHttpData {
 	public void checkAndroidVersion(Context context, TaskExpandListener listener) {
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.CHECK_VERSION, map,YIKApplication.getContext().getResources()
-				.getString(R.string.request_dialog_loading_content));
+						.getString(R.string.request_dialog_loading_content));
 	}
 
 	/**
 	 * 轮播图列表
 	 * system/bannerList
-	 * @param pageId
 	 */
 	public void getAdBannerList(Context context,TaskExpandListener listener) {
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.AD_BANNER_LIST, map,YIKApplication.getContext().getResources()
-				.getString(R.string.request_dialog_loading_content));
+						.getString(R.string.request_dialog_loading_content));
 	}
 
 	/**
@@ -67,10 +66,10 @@ public class PublicHttpData {
 		map.put("code", code);
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.ADD_USER, map,YIKApplication.getContext().getResources()
-				.getString(R.string.request_dialog_loading_content));
+						.getString(R.string.request_dialog_loading_content));
 
 	}
-	
+
 	/**
 	 * 获取校验码
 	 * user/addUser
@@ -81,7 +80,7 @@ public class PublicHttpData {
 		map.put("username", username);
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.ADD_CODE, map,YIKApplication.getContext().getResources()
-				.getString(R.string.request_dialog_loading_content));
+						.getString(R.string.request_dialog_loading_content));
 
 	}
 	/**
@@ -93,12 +92,34 @@ public class PublicHttpData {
 		map = new HashMap<String, Object>();
 		map.put("username", username);
 		map.put("password", password);
-		map.put("mobileToken", "");
+//		map.put("mobileToken", "");
 		ServerConnect.getInstance().requestToServer(context, listener,
-				Constants.ADD_CODE, map,YIKApplication.getContext().getResources()
-				.getString(R.string.request_dialog_loading_content));
+				Constants.GET_USER_LOGIN, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
 
 	}
+
+	/**
+	 * 添加意见反馈信息
+	 * user/addFeedback
+	 * 	[user_id] 用户索引ID
+	 	[title] 评论标题
+	 	[content] 评论内容
+	 */
+	public void addFeedback(Context context, String user_id,String title,String content,TaskExpandListener listener) {
+		map = new HashMap<String, Object>();
+		map.put("userId", user_id);
+		map.put("title", title);
+		map.put("content", content);
+		ServerConnect.getInstance().requestToServer(context, listener,
+				Constants.ADD_FEED_BACK, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
+
+	}
+
+
+
+
 	/**
 	 * 首页行业资讯列表
 	 * /user/getNoticeList
@@ -109,10 +130,10 @@ public class PublicHttpData {
 		map.put("currentPage", currentPage);
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.GET_NOTICE_LIST, map,YIKApplication.getContext().getResources()
-				.getString(R.string.request_dialog_loading_content));
+						.getString(R.string.request_dialog_loading_content));
 
 	}
-	
+
 	/**
 	 * 首页行业资讯详情
 	 * /user/getNoticeDetail
@@ -123,10 +144,54 @@ public class PublicHttpData {
 		map.put("noticeId", noticeId);
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.GET_NOTICE_DETAIL, map,YIKApplication.getContext().getResources()
-				.getString(R.string.request_dialog_loading_content));
+						.getString(R.string.request_dialog_loading_content));
 
 	}
-	
-	
+
+	/**
+	 * 查询文章信息
+	 * content/getContentList
+	 * [currentPage] 当前页
+	 */
+	public void getContentList(Context context, String currentPage,TaskExpandListener listener) {
+		map = new HashMap<String, Object>();
+		map.put("currentPage", currentPage);
+		ServerConnect.getInstance().requestToServer(context, listener,
+				Constants.GET_CONTENT_LIST, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
+
+	}
+
+	/**
+	 * 查询音频信息
+	 * /content/getMp3List
+	 * [currentPage] 当前页
+	 */
+	public void getMp3List(Context context, String currentPage,TaskExpandListener listener) {
+		map = new HashMap<String, Object>();
+		map.put("currentPage", currentPage);
+		ServerConnect.getInstance().requestToServer(context, listener,
+				Constants.GET_MP3_LIST, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
+
+	}
+
+	/**
+	 * 查询视频信息
+	 * /content/getVideoList
+	 * [currentPage] 当前页
+	 */
+	public void getVideoList(Context context, String currentPage,TaskExpandListener listener) {
+		map = new HashMap<String, Object>();
+		map.put("currentPage", currentPage);
+		ServerConnect.getInstance().requestToServer(context, listener,
+				Constants.GET_VIDEO_LIST, map,YIKApplication.getContext().getResources()
+						.getString(R.string.request_dialog_loading_content));
+
+	}
+
+
+
+
 
 }
