@@ -2,6 +2,7 @@ package com.yikang.health.ui.story;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -13,18 +14,21 @@ import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.Mp3Info;
 import com.yikang.health.server.GsonTools;
 import com.yikang.health.ui.BaseActivity;
+import com.yikang.health.utils.MyComparator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Created by admin on 2016/5/6.
  */
-public class StoryDetailActivity extends BaseActivity implements View.OnClickListener, TaskExpandListener {
+public class StoryDetailActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener, TaskExpandListener {
     private ListView mListView;
     private StoryDetailListAdapter mAdapter;
     private TextView tvSize,tvStoryName;
     public List<Mp3Info> storyList = new ArrayList<Mp3Info>();
+    private Mp3Info currMp3Info;
     public static StoryDetailActivity instance;
 
     public StoryDetailActivity() {
@@ -58,6 +62,7 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
         mListView.addHeaderView(v);
         mAdapter = new StoryDetailListAdapter(this);
         mListView.setAdapter(mAdapter);
+        mListView.setOnItemClickListener(this);
         loadData();
     }
 
@@ -72,9 +77,11 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
                 case Constants.GET_MP3_LIST:
                     storyList = GsonTools.getList(result.toString(), Mp3Info.class);
                     if (storyList != null && !storyList.isEmpty()) {
-                        tvStoryName.setText(storyList.get(0).getMp3_name());
-                        tvSize.setText("共" + storyList.size() + "条");
+                        parseStory();
                         mAdapter.setList(storyList);
+                        currMp3Info = storyList.get(0);
+                        setCurrMp3();
+                        tvSize.setText("共" + storyList.size() + "条");
                     }
                     break;
                 case Constants.GET_VIDEO_LIST:
@@ -85,7 +92,16 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
             ToastShow(result.toString());
         }
     }
-
+    private void parseStory(){
+        for (Mp3Info mp3:storyList){
+            String name = mp3.getMp3_name();
+            String[] strs = name.split("---");
+            mp3.setMp3_name(strs[strs.length - 1].replace(".mp3", ""));
+            mp3.setId(mp3.getMp3_name().replaceAll("\\D", ""));
+            mp3.setMp3_name(mp3.getMp3_name().replaceAll(mp3.getId(), "").replaceFirst("-", ""));
+        }
+        Collections.sort(storyList, new MyComparator());
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -93,7 +109,19 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(position != 0){
+            currMp3Info = storyList.get(position-1);
+            setCurrMp3();
+        }
+    }
 
+    private void setCurrMp3(){
+        if(currMp3Info!=null){
+            tvStoryName.setText(currMp3Info.getMp3_name());
+        }
+    }
     @Override
     public void initVariable() {
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -55,17 +56,21 @@ public class StoryDetailListAdapter extends BaseAdapter {
 			viewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(ctxt).inflate(R.layout.story_detail_list_item, parent, false);
 			viewHolder.tv_name = (TextView)convertView.findViewById(R.id.tv_name);
+			viewHolder.ivStoryPlay = (ImageView)convertView.findViewById(R.id.iv_story_play);
+
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		String name = list.get(position).getMp3_name();
-		String[] strs = name.split("---");
-		viewHolder.tv_name.setText(strs[strs.length-1].replace(".mp3",""));
+		if(position == 0)viewHolder.ivStoryPlay.setVisibility(View.VISIBLE);
+		else viewHolder.ivStoryPlay.setVisibility(View.GONE);
+//		String name = list.get(position).getMp3_name();
+//		String[] strs = name.split("---");
+		viewHolder.tv_name.setText(list.get(position).getId()+" --- "+list.get(position).getMp3_name());
 		return convertView;
 	}
-
 	class ViewHolder {
 		TextView tv_name;
+		ImageView ivStoryPlay;
 	}
 }
