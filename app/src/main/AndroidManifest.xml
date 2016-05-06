@@ -103,6 +103,11 @@
             android:name="com.yikang.health.ui.circle.CircleActivity"
             android:theme="@style/FullTransparent"/>
 
+        <!-- 圈子 -->
+        <activity
+            android:name="com.yikang.health.ui.story.StoryDetailActivity"
+            android:theme="@style/FullTransparent"/>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

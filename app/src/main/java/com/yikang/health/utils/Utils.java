@@ -1,5 +1,7 @@
 package com.yikang.health.utils;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -59,7 +61,26 @@ public class Utils {
 	public static final int NETWORK_TYPE_MOBILE_3G = 4; // gprs 3g
 	public static final int NETWORK_TYPE_MOBILE_2G = 5; // gprs 2g
 	private static Typeface numTypeface;
-
+	/**
+	 * 从Assets 里面获取数据
+	 *
+	 * @param fileName
+	 * @return
+	 */
+	public static String getFromAssets(String fileName) {
+		try {
+			InputStreamReader inputReader = new InputStreamReader(YIKApplication.instance.getResources().getAssets().open(fileName));
+			BufferedReader bufReader = new BufferedReader(inputReader);
+			String line = "";
+			StringBuffer result = new StringBuffer();
+			while ((line = bufReader.readLine()) != null)
+				result.append(line);
+			return result.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
 	/**
 	 * 检查网络
 	 * 

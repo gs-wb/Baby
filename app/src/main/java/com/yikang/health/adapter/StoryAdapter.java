@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yikang.health.R;
 import com.yikang.health.model.KnowledgeSubInfo;
+import com.yikang.health.model.Mp3Info;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,13 +56,11 @@ public class StoryAdapter extends BaseAdapter{
 			viewHolder.tvName = (TextView) convertView.findViewById(R.id.tv_story_name);
 			viewHolder.ivStory = (ImageView) convertView.findViewById(R.id.iv_story_icon);
 			viewHolder.ivPlay = (ImageView) convertView.findViewById(R.id.iv_story_play);
-
-			
 			convertView.setTag(viewHolder);
-
 		} else {
 			viewHolder =  (ViewHolder) convertView.getTag();
 		}
+		viewHolder.tvName.setText(list.get(position));
 		return convertView;
 	}
 

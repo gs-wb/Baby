@@ -49,49 +49,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_grid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:gravity="center_vertical"
-                        android:text="最新故事" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="15dp"
-                        android:drawableRight="@drawable/right_arr"
-                        android:drawablePadding="5dp"
-                        android:gravity="center_vertical"
-                        android:layout_alignParentRight="true"
-                        android:text="更多" />
-                </RelativeLayout>
-
-
-                <com.yikang.health.widget.NoScrollGridView
-                    android:id="@+id/gv_story"
-                    android:layout_width="wrap_content"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:cacheColorHint="@color/color_translate"
-                    android:gravity="center"
-                    android:horizontalSpacing="10dp"
-                    android:numColumns="3"
-                    android:scrollbars="none"
-                    android:verticalSpacing="5dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
