@@ -67,7 +67,7 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void loadData() {
-        YIKApplication.client.getMp3List(this, book_id, this);
+        YIKApplication.client.getMp3List(this,"1", book_id, this);
     }
 
     @Override

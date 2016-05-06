@@ -64,8 +64,6 @@ public class StoryDetailListAdapter extends BaseAdapter {
 		}
 		if(position == 0)viewHolder.ivStoryPlay.setVisibility(View.VISIBLE);
 		else viewHolder.ivStoryPlay.setVisibility(View.GONE);
-//		String name = list.get(position).getMp3_name();
-//		String[] strs = name.split("---");
 		viewHolder.tv_name.setText(list.get(position).getId()+" --- "+list.get(position).getMp3_name());
 		return convertView;
 	}

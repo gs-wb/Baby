@@ -13,8 +13,6 @@ public class MyComparator implements Comparator {
 		} else if (Integer.parseInt(t1.getId()) < Integer.parseInt(t2.getId())) {
 			return -1;
 		} else {
-			// 利用String自身的排序方法。
-			// 如果步数相同就按名字进行排序
 			return t1.getId().compareTo(t2.getId());
 		}
 
