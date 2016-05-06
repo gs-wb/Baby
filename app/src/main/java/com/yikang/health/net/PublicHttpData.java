@@ -145,9 +145,10 @@ public class PublicHttpData {
 	 * /content/getMp3List
 	 * [currentPage] 当前页
 	 */
-	public void getMp3List(Context context, String currentPage,TaskExpandListener listener) {
+	public void getMp3List(Context context,String book_id,TaskExpandListener listener) {
 		map = new HashMap<String, Object>();
-		map.put("currentPage", currentPage);
+//		map.put("currentPage", currentPage);
+		map.put("book_id", book_id);
 		ServerConnect.getInstance().requestToServer(context, listener,
 				Constants.GET_MP3_LIST, map,YIKApplication.getContext().getResources()
 						.getString(R.string.request_dialog_loading_content));

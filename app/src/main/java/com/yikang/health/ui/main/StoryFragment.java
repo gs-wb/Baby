@@ -20,13 +20,16 @@ import com.yikang.health.ui.BaseFragment;
 import com.yikang.health.ui.story.StoryDetailActivity;
 import com.yikang.health.utils.Utils;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StoryFragment extends BaseFragment implements OnItemClickListener, TaskExpandListener {
+public class StoryFragment extends BaseFragment implements View.OnClickListener,OnItemClickListener, TaskExpandListener {
 
+    private TextView story1,story2,story3;
     private LinearLayout ll_grid;
 
     private List<Mp3Info> storyList = new ArrayList<Mp3Info>();
@@ -49,10 +52,13 @@ public class StoryFragment extends BaseFragment implements OnItemClickListener, 
 
     @Override
     public void initControl(View v) {
+        story1 = (TextView) v.findViewById(R.id.story_1);
+        story2 = (TextView) v.findViewById(R.id.story_2);
+        story3 = (TextView) v.findViewById(R.id.story_3);
         ll_grid = (LinearLayout) v.findViewById(R.id.ll_grid);
-//        gvStory = (GridView) v.findViewById(R.id.gv_story);
-//        storyAdapter = new StoryAdapter(getActivity());
-//        gvStory.setAdapter(storyAdapter);
+        story1.setOnClickListener(this);
+        story2.setOnClickListener(this);
+        story3.setOnClickListener(this);
         loadData();
     }
 
@@ -62,8 +68,27 @@ public class StoryFragment extends BaseFragment implements OnItemClickListener, 
     }
 
     private void loadData() {
-        YIKApplication.client.getMp3List(getActivity(), "1", this);
 //		YIKApplication.client.getVideoList(getActivity(), "1", this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent= new Intent(getActivity(), StoryDetailActivity.class);
+        switch (v.getId()){
+            case R.id.story_1:
+                intent.putExtra("book_id","1");
+                intent.putExtra("title", "宝宝睡前故事集");
+                break;
+            case R.id.story_2:
+                intent.putExtra("book_id","2");
+                intent.putExtra("title", "成语词典");
+                break;
+            case R.id.story_3:
+                intent.putExtra("book_id","3");
+                intent.putExtra("title", "安徒生童话");
+                break;
+        }
+        startActivity(intent);
     }
 
     @Override
