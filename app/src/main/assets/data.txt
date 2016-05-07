@@ -1,0 +1,226 @@
+{
+    "error": "0",
+    "message": "",
+    "data": [
+        {
+            "mp3_id": "1461569824637644126",
+            "user_id": "1406529820596295660",
+            "file_name": "最新故事",
+            "mp3_name": "最新故事---001-在养鸭场里.mp3",
+            "type": "mp3",
+            "size": "6",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3/%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E9%",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:37:04"
+        },
+        {
+            "mp3_id": "1461569824637645701",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---101-老虎、螃蟹和蜘蛛.mp3",
+            "type": "mp3",
+            "size": "3",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:37:04"
+        },
+        {
+            "mp3_id": "1461569969723105603",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---002-园丁和主人.mp3",
+            "type": "mp3",
+            "size": "7",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3/%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E9%",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105604",
+            "user_id": "1406529820596295660",
+            "file_name": "最新故事",
+            "mp3_name": "最新故事---003-寓言说的这就是你呀.mp3",
+            "type": "mp3",
+            "size": "3",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105605",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---004一串珍珠.mp3",
+            "type": "mp3",
+            "size": "5",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105606",
+            "user_id": "1406529820596295660",
+            "file_name": "最新故事",
+            "mp3_name": "最新故事---005-演木偶戏的人.mp3",
+            "type": "mp3",
+            "size": "5",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105607",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---006-牙痛姑妈.mp3",
+            "type": "mp3",
+            "size": "9",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105608",
+            "user_id": "1406529820596295660",
+            "file_name": "最新故事",
+            "mp3_name": "最新故事---007-幸运的贝儿.mp3",
+            "type": "mp3",
+            "size": "8",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105609",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---008-一个贵族和他的女儿们.mp3",
+            "type": "mp3",
+            "size": "8",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105610",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---009-豌豆公主.mp3",
+            "type": "mp3",
+            "size": "5",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105611",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---010-月亮的脸.mp3",
+            "type": "mp3",
+            "size": "4",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105612",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---011-原始森林里的人蛇大战.mp3",
+            "type": "mp3",
+            "size": "11",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105613",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---012-聪明的小牧人.mp3",
+            "type": "mp3",
+            "size": "3",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105614",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---013-瓦砾下的吵嘴声.mp3",
+            "type": "mp3",
+            "size": "8",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105615",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---014-鲤鱼住在水稻家.mp3",
+            "type": "mp3",
+            "size": "14",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105616",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---015-种子旅行家.mp3",
+            "type": "mp3",
+            "size": "6",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105617",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---016-智取赃物.mp3",
+            "type": "mp3",
+            "size": "4",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105618",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---017-智擒盗宝贼.mp3",
+            "type": "mp3",
+            "size": "11",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105619",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---018-植物妈妈有办法.mp3",
+            "type": "mp3",
+            "size": "2",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        },
+        {
+            "mp3_id": "1461569969723105620",
+            "user_id": "1406529820596295660",
+            "file_name": "宝宝睡前故事集",
+            "mp3_name": "宝宝睡前故事集---019-在牛肚子里旅行.mp3",
+            "type": "mp3",
+            "size": "4",
+            "file_url": "http://7xsyyu.com2.z0.glb.clouddn.com/mp3%2F%E5%AE%9D%E5%AE%9D%E7%9D%A1%E5%89%8D%E6%95%85%E4%BA%8B%E",
+            "sumnum": "0",
+            "create_time": "2016-04-25 15:39:29"
+        }
+    ]
+}

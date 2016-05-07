@@ -27,6 +27,7 @@
         android:layout_marginTop="5dp"
         android:gravity="center"
         android:text="宝宝故事"
+        android:textSize="12sp"
         android:textColor="@color/txt_dark" />
 
 </LinearLayout>

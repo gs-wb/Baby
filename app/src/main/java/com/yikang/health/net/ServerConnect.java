@@ -49,10 +49,10 @@ public class ServerConnect {
 		// TODO Auto-generated method stub
 		switch (mode) {
 		case MODEL_DEV1:
-			host = "http://120.76.136.195/";
+			host = "http://120.76.136.195:20165/";
 			break;
 		case MODEL_PRD:
-			host = "http://120.76.136.195/";
+			host = "http://120.76.136.195:20165/";
 			break;
 		default:
 			break;
