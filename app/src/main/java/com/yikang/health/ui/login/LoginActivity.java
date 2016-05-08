@@ -2,22 +2,15 @@ package com.yikang.health.ui.login;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.yikang.health.R;
-import com.yikang.health.YIKApplication;
 import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
-import com.yikang.health.net.HttpHelper;
-import com.yikang.health.server.WebDataUtils;
 import com.yikang.health.ui.BaseActivity;
-import com.yikang.health.utils.Utils;
-
-import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -74,17 +67,17 @@ public class LoginActivity extends BaseActivity implements OnClickListener,TaskE
 				new AsyncTask<Void,Void,String>(){
 					@Override
 					protected String doInBackground(Void... params) {
-						try{
-							HashMap map = new HashMap();
-//							{"username":"15221365460","password":""}
-							map.put("username", "15221365460");
-							map.put("psd", "123456");
-							String msg = WebDataUtils.getInstance().jsonDataStr(map,"getUserLogin.html");
-							return msg;
-						}catch (Exception e){
-							e.printStackTrace();
+//						try{
+//							HashMap map = new HashMap();
+////							{"username":"15221365460","password":""}
+//							map.put("username", "15221365460");
+//							map.put("psd", "123456");
+//							String msg = WebDataUtils.getInstance().jsonDataStr(map,"getUserLogin.html");
+//							return msg;
+//						}catch (Exception e){
+//							e.printStackTrace();
 							return "";
-						}
+//						}
 
 					}
 
