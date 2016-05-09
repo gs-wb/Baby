@@ -107,11 +107,13 @@
             android:name="com.yikang.health.ui.me.OptionActivity"
             android:theme="@style/FullTransparent"/>
 
-        <!-- 圈子 -->
+        <!-- 音频 故事 -->
         <activity
             android:name="com.yikang.health.ui.story.StoryDetailActivity"
             android:theme="@style/FullTransparent"/>
-
+        <activity
+            android:name="com.yikang.health.ui.story.PlayerActivity"
+            android:theme="@style/FullTransparent"/>
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -120,6 +122,13 @@
             <intent-filter>
                 <action android:name="com.baidu.location.service_v2.4" >
                 </action>
+            </intent-filter>
+        </service>
+
+        <!-- 注册服务 -->
+        <service android:name="com.yikang.health.service.PlayerService">
+            <intent-filter>
+                <action android:name="com.yikang.media.MUSIC_SERVICE"/>
             </intent-filter>
         </service>
     </application>

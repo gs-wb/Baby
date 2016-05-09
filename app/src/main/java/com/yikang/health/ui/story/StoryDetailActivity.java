@@ -1,5 +1,6 @@
 package com.yikang.health.ui.story;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +28,7 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
     private ListView mListView;
     private StoryDetailListAdapter mAdapter;
     private TextView tvSize,tvStoryName;
-    public List<Mp3Info> storyList = new ArrayList<Mp3Info>();
+    public ArrayList<Mp3Info> storyList = new ArrayList<Mp3Info>();
     private Mp3Info currMp3Info;
     public static StoryDetailActivity instance;
 
@@ -75,7 +76,7 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
         if (resultCode.equals(Constants.RESULT_SUCCESS)) {
             switch (connId) {
                 case Constants.GET_MP3_LIST:
-                    storyList = GsonTools.getList(result.toString(), Mp3Info.class);
+                    storyList = (ArrayList)GsonTools.getList(result.toString(), Mp3Info.class);
                     if (storyList != null && !storyList.isEmpty()) {
                         parseStory();
                         mAdapter.setList(storyList);
@@ -114,6 +115,11 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
         if(position != 0){
             currMp3Info = storyList.get(position-1);
             setCurrMp3();
+            Intent intent = new Intent(this,PlayerActivity.class);
+//            intent.putExtra("storyList",storyList);
+            intent.putExtra("mp3Infos",storyList);
+            intent.putExtra("position",position-1);
+            startActivity(intent);
         }
     }
 

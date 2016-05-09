@@ -30,10 +30,9 @@ import java.util.List;
  * @author wwj
  * 音乐播放服务
  */
-@SuppressLint("NewApi")
 public class PlayerService extends Service {
 	private MediaPlayer mediaPlayer; // 媒体播放器对象
-	private String path; 			// 音乐文件路径
+//	private String path; 			// 音乐文件路径
 	private int msg;				//播放信息
 	private boolean isPause; 		// 暂停状态
 	private int current = 0; 		// 记录当前正在播放的音乐
@@ -76,7 +75,8 @@ public class PlayerService extends Service {
 		super.onCreate();
 		Log.d("service", "service created");
 		mediaPlayer = new MediaPlayer();
-		mp3Infos = MediaUtil.getMp3Infos(PlayerService.this);
+//		if(get.getSerializableExtra("mp3Infos")!=null)
+//			mp3Infos = (ArrayList<Mp3Info>)intent.getSerializableExtra("mp3Infos");
 
 		/**
 		 * 设置音乐播放完成时的监听器
@@ -96,7 +96,6 @@ public class PlayerService extends Service {
 					sendIntent.putExtra("current", current);
 					// 发送广播，将被Activity组件中的BroadcastReceiver接收到
 					sendBroadcast(sendIntent);
-					path = mp3Infos.get(current).getFile_url();
 					play(0);
 				} else if (status == 3) { // 顺序播放
 					current++;	//下一首位置
@@ -105,7 +104,6 @@ public class PlayerService extends Service {
 						sendIntent.putExtra("current", current);
 						// 发送广播，将被Activity组件中的BroadcastReceiver接收到
 						sendBroadcast(sendIntent);
-						path = mp3Infos.get(current).getFile_url();
 						play(0);
 					}else {
 						mediaPlayer.seekTo(0);
@@ -122,7 +120,6 @@ public class PlayerService extends Service {
 					sendIntent.putExtra("current", current);
 					// 发送广播，将被Activity组件中的BroadcastReceiver接收到
 					sendBroadcast(sendIntent);
-					path = mp3Infos.get(current).getFile_url();
 					play(0);
 				}
 			}
@@ -152,8 +149,9 @@ public class PlayerService extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-		path = intent.getStringExtra("url");		//歌曲路径
-		current = intent.getIntExtra("listPosition", -1);	//当前播放歌曲的在mp3Infos的位置
+		if(intent.getSerializableExtra("mp3Infos")!=null)
+			mp3Infos = (ArrayList<Mp3Info>)intent.getSerializableExtra("mp3Infos");
+		current = intent.getIntExtra("listPosition", 0);	//当前播放歌曲的在mp3Infos的位置
 		msg = intent.getIntExtra("MSG", 0);			//播放信息
 		if (msg == Constants.PlayerMsg.PLAY_MSG) {	//直接播放音乐
 			play(0);
@@ -237,7 +235,7 @@ public class PlayerService extends Service {
 		try {
 			initLrc();
 			mediaPlayer.reset();// 把各项参数恢复到初始状态
-			mediaPlayer.setDataSource(path);
+			mediaPlayer.setDataSource(mp3Infos.get(current).getFile_url());
 			mediaPlayer.prepare(); // 进行缓冲
 			mediaPlayer.setOnPreparedListener(new PreparedListener(currentTime));// 注册一个监听器
 			handler.sendEmptyMessage(1);

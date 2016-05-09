@@ -30,6 +30,7 @@ import com.yikang.health.service.PlayerService;
 import com.yikang.health.utils.MediaUtil;
 import com.yikang.health.widget.voice.LrcView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -50,15 +51,15 @@ public class PlayerActivity extends Activity {
 	private TextView currentProgress; // 当前进度消耗的时间
 	private TextView finalProgress; // 歌曲时间
 
-	private String title; // 歌曲标题
-	private String artist; // 歌曲艺术家
-	private String url; // 歌曲路径
+//	private String title; // 歌曲标题
+//	private String artist; // 歌曲艺术家
+//	private String url; // 歌曲路径
 	private int listPosition; // 播放歌曲在mp3Infos的位置
 	private int currentTime; // 当前歌曲播放时间
-	private int duration; // 歌曲长度
-	private int flag; // 播放标识
-
+//	private int duration; // 歌曲长度
+	private int flag=1; // 播放标识
 	private int repeatState;
+
 	private final int isCurrentRepeat = 1; // 单曲循环
 	private final int isAllRepeat = 2; // 全部循环
 	private final int isNoneRepeat = 3; // 无重复播放
@@ -67,7 +68,7 @@ public class PlayerActivity extends Activity {
 	private boolean isNoneShuffle; // 顺序播放
 	private boolean isShuffle; // 随机播放
 
-	private List<Mp3Info> mp3Infos;
+	private ArrayList<Mp3Info> mp3Infos;
 	public static LrcView lrcView; // 自定义歌词视图
 
 	private PlayerReceiver playerReceiver;
@@ -105,15 +106,16 @@ public class PlayerActivity extends Activity {
 
 		findViewById();
 		setViewOnclickListener();
-		getDataFromBundle();
+//		getDataFromBundle();
 
-		mp3Infos = MediaUtil.getMp3Infos(PlayerActivity.this);	//获取所有音乐的集合对象
+		mp3Infos = (ArrayList<Mp3Info>)getIntent().getSerializableExtra("mp3Infos");	//获取所有音乐的集合对象
+		listPosition = getIntent().getIntExtra("position",0);
 		registerReceiver();
 
 		// 添加来电监听事件
-		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); // 获取系统服务
-		telManager.listen(new MobliePhoneStateListener(),
-				PhoneStateListener.LISTEN_CALL_STATE);
+//		TelephonyManager telManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE); // 获取系统服务
+//		telManager.listen(new MobliePhoneStateListener(),
+//				PhoneStateListener.LISTEN_CALL_STATE);
 
 		//音量调节面板显示和隐藏的动画
 		showVoicePanelAnimation = AnimationUtils.loadAnimation(PlayerActivity.this, R.anim.push_up_in);
@@ -187,34 +189,32 @@ public class PlayerActivity extends Activity {
 	 * @author wwj
 	 * 电话监听器类
 	 */
-	private class MobliePhoneStateListener extends PhoneStateListener {
-		@Override
-		public void onCallStateChanged(int state, String incomingNumber) {
-			switch (state) {
-				case TelephonyManager.CALL_STATE_IDLE: // 挂机状态
-					Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
-					playBtn.setBackgroundResource(R.drawable.voice_play_selector);
-					intent.setAction("com.wwj.media.MUSIC_SERVICE");
-					intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);	//继续播放音乐
-					startService(intent);
-					isPlaying = false;
-					isPause = true;
-					break;
-				case TelephonyManager.CALL_STATE_OFFHOOK:	//通话状态
-				case TelephonyManager.CALL_STATE_RINGING:	//响铃状态
-					Intent intent2 = new Intent(PlayerActivity.this, PlayerService.class);
-					playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
-					intent2.setAction("com.wwj.media.MUSIC_SERVICE");
-					intent2.putExtra("MSG", Constants.PlayerMsg.PAUSE_MSG);
-					startService(intent2);
-					isPlaying = true;
-					isPause = false;
-					break;
-				default:
-					break;
-			}
-		}
-	}
+//	private class MobliePhoneStateListener extends PhoneStateListener {
+//		@Override
+//		public void onCallStateChanged(int state, String incomingNumber) {
+//			switch (state) {
+//				case TelephonyManager.CALL_STATE_IDLE: // 挂机状态
+//					Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
+//					playBtn.setBackgroundResource(R.drawable.voice_play_selector);
+//					intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);	//继续播放音乐
+//					startService(intent);
+//					isPlaying = false;
+//					isPause = true;
+//					break;
+//				case TelephonyManager.CALL_STATE_OFFHOOK:	//通话状态
+//				case TelephonyManager.CALL_STATE_RINGING:	//响铃状态
+//					Intent intent2 = new Intent(PlayerActivity.this, PlayerService.class);
+//					playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
+//					intent2.putExtra("MSG", Constants.PlayerMsg.PAUSE_MSG);
+//					startService(intent2);
+//					isPlaying = true;
+//					isPause = false;
+//					break;
+//				default:
+//					break;
+//			}
+//		}
+//	}
 
 	@Override
 	protected void onStart() {
@@ -225,19 +225,19 @@ public class PlayerActivity extends Activity {
 	/**
 	 * 从Bundle中获取来自HomeActivity中传过来的数据
 	 */
-	private void getDataFromBundle() {
-		Intent intent = getIntent();
-		Bundle bundle = intent.getExtras();
-		title = bundle.getString("title");
-		artist = bundle.getString("artist");
-		url = bundle.getString("url");
-		listPosition = bundle.getInt("listPosition");
-		repeatState = bundle.getInt("repeatState");
-		isShuffle = bundle.getBoolean("shuffleState");
-		flag = bundle.getInt("MSG");
-		currentTime = bundle.getInt("currentTime");
-		duration = bundle.getInt("duration");
-	}
+//	private void getDataFromBundle() {
+//		Intent intent = getIntent();
+//		Bundle bundle = intent.getExtras();
+//		title = bundle.getString("title");
+//		artist = bundle.getString("artist");
+//		url = bundle.getString("url");
+//		listPosition = bundle.getInt("listPosition");
+//		repeatState = bundle.getInt("repeatState");
+//		isShuffle = bundle.getBoolean("shuffleState");
+//		flag = bundle.getInt("MSG");
+//		currentTime = bundle.getInt("currentTime");
+//		duration = bundle.getInt("duration");
+//	}
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -257,12 +257,11 @@ public class PlayerActivity extends Activity {
 	public void initView() {
 		isPlaying = true;
 		isPause = false;
-		musicTitle.setText(title);
-		musicArtist.setText(artist);
-		music_progressBar.setProgress(currentTime);
-		music_progressBar.setMax(duration);
+		musicTitle.setText(mp3Infos.get(listPosition).getMp3_name());
+//		musicArtist.setText(artist);
+//		music_progressBar.setProgress(currentTime);
+//		music_progressBar.setMax(duration);
 		sb_player_voice.setMax(maxVolume);
-		Mp3Info mp3Info = mp3Infos.get(listPosition);
 //		showArtwork(mp3Info);
 		switch (repeatState) {
 			case isCurrentRepeat: // 单曲循环
@@ -288,18 +287,17 @@ public class PlayerActivity extends Activity {
 			repeatBtn.setClickable(true);
 		}
 		if (flag == Constants.PlayerMsg.PLAYING_MSG) { // 如果播放信息是正在播放
-			Toast.makeText(PlayerActivity.this, "正在播放--" + title, Toast.LENGTH_LONG).show();
+//			Toast.makeText(PlayerActivity.this, "正在播放--" + title, Toast.LENGTH_LONG).show();
 			Intent intent = new Intent();
 			intent.setAction(SHOW_LRC);
 			intent.putExtra("listPosition", listPosition);
 			sendBroadcast(intent);
 		} else if (flag == Constants.PlayerMsg.PLAY_MSG) { // 如果是点击列表播放歌曲的话
-			playBtn.setBackgroundResource(R.drawable.voice_play_selector);
+			playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
 			play();
 		} else if (flag == Constants.PlayerMsg.CONTINUE_MSG) {
 			Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
 			playBtn.setBackgroundResource(R.drawable.voice_play_selector);
-			intent.setAction("com.wwj.media.MUSIC_SERVICE");
 			intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);	//继续播放音乐
 			startService(intent);
 		}
@@ -350,7 +348,7 @@ public class PlayerActivity extends Activity {
 	 *
 	 */
 	private class ViewOnclickListener implements OnClickListener {
-		Intent intent = new Intent();
+		Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
 
 		@Override
 		public void onClick(View v) {
@@ -358,14 +356,14 @@ public class PlayerActivity extends Activity {
 				case R.id.play_music:
 					if (isPlaying) {
 						playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
-						intent.setAction("com.wwj.media.MUSIC_SERVICE");
+						intent.putExtra("mp3Infos", mp3Infos);
+						intent.putExtra("listPosition",listPosition);
 						intent.putExtra("MSG", Constants.PlayerMsg.PAUSE_MSG);
 						startService(intent);
 						isPlaying = false;
 						isPause = true;
 					} else if (isPause) {
 						playBtn.setBackgroundResource(R.drawable.voice_play_selector);
-						intent.setAction("com.wwj.media.MUSIC_SERVICE");
 						intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);
 						startService(intent);
 						isPause = false;
@@ -499,9 +497,8 @@ public class PlayerActivity extends Activity {
 	public void play() {
 		// 开始播放的时候为顺序播放
 		repeat_none();
-		Intent intent = new Intent();
-		intent.setAction("com.wwj.media.MUSIC_SERVICE");
-		intent.putExtra("url", url);
+		Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
+		intent.putExtra("mp3Infos", mp3Infos);
 		intent.putExtra("listPosition", listPosition);
 		intent.putExtra("MSG", flag);
 		startService(intent);
@@ -555,9 +552,8 @@ public class PlayerActivity extends Activity {
 	 * @param progress
 	 */
 	public void audioTrackChange(int progress) {
-		Intent intent = new Intent();
-		intent.setAction("com.wwj.media.MUSIC_SERVICE");
-		intent.putExtra("url", url);
+		Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
+		intent.putExtra("url", mp3Infos.get(listPosition).getFile_url());
 		intent.putExtra("listPosition", listPosition);
 		intent.putExtra("MSG", Constants.PlayerMsg.PROGRESS_CHANGE);
 		intent.putExtra("progress", progress);
@@ -602,9 +598,7 @@ public class PlayerActivity extends Activity {
 //			showArtwork(mp3Info);		//显示专辑封面
 			musicTitle.setText(mp3Info.getMp3_name());
 //			musicArtist.setText(mp3Info.getArtist());
-			url = mp3Info.getFile_url();
-			Intent intent = new Intent();
-			intent.setAction("com.wwj.media.MUSIC_SERVICE");
+			Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
 			intent.putExtra("url", mp3Info.getFile_url());
 			intent.putExtra("listPosition", listPosition);
 			intent.putExtra("MSG", Constants.PlayerMsg.PRIVIOUS_MSG);
@@ -628,11 +622,9 @@ public class PlayerActivity extends Activity {
 		if (listPosition <= mp3Infos.size() - 1) {
 			Mp3Info mp3Info = mp3Infos.get(listPosition);
 //			showArtwork(mp3Info);	//显示专辑封面
-			url = mp3Info.getFile_url();
 			musicTitle.setText(mp3Info.getMp3_name());
 //			musicArtist.setText(mp3Info.getArtist());
-			Intent intent = new Intent();
-			intent.setAction("com.wwj.media.MUSIC_SERVICE");
+			Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
 			intent.putExtra("url", mp3Info.getFile_url());
 			intent.putExtra("listPosition", listPosition);
 			intent.putExtra("MSG", Constants.PlayerMsg.NEXT_MSG);
@@ -667,7 +659,6 @@ public class PlayerActivity extends Activity {
 			} else if (action.equals(UPDATE_ACTION)) {
 				// 获取Intent中的current消息，current代表当前正在播放的歌曲
 				listPosition = intent.getIntExtra("current", -1);
-				url = mp3Infos.get(listPosition).getFile_url();
 				if (listPosition >= 0) {
 					musicTitle.setText(mp3Infos.get(listPosition).getMp3_name());
 //					musicArtist.setText(mp3Infos.get(listPosition).getArtist());
