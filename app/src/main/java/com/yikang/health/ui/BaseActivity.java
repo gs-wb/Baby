@@ -141,7 +141,6 @@ public abstract class BaseActivity extends FragmentActivity {
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		System.gc();
 //		DataCache.getDataCache().removeRuningActivitys(this);

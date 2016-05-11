@@ -348,22 +348,21 @@ public class PlayerActivity extends Activity {
 	 *
 	 */
 	private class ViewOnclickListener implements OnClickListener {
-		Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
-
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
 				case R.id.play_music:
+					Intent intent = new Intent(PlayerActivity.this, PlayerService.class);
+					intent.putExtra("mp3Infos", mp3Infos);
+					intent.putExtra("listPosition", listPosition);
 					if (isPlaying) {
-						playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
-						intent.putExtra("mp3Infos", mp3Infos);
-						intent.putExtra("listPosition",listPosition);
+						playBtn.setBackgroundResource(R.drawable.voice_play_selector);
 						intent.putExtra("MSG", Constants.PlayerMsg.PAUSE_MSG);
 						startService(intent);
 						isPlaying = false;
 						isPause = true;
 					} else if (isPause) {
-						playBtn.setBackgroundResource(R.drawable.voice_play_selector);
+						playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
 						intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);
 						startService(intent);
 						isPause = false;
@@ -390,7 +389,7 @@ public class PlayerActivity extends Activity {
 						shuffleBtn.setClickable(true);
 						repeatState = isNoneRepeat;
 					}
-					Intent intent = new Intent(REPEAT_ACTION);
+					Intent repeatIntent = new Intent(REPEAT_ACTION);
 					switch (repeatState) {
 						case isCurrentRepeat: // 单曲循环
 							repeatBtn
@@ -398,23 +397,23 @@ public class PlayerActivity extends Activity {
 							Toast.makeText(PlayerActivity.this,
 									R.string.repeat_current, Toast.LENGTH_SHORT).show();
 
-							intent.putExtra("repeatState", isCurrentRepeat);
-							sendBroadcast(intent);
+							repeatIntent.putExtra("repeatState", isCurrentRepeat);
+							sendBroadcast(repeatIntent);
 							break;
 						case isAllRepeat: // 全部循环
 							repeatBtn
 									.setBackgroundResource(R.drawable.voice_repeat_all_selector);
 							Toast.makeText(PlayerActivity.this, R.string.repeat_all,
 									Toast.LENGTH_SHORT).show();
-							intent.putExtra("repeatState", isAllRepeat);
-							sendBroadcast(intent);
+							repeatIntent.putExtra("repeatState", isAllRepeat);
+							sendBroadcast(repeatIntent);
 							break;
 						case isNoneRepeat: // 无重复
 							repeatBtn
 									.setBackgroundResource(R.drawable.voice_repeat_none_selector);
 							Toast.makeText(PlayerActivity.this, R.string.repeat_none,
 									Toast.LENGTH_SHORT).show();
-							intent.putExtra("repeatState", isNoneRepeat);
+							repeatIntent.putExtra("repeatState", isNoneRepeat);
 							break;
 					}
 					break;

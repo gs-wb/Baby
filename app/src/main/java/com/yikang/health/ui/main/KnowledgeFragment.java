@@ -184,6 +184,8 @@ public class KnowledgeFragment extends BaseFragment implements OnItemClickListen
 
 	@Override
 	public void onDestroy() {
+		super.onDestroy();
+		System.gc();
 	}
 	
 

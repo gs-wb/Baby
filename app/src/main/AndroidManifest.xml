@@ -47,7 +47,6 @@
         <activity
             android:name="com.yikang.health.ui.main.MainTabActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask"
             android:theme="@style/FullTransparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -112,7 +111,7 @@
             android:name="com.yikang.health.ui.story.StoryDetailActivity"
             android:theme="@style/FullTransparent"/>
         <activity
-            android:name="com.yikang.health.ui.story.PlayerActivity"
+            android:name="com.yikang.health.ui.story.VoicePlayerActivity"
             android:theme="@style/FullTransparent"/>
         <service
             android:name="com.baidu.location.f"

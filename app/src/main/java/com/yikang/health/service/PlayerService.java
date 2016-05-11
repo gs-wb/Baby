@@ -18,7 +18,7 @@ import com.yikang.health.R;
 import com.yikang.health.constant.Constants;
 import com.yikang.health.model.LrcContent;
 import com.yikang.health.model.Mp3Info;
-import com.yikang.health.ui.story.PlayerActivity;
+import com.yikang.health.ui.story.VoicePlayerActivity;
 import com.yikang.health.utils.MediaUtil;
 import com.yikang.health.widget.voice.LrcProcess;
 
@@ -148,30 +148,32 @@ public class PlayerService extends Service {
 	}
 
 	@Override
-	public void onStart(Intent intent, int startId) {
-		if(intent.getSerializableExtra("mp3Infos")!=null)
-			mp3Infos = (ArrayList<Mp3Info>)intent.getSerializableExtra("mp3Infos");
-		current = intent.getIntExtra("listPosition", 0);	//当前播放歌曲的在mp3Infos的位置
-		msg = intent.getIntExtra("MSG", 0);			//播放信息
-		if (msg == Constants.PlayerMsg.PLAY_MSG) {	//直接播放音乐
-			play(0);
-		} else if (msg == Constants.PlayerMsg.PAUSE_MSG) {	//暂停
-			pause();	
-		} else if (msg == Constants.PlayerMsg.STOP_MSG) {		//停止
-			stop();
-		} else if (msg == Constants.PlayerMsg.CONTINUE_MSG) {	//继续播放
-			resume();	
-		} else if (msg == Constants.PlayerMsg.PRIVIOUS_MSG) {	//上一首
-			previous();
-		} else if (msg == Constants.PlayerMsg.NEXT_MSG) {		//下一首
-			next();
-		} else if (msg == Constants.PlayerMsg.PROGRESS_CHANGE) {	//进度更新
-			currentTime = intent.getIntExtra("progress", -1);
-			play(currentTime);
-		} else if (msg == Constants.PlayerMsg.PLAYING_MSG) {
-			handler.sendEmptyMessage(1);
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		if(intent!=null){
+			if(intent.getSerializableExtra("mp3Infos")!=null)
+				mp3Infos = (ArrayList<Mp3Info>)intent.getSerializableExtra("mp3Infos");
+			current = intent.getIntExtra("listPosition", 0);	//当前播放歌曲的在mp3Infos的位置
+			msg = intent.getIntExtra("MSG", 0);			//播放信息
+			if (msg == Constants.PlayerMsg.PLAY_MSG) {	//直接播放音乐
+				play(0);
+			} else if (msg == Constants.PlayerMsg.PAUSE_MSG) {	//暂停
+				pause();
+			} else if (msg == Constants.PlayerMsg.STOP_MSG) {		//停止
+				stop();
+			} else if (msg == Constants.PlayerMsg.CONTINUE_MSG) {	//继续播放
+				resume();
+			} else if (msg == Constants.PlayerMsg.PRIVIOUS_MSG) {	//上一首
+				previous();
+			} else if (msg == Constants.PlayerMsg.NEXT_MSG) {		//下一首
+				next();
+			} else if (msg == Constants.PlayerMsg.PROGRESS_CHANGE) {	//进度更新
+				currentTime = intent.getIntExtra("progress", -1);
+				play(currentTime);
+			} else if (msg == Constants.PlayerMsg.PLAYING_MSG) {
+				handler.sendEmptyMessage(1);
+			}
 		}
-		super.onStart(intent, startId);
+		return super.onStartCommand(intent, flags, startId);
 	}
 
 	/**
@@ -183,17 +185,17 @@ public class PlayerService extends Service {
 		mLrcProcess.readLRC(mp3Infos.get(current).getFile_url());
 		//传回处理后的歌词文件
 		lrcList = mLrcProcess.getLrcList();
-		PlayerActivity.lrcView.setmLrcList(lrcList);
+		VoicePlayerActivity.lrcView.setmLrcList(lrcList);
 		//切换带动画显示歌词
-		PlayerActivity.lrcView.setAnimation(AnimationUtils.loadAnimation(PlayerService.this, R.anim.alpha_z));
+		VoicePlayerActivity.lrcView.setAnimation(AnimationUtils.loadAnimation(PlayerService.this, R.anim.alpha_z));
 		handler.post(mRunnable);
 	}
 	Runnable mRunnable = new Runnable() {
 		
 		@Override
 		public void run() {
-			PlayerActivity.lrcView.setIndex(lrcIndex());
-			PlayerActivity.lrcView.invalidate();
+			VoicePlayerActivity.lrcView.setIndex(lrcIndex());
+			VoicePlayerActivity.lrcView.invalidate();
 			handler.postDelayed(mRunnable, 100);
 		}
 	};

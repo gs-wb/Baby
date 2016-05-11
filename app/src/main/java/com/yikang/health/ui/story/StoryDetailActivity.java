@@ -115,8 +115,7 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
         if(position != 0){
             currMp3Info = storyList.get(position-1);
             setCurrMp3();
-            Intent intent = new Intent(this,PlayerActivity.class);
-//            intent.putExtra("storyList",storyList);
+            Intent intent = new Intent(this,VoicePlayerActivity.class);
             intent.putExtra("mp3Infos",storyList);
             intent.putExtra("position",position-1);
             startActivity(intent);

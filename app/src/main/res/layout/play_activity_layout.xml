@@ -4,11 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_ffffff" >
-
+    <View
+        android:id="@+id/idr_StatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:background="@color/main_bg"/>
     <RelativeLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/idr_StatusBar"
+        android:layout_marginTop="10dp"
         android:layout_alignParentTop="true" >
 
         <Button
@@ -17,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:background="@drawable/repeat_all"
-            android:visibility="invisible"/>
+            android:visibility="visible"/>
 
         <Button
             android:id="@+id/shuffle_music"
@@ -25,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:background="@drawable/voice_shuffle"
-            android:visibility="invisible"/>
+            android:visibility="visible"/>
 
         <TextView
             android:id="@+id/musicTitle"
@@ -54,7 +60,7 @@
             android:text="artist"
             android:textColor="#000000"
             android:textSize="18sp"
-            android:visibility="invisible"/>
+            android:visibility="visible"/>
     </RelativeLayout>
 
     <FrameLayout
@@ -115,9 +121,9 @@
                 android:layout_toLeftOf="@+id/iv_player_max_voice"
                 android:layout_toRightOf="@+id/iv_player_min_voice"
                 android:background="@drawable/voice_seekbar_bg"
+                android:progressDrawable="@drawable/voice_seekbar_progress"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:progressDrawable="@drawable/voice_seekbar_progress"
                 android:thumb="@drawable/voice_seekbar_thumb" />
         </RelativeLayout>
     </FrameLayout>
@@ -165,45 +171,52 @@
 
             <Button
                 android:id="@+id/play_music"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/voice_play_selector" />
 
             <Button
                 android:id="@+id/next_music"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
                 android:layout_alignBaseline="@+id/play_music"
                 android:layout_toRightOf="@+id/play_music"
                 android:background="@drawable/voice_next_music_selector"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
 
             <Button
                 android:id="@+id/previous_music"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
                 android:layout_alignBaseline="@+id/play_music"
                 android:layout_toLeftOf="@+id/play_music"
                 android:background="@drawable/voice_previous_music_selector"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
 
             <Button
                 android:id="@+id/play_queue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/next_music"
-                android:layout_toRightOf="@+id/next_music"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/voice_play_queue_selector"
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
 
             <ImageButton
                 android:id="@+id/ibtn_player_voice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/voice_player_btn_voice" />
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/adjustmusic_press" />
         </RelativeLayout>
     </RelativeLayout>
 
