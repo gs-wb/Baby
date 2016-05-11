@@ -123,7 +123,10 @@
                 </action>
             </intent-filter>
         </service>
-
+        <activity android:name="com.yikang.health.map.IdrOutGuideActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <service android:name="com.yikang.health.map.service.IdrOutLocationService"></service>
         <!-- 注册服务 -->
         <service android:name="com.yikang.health.service.PlayerService">
             <intent-filter>

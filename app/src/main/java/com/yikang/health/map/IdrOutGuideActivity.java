@@ -12,7 +12,6 @@ import android.view.View;
 import com.baidu.navisdk.adapter.BNRouteGuideManager;
 import com.baidu.navisdk.adapter.BNRouteGuideManager.CustomizedLayerItem;
 import com.baidu.navisdk.adapter.BNRoutePlanNode;
-import com.indoorun.mapapi.core.data.IndoorunSDKDataCenter;
 import com.indoorun.mapapi.domain.IdrMapRegion;
 import com.indoorun.mapapi.exception.NoBluetoothException;
 import com.indoorun.mapapi.outdoor.IdrAndOutDector;

@@ -6,7 +6,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.indoorun.mapapi.core.data.IndoorunSDKDataCenter;
-import com.indoorun.mapapi.core.helper.LogUtil;
 import com.indoorun.mapapi.domain.OutMapPoint;
 import com.indoorun.outapi.utils.LocationUtil;
 
