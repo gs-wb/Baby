@@ -115,11 +115,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener,TaskE
 	}
 	@Override
 	public <T> void onTaskCompleted(String resultCode, T result, int connId) {
-		if(resultCode.equals(Constants.RESULT_SUCCESS)){
-			if(connId == Constants.GET_USER_LOGIN){
-				ToastShow(result.toString());
-			}
-		}else{
+		if(connId == Constants.GET_USER_LOGIN){
 			ToastShow(result.toString());
 		}
 		startActivity(new Intent(this, ChoseBabyActivity.class));

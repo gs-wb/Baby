@@ -14,8 +14,6 @@ import com.yikang.health.interfaces.TaskCompleteListener;
  *
  */
 public class ServerConnect {
-	// IP
-//	public static final String SERVICE_IP = "http://120.76.136.195";
 	// 开发模式
 	private final static int MODEL_DEV1 = 0;
 	// 测试模式
@@ -62,8 +60,6 @@ public class ServerConnect {
 	/**
 	 * 提交一次请求
 	 * 
-	 * @param requestActivity
-	 *            请求的Activity
 	 * @param listener
 	 *            回调接口
 	 * @param connCode
@@ -84,7 +80,6 @@ public class ServerConnect {
 	 * @param context
 	 * @param listener
 	 * @param connCode
-	 * @param lotteryType
 	 */
 	
 	public void requestToServer(Context context,
@@ -97,7 +92,6 @@ public class ServerConnect {
 	/**
 	 * 提交一次请求(弹窗)
 	 * 
-	 * @param requestActivity
 	 *            请求的Activity
 	 * @param listener
 	 *            回调接口
@@ -115,11 +109,17 @@ public class ServerConnect {
 				getRequestUrl(connCode), listener, dialogMsg, params);
 	}
 
+	public void requestToServer(Context context,
+								TaskCompleteListener listener,String url, int connCode, Object params,
+								String dialogMsg) {
+		NetTaskManager.getTaskPool().addNewTask(context, connCode,
+				url, listener, dialogMsg, params);
+	}
+
 	private String getRequestUrl(int connCode) {
 		// TODO Auto-generated method stub
 		return host + getOperationType(connCode);
 	}
-
 	private String getOperationType(int connId) {
 		switch (connId) {
 		case Constants.CHECK_VERSION:

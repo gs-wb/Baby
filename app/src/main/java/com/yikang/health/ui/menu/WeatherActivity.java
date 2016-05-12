@@ -1,11 +1,13 @@
-package com.yikang.health.ui.me;
+package com.yikang.health.ui.menu;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.yikang.health.R;
+import com.yikang.health.YIKApplication;
+import com.yikang.health.constant.Constants;
+import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.ui.BaseActivity;
 
 import java.io.BufferedReader;
@@ -17,16 +19,16 @@ import java.net.URL;
 /**
  * Created by zwb on 2016/5/2.
  */
-public class PhotoManageActivity extends BaseActivity implements View.OnClickListener{
-    public PhotoManageActivity(){
+public class WeatherActivity extends BaseActivity implements View.OnClickListener,TaskExpandListener {
+    public WeatherActivity(){
         super();
-        layoutResID = R.layout.activity_photo_manage_layout;
+        layoutResID = R.layout.activity_weather_layout;
     }
 
     @Override
     protected void mSetTitleText(TextView mTitle) {
         super.mSetTitleText(mTitle);
-        mTitle.setText("宝宝照片");
+        mTitle.setText("天气");
     }
 
     @Override
@@ -37,6 +39,7 @@ public class PhotoManageActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void initControl() {
         super.initControl();
+        YIKApplication.client.getWeatherByGet(this, "上海", this);
     }
 
     @Override
@@ -52,6 +55,21 @@ public class PhotoManageActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
     }
 
+    @Override
+    public <T> void onTaskCompleted(String resultCode, T result, int connId) {
+        if(connId == Constants.GET_WEATHER_DATA){
+//            ToastShow(result.toString());
+        }
+    }
+    @Override
+    public void onTaskCanceled() {
+
+    }
+
+    @Override
+    public void onTaskError(String resultCode, int conId, String msg) {
+
+    }
     @Override
     public void saveData() {
 

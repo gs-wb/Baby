@@ -14,8 +14,9 @@ public class Constants {
 	public static final int STATUS_NETWORK_ERROR = 10005; // 网络连接异常
 	public static final int STATUS_MOVED_TEMPORARILY = 10006; // 重定向
 	public static final int STATUS_PARAMETERS_ERROR = 10007; // 参数错误
-	
+
 	public static final String FIELD_RESULTCODE = "error";
+	public static final String FIELD_RESULTCODE2 = "errNum";
 	public static final String FIELD_RESULTMSG = "message";
 //	public static final String FIELD_SESSIONID = "sessionId";
 	public static final String RESULT_SUCCESS = "0";
@@ -25,7 +26,7 @@ public class Constants {
 	public final static String myFilePath = Environment
 			.getExternalStorageDirectory().getAbsolutePath()
 			+ "/storeCacheTemp";          // 文件保存路径
-	
+
 	public static final String FROM_APP = YIKApplication.getContext()
 			.getResources().getString(R.string.channel_id);
 	
@@ -87,7 +88,18 @@ public class Constants {
 	// 查询视频信息 content/getVideoList
 	public static final int GET_VIDEO_LIST = 33;
 
+	/*--------百度公共接口  常量9开始--------*/
+	//获取天气的接口
+	public static final int GET_WEATHER_DATA = 91;
 
+	// 百度公共接口
+	public static final String  COMMON_API = "http://apis.baidu.com/apistore/";
+	// apikey
+	public static final String API_KEY_VALUE = "apikey";
+	// 百度公共接口 key
+	public static final String  API_KEY = "9cb6019d0dbf074445e4b4f21f989784";
+	// 百度公共接口 城市名称
+	public static final String  CITY_NAME = "cityname";
 	public class PlayerMsg {
 		public static final int PLAY_MSG = 1;		//播放
 		public static final int PAUSE_MSG = 2;		//暂停

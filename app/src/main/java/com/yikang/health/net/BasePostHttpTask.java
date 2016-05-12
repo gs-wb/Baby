@@ -57,7 +57,7 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 	protected boolean isCanceled = false;
 	protected boolean isDone = false;
 	private int status_code = Constants.STATUS_OK;
-	private String resultCode;
+	private String resultCode="";
 	private static final int TIMEOUT_IN_MILLIONS = 5000;
 
 	private LinkedBlockingQueue<String> resultQueue = new LinkedBlockingQueue<String>(
@@ -149,12 +149,88 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 		LogUtils.d("requesturl: " + requestUrl);
 		LogUtils.d("params: " + hashMap);
 		// 发送请求 ...
-		String result = requestByPost(requestUrl, hashMap);
+		String result;
+		if(requestUrl.contains("http://apis.baidu.com")){
+			result = requestByGet(requestUrl, hashMap);
+		}else{
+			result = requestByPost(requestUrl, hashMap);
+		}
+
 		return result;
 	}
 
 	/**
-	 * 
+	 *
+	 * @param url
+	 * @return
+	 */
+
+	public String requestByGet(String url,Map<String, Object> heads) {
+		HttpURLConnection conn = null;
+		InputStream is = null;
+		String  result = null;
+		byte[] buf = new byte[128];
+		ByteArrayOutputStream baoStream = null;
+		try {
+			conn = (HttpURLConnection) new URL(url).openConnection();
+			conn.setReadTimeout(TIMEOUT_IN_MILLIONS);
+			conn.setConnectTimeout(TIMEOUT_IN_MILLIONS);
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("accept", "*/*");
+			conn.setRequestProperty("connection", "Keep-Alive");
+			if(heads!=null)for (Entry<String, Object> entry : heads.entrySet()) {// 拼接参数
+				conn.setRequestProperty(entry.getKey(), entry.getValue().toString());
+			}
+			if (conn.getResponseCode() == 200) {
+				is = conn.getInputStream();
+				baoStream = new ByteArrayOutputStream();
+				int len = -1;
+				while ((len = is.read(buf)) != -1) {
+					baoStream.write(buf, 0, len);
+				}
+				result = baoStream.toString();
+			}
+		} catch (ConnectTimeoutException e) {
+			conn.disconnect();
+			LogUtils.printStackTrace("ConnectTimeoutException by request:"
+					+ url, e);
+			status_code = Constants.STATUS_NETWORK_TIMEOUT;
+		} catch (SocketTimeoutException e) {
+			conn.disconnect();
+			LogUtils.printStackTrace("SocketTimeoutException by request:"
+					+ url, e);
+			status_code = Constants.STATUS_NETWORK_TIMEOUT;
+		} catch (UnknownHostException e) {
+			conn.disconnect();
+			LogUtils.printStackTrace(
+					"UnknownHostException by request:" + url, e);
+			status_code = Constants.STATUS_SYSTEM_ERROR;
+		} catch (IOException e) {
+			conn.disconnect();
+			LogUtils.printStackTrace("IOException by request: " + url, e);
+			status_code = Constants.STATUS_NETWORK_ERROR;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			conn.disconnect();
+			LogUtils.printStackTrace("Exception by request:" + url, e);
+			status_code = Constants.STATUS_SYSTEM_ERROR;
+		} finally {
+			try {
+				if (baoStream != null)
+					baoStream.close();
+			} catch (IOException e) {
+				LogUtils.printStackTrace("Exception while close the reader:"
+						+ url, e);
+			}
+		}
+		LogUtils.i(result);
+		return result;
+	}
+
+
+	/**
+	 *
 	 * @param url
 	 * @param params
 	 * @return
@@ -232,7 +308,7 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 		LogUtils.i(result);
 		return result;
 	}
-	
+
 
 	/**
 	 * 

@@ -113,6 +113,11 @@
         <activity
             android:name="com.yikang.health.ui.story.VoicePlayerActivity"
             android:theme="@style/FullTransparent"/>
+        <!-- 天气 -->
+        <activity
+            android:name="com.yikang.health.ui.menu.WeatherActivity"
+            android:theme="@style/FullTransparent"/>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"

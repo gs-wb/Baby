@@ -1,8 +1,15 @@
 package com.yikang.health.server;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import android.text.TextUtils;
+
+import org.apache.http.message.BasicNameValuePair;
 
 
 public class WebDataUtils {
@@ -17,20 +24,6 @@ public class WebDataUtils {
 		return requestUtils==null? new WebDataUtils():requestUtils;
 	} 
 	
-	
-//	public String isSuccess(String orgJson){
-//
-//		if(TextUtils.isEmpty(orgJson))return null;
-//
-//		OrgResultInfo resultInfo = GsonTools.getObject(orgJson, OrgResultInfo.class);
-//		if(resultInfo==null) return null;
-//		else {
-//			if(TextUtils.equals("0", resultInfo.getError())) return resultInfo.getData();
-//		}
-//		return null;
-//	}
-	
-	
 	/**
 	 * 请求网络数据
 	 * @param hashMap
@@ -43,6 +36,19 @@ public class WebDataUtils {
 		return resultJson;
 	}
 	
-	
+	public String getWeatherJson(HashMap<String, String> hashMap,String httpUrl){
+		String httpArg = "";
+		if(hashMap!=null){
+			Set<Map.Entry<String, String>> set = hashMap.entrySet();
+			Iterator<Map.Entry<String, String>> ite = set.iterator();
+			while(ite.hasNext()){
+				Map.Entry<String, String> entry = ite.next();
+				String key = entry.getKey();
+				String value = entry.getValue();
+				httpArg += key+"="+value +"&";
+			}
+		}
+		return CallDataHelper.getInstance().requestWeather(httpUrl, httpArg.endsWith("&")?httpArg.substring(0, httpArg.length()-1):httpArg);
+	}
 	
 }

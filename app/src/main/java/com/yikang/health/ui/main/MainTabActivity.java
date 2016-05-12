@@ -1,16 +1,19 @@
 package com.yikang.health.ui.main;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.yikang.health.R;
 import com.yikang.health.cache.DataCache;
 import com.yikang.health.ui.BaseActivity;
+import com.yikang.health.ui.menu.WeatherActivity;
 import com.yikang.health.utils.DisplayUtil;
 
 public class MainTabActivity extends BaseActivity implements OnClickListener{
@@ -22,6 +25,8 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 	private FountFragment findFragment;
 	private MeFragment meFragment;
 	private RadioButton[] mTabs;
+
+	private LinearLayout llMenuTianqi;
 	private int tabImgs[];
 	private int index;
 	// 当前fragment的index
@@ -42,6 +47,7 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 	@Override
 	public void initControl() {
 		initView();
+		llMenuTianqi = (LinearLayout)findViewById(R.id.ll_menu_tianqi);
 		SlideMenu slideMenu = (SlideMenu) findViewById(R.id.slide_menu);
 		babyFragment = new BabyFragment(slideMenu);
 		knowledgeFragment = new KnowledgeFragment();
@@ -101,26 +107,35 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 	@Override
 	public void onClick(View view) {
 		int id = view.getId();
-		if (id == R.id.rb_baby) {
-			index = 0;
-			swichFragment();
-			setBarColor(getResources().getColor(R.color.main_bg));
-		} else if (id == R.id.rb_knowledge) {
-			index = 1;
-			swichFragment();
-			setBarColor(getResources().getColor(R.color.main_bg));
-		} else if (id == R.id.rb_story) {
-			index = 2;
-			swichFragment();
-			setBarColor(getResources().getColor(R.color.main_bg));
-		} else if (id == R.id.rb_find) {
-			index = 3;
-			swichFragment();
-			setBarColor(getResources().getColor(R.color.main_bg));
-		} else if (id == R.id.rb_me) {
-			index = 4;
-			swichFragment();
-			setBarColor(getResources().getColor(R.color.main_red));
+		switch (id) {
+			case R.id.rb_baby:
+				index = 0;
+				swichFragment();
+				setBarColor(getResources().getColor(R.color.main_bg));
+				break;
+			case R.id.rb_knowledge:
+				index = 1;
+				swichFragment();
+				setBarColor(getResources().getColor(R.color.main_bg));
+				break;
+			case R.id.rb_story:
+				index = 2;
+				swichFragment();
+				setBarColor(getResources().getColor(R.color.main_bg));
+				break;
+			case R.id.rb_find:
+				index = 3;
+				swichFragment();
+				setBarColor(getResources().getColor(R.color.main_bg));
+				break;
+			case R.id.rb_me:
+				index = 4;
+				swichFragment();
+				setBarColor(getResources().getColor(R.color.main_red));
+				break;
+			case R.id.ll_menu_tianqi:
+				startActivity(new Intent(this, WeatherActivity.class));
+				break;
 		}
 	}
 	private void swichFragment() {
@@ -143,8 +158,7 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void initObserver() {
-		// TODO Auto-generated method stub
-		
+		llMenuTianqi.setOnClickListener(this);
 	}
 
 	@Override
