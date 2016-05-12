@@ -91,7 +91,7 @@ public class Constants {
 	/*--------百度公共接口  常量9开始--------*/
 	//获取天气的接口
 	public static final int GET_WEATHER_DATA = 91;
-
+	//  http://apistore.baidu.com/apiworks/servicedetail/112.html
 	// 百度公共接口
 	public static final String  COMMON_API = "http://apis.baidu.com/apistore/";
 	// apikey
