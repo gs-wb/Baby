@@ -1,9 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            try {
+                def Properties keyFile = new Properties()
+                keyFile.load(new FileInputStream(file('../local.properties')))
+                keyAlias 'yellfun'
+                keyPassword 'Yellfun20130226!'
+                storeFile file("${keyFile['keyFile']}")
+                storePassword 'Yellfun20130226!'
+            } catch (ignore) {
+                throw new InvalidUserDataException("You should define keyFile path in root local.properties.")
+            }
+        }
+    }
     compileSdkVersion 21
-    buildToolsVersion '23.0.3'
-
+    buildToolsVersion '23.0.2'
     defaultConfig {
         applicationId "com.yikang.health"
         minSdkVersion 15
@@ -15,6 +28,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
     sourceSets {
