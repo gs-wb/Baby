@@ -12,8 +12,8 @@ import com.baidu.mapapi.search.route.PlanNode;
 import com.baidu.mapapi.search.route.RoutePlanSearch;
 import com.baidu.mapapi.search.route.TransitRouteResult;
 import com.baidu.mapapi.search.route.WalkingRouteResult;
-import com.indoorun.mapapi.domain.OutMapPoint;
-import com.indoorun.outapi.domain.DrivingRouteOverlay;
+import com.yikang.health.map.domain.DrivingRouteOverlay;
+import com.yikang.health.map.domain.OutMapPoint;
 
 /**
  * Created by admin on 2016/3/15.

@@ -25,7 +25,7 @@ import com.baidu.mapapi.map.Overlay;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
-import com.indoorun.mapapi.domain.OutMapPoint;
+import com.yikang.health.map.domain.OutMapPoint;
 
 import java.util.ArrayList;
 import java.util.List;

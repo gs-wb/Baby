@@ -6,16 +6,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.baidu.navisdk.adapter.BNRouteGuideManager;
 import com.baidu.navisdk.adapter.BNRoutePlanNode;
 import com.baidu.navisdk.adapter.BNRoutePlanNode.CoordinateType;
 import com.baidu.navisdk.adapter.BaiduNaviManager;
 import com.baidu.navisdk.adapter.BaiduNaviManager.NaviInitListener;
-import com.indoorun.mapapi.core.data.IndoorunSDKDataCenter;
-import com.indoorun.mapapi.core.helper.LogUtil;
-import com.indoorun.mapapi.domain.OutMapPoint;
-import com.indoorun.outapi.utils.DistanceUtils;
+import com.yikang.health.map.domain.OutMapPoint;
+import com.yikang.health.map.utils.DistanceUtils;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -58,15 +57,15 @@ public class IdrOutNaviManager {
                 APP_FOLDER_NAME, new NaviInitListener() {
                     @Override
                     public void onAuthResult(int status, String msg) {
-                        LogUtil.e("IdrOutMapSDK","NaviInitListener onAuthResult:"+msg);
+                        Log.e("MapSDK", "NaviInitListener onAuthResult:" + msg);
                     }
 
                     public void initSuccess() {
-                        LogUtil.e("IdrOutMapSDK","NaviInitListener initSuccess");
+                        Log.e("MapSDK","NaviInitListener initSuccess");
                     }
 
                     public void initFailed() {
-                        LogUtil.e("IdrOutMapSDK","NaviInitListener initFailed");
+                        Log.e("MapSDK","NaviInitListener initFailed");
                     }
 
                     @Override
@@ -82,11 +81,11 @@ public class IdrOutNaviManager {
             int type = msg.what;
             switch (type) {
                 case BaiduNaviManager.TTSPlayMsgType.PLAY_START_MSG: {
-                    LogUtil.e("IdrOutMapSDK","ttsHandler == TTS play start");
+                    Log.e("MapSDK","ttsHandler == TTS play start");
                     break;
                 }
                 case BaiduNaviManager.TTSPlayMsgType.PLAY_END_MSG: {
-                    LogUtil.e("IdrOutMapSDK","ttsHandler == TTS play end");
+                    Log.e("MapSDK","ttsHandler == TTS play end");
                     break;
                 }
                 default :
@@ -100,24 +99,13 @@ public class IdrOutNaviManager {
     private BaiduNaviManager.TTSPlayStateListener ttsPlayStateListener = new BaiduNaviManager.TTSPlayStateListener() {
         @Override
         public void playEnd() {
-            LogUtil.e("IdrOutMapSDK","ttsPlayStateListener == TTS play end");
+            Log.e("MapSDK","ttsPlayStateListener == TTS play end");
         }
         @Override
         public void playStart() {
-            LogUtil.e("IdrOutMapSDK","ttsPlayStateListener == TTS play start");
+            Log.e("MapSDK","ttsPlayStateListener == TTS play start");
         }
     };
-    /**
-     * 发起算路
-     *
-     * @param s 起点坐标
-     */
-    public void routeplanToNavi(Activity activity,OutMapPoint s, final IRoutePlanToNaviCallBack routePlanToNaviCallBack) {
-        OutMapPoint e = new OutMapPoint(IndoorunSDKDataCenter.getInstance().getCurrentRegion().getLongitude(),
-                IndoorunSDKDataCenter.getInstance().getCurrentRegion().getLatitude(), 0,
-                IndoorunSDKDataCenter.getInstance().getCurrentRegion().getName());
-        ToNavi(activity,s, e, routePlanToNaviCallBack);
-    }
 
     /**
      * 发起算路
@@ -142,7 +130,7 @@ public class IdrOutNaviManager {
                 e.name, null, CoordinateType.BD09LL);
         MyPlanListener planListener = new MyPlanListener(activity,sNode,routePlanToNaviCallBack);
         if(!BaiduNaviManager.isNaviInited()){
-            LogUtil.e("IdrOutMapSDK","BaiduNaviManager.getInstance().init() failed");
+            Log.e("MapSDK","BaiduNaviManager.getInstance().init() failed");
             planListener.onRoutePlanFailed();
             return;
         }

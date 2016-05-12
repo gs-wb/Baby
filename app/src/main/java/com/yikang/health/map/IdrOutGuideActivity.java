@@ -12,10 +12,6 @@ import android.view.View;
 import com.baidu.navisdk.adapter.BNRouteGuideManager;
 import com.baidu.navisdk.adapter.BNRouteGuideManager.CustomizedLayerItem;
 import com.baidu.navisdk.adapter.BNRoutePlanNode;
-import com.indoorun.mapapi.domain.IdrMapRegion;
-import com.indoorun.mapapi.exception.NoBluetoothException;
-import com.indoorun.mapapi.outdoor.IdrAndOutDector;
-import com.indoorun.mapapi.outdoor.IdrAndOutListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +20,10 @@ import java.util.List;
  * Created by JueFang on 2015/11/30.
  * modify by zhangwb
  */
-public class IdrOutGuideActivity extends Activity implements IdrAndOutListener {//,BDLocationListener {
+public class IdrOutGuideActivity extends Activity  {//,BDLocationListener {
 
     private BNRoutePlanNode mBNRoutePlanNode = null;
     private LocalBroadcastManager mLocalBroadcastManager;
-    private IdrAndOutDector idrAndOutDector = new IdrAndOutDector(IdrOutGuideActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,28 +55,8 @@ public class IdrOutGuideActivity extends Activity implements IdrAndOutListener {
         }
         mLocalBroadcastManager = LocalBroadcastManager.getInstance(IdrOutGuideActivity.this);
 
-        try {
-            idrAndOutDector.startLocateByRegions(1000 * 30, 1000);
-            idrAndOutDector.setIdrAndOutListener(this);
-        } catch (NoBluetoothException e) {
-            e.printStackTrace();
-        }
     }
 
-    @Override
-    public void onOutdoor() {
-
-    }
-
-    @Override
-    public void onIndoor(List<IdrMapRegion> regions) {
-        if(isFinishing())return;
-        Intent intent = new Intent();
-        intent.setAction(IdrOutApplication.OUTGUIDE_ARRIVE_DEST_ACTION);
-        mLocalBroadcastManager.sendBroadcast(intent);
-        BNRouteGuideManager.getInstance().forceQuitNaviWithoutDialog();
-        IdrOutGuideActivity.this.finish();
-    }
 
     @Override
     protected void onResume() {
@@ -98,7 +73,6 @@ public class IdrOutGuideActivity extends Activity implements IdrAndOutListener {
     @Override
     protected void onDestroy() {
         BNRouteGuideManager.getInstance().onDestroy();
-        idrAndOutDector.stopLocateByRegions();
         super.onDestroy();
     }
 

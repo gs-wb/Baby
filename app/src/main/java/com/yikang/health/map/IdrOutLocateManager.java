@@ -5,9 +5,8 @@ import android.content.Context;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
-import com.indoorun.mapapi.core.data.IndoorunSDKDataCenter;
-import com.indoorun.mapapi.domain.OutMapPoint;
-import com.indoorun.outapi.utils.LocationUtil;
+import com.yikang.health.map.domain.OutMapPoint;
+import com.yikang.health.map.utils.LocationUtil;
 
 /**
  * Created by admin on 2016/3/10.
@@ -49,7 +48,6 @@ public class IdrOutLocateManager {
                     OutMapPoint point = new OutMapPoint(location.getLongitude(), location.getLatitude(), location.getRadius(), "");
 //                    addrStr, city, cityCode, district, province, street, streetNumber
                     point.initAddrInfo(location.getAddrStr(), location.getCity(), location.getCityCode(), location.getDistrict(), location.getProvince(), location.getStreet(), location.getStreetNumber());
-                    IndoorunSDKDataCenter.getInstance().setCurrentOutMapPoint(point);//自动记录当前坐标
                     if(mLocationCallBack!=null)mLocationCallBack.onReceiveLocation(point);
                     break;
                 case BDLocation.TypeServerError:

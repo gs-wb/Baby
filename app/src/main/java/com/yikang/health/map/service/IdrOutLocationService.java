@@ -5,8 +5,9 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
-import com.indoorun.mapapi.domain.OutMapPoint;
-import com.indoorun.outapi.IdrOutLocateManager;
+import com.yikang.health.map.IdrOutLocateManager;
+import com.yikang.health.map.domain.OutMapPoint;
+
 
 /**
  * Created by zhangwb on 2016/2/18.
