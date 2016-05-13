@@ -176,6 +176,13 @@
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/voice_play_selector" />
+            <ImageView
+                android:id="@+id/play_music_bg"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/masking_newcomm" />
 
             <Button
                 android:id="@+id/next_music"

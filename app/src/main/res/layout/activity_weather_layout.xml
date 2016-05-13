@@ -9,20 +9,25 @@
         android:id="@+id/idr_StatusBar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:visibility="gone"
         android:background="@color/main_bg"></View>
 
-    <include layout="@layout/headtitle_plus" />
+    <include layout="@layout/headtitle_plus"
+        android:visibility="gone"/>
+    <!-- android:background="@drawable/me_top_bg"-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/me_top_bg"
-        >
+        android:background="@drawable/me_top_bg">
 
         <RelativeLayout
+            android:id="@+id/rl_t"
             android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
             android:layout_height="40dp">
 
             <TextView
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -31,6 +36,27 @@
                 android:textColor="@color/txt_dark" />
 
             <TextView
+                android:id="@+id/tv_temp_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tv_date"
+                android:text="[11:00更新]"
+                android:textColor="@color/txt_dark" />
+
+            <TextView
+                android:id="@+id/tv_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/tv_temp_update"
+                android:text="【实时24&#176;】"
+                android:textColor="@color/txt_dark" />
+
+            <TextView
+                android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -42,52 +68,76 @@
 
 
         <RelativeLayout
-            android:id="@+id/ll_weather"
+            android:id="@+id/ll_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_below="@+id/rl_t"
+            android:layout_centerHorizontal="true">
+
+            <TextView
+                android:id="@+id/tv_temp_diff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19&#176;~28&#176;"
+                android:textColor="@color/txt_dark"
+                android:textSize="50sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_temp"
+            android:gravity="center"
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/tv_weather"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="24&#176;"
-                android:textColor="@color/txt_dark"
-                android:textSize="100sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/ll_weather"
-            android:layout_below="@+id/ll_weather"
-            android:layout_marginLeft="-14dp"
-            android:text="[11:00更新]"
-            android:textColor="@color/txt_dark" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@+id/ll_weather"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/adjustmusic_press"
-                />
+                android:gravity="center"
+                android:text="晴"
+                android:textColor="@color/txt_dark" />
 
             <TextView
+                android:id="@+id/tv_wd_ws"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="14dp"
-                android:text=" 晴 19&#176;/28&#176;"
+                android:gravity="center"
+                android:text="无持续风向 微风(10m/h)"
                 android:textColor="@color/txt_dark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_sunrise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:drawableLeft="@drawable/ww0"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:text="日出 07:12"
+                    android:textColor="@color/txt_dark" />
+
+                <TextView
+                    android:id="@+id/tv_sunset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/ww18"
+                    android:drawablePadding="10dp"
+                    android:gravity="center"
+                    android:text="日落 17:44"
+                    android:textColor="@color/txt_dark" />
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
