@@ -195,37 +195,30 @@ public class VoicePlayerActivity extends BaseActivity {
                 repeatBtn.setBackgroundResource(R.drawable.voice_repeat_none_selector);
                 break;
         }
-
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if(hasFocus){
-            if (isShuffle) {
-                isNoneShuffle = false;
-                shuffleBtn.setBackgroundResource(R.drawable.voice_shuffle_selector);
-                repeatBtn.setClickable(false);
-            } else {
-                isNoneShuffle = true;
-                shuffleBtn.setBackgroundResource(R.drawable.voice_shuffle_none_selector);
-                repeatBtn.setClickable(true);
-            }
-            if (flag == Constants.PlayerMsg.PLAYING_MSG) { // 如果播放信息是正在播放
-                Intent intent = new Intent();
-                intent.setAction(SHOW_LRC);
-                intent.putExtra("listPosition", listPosition);
-                sendBroadcast(intent);
-            } else if (flag == Constants.PlayerMsg.PLAY_MSG) { // 如果是点击列表播放歌曲的话
-                playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
-                play();
-            } else if (flag == Constants.PlayerMsg.CONTINUE_MSG) {
-                Intent intent = new Intent(this, PlayerService.class);
-                playBtn.setBackgroundResource(R.drawable.voice_play_selector);
-                intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);	//继续播放音乐
-                startService(intent);
-            }
+        if (isShuffle) {
+            isNoneShuffle = false;
+            shuffleBtn.setBackgroundResource(R.drawable.voice_shuffle_selector);
+            repeatBtn.setClickable(false);
+        } else {
+            isNoneShuffle = true;
+            shuffleBtn.setBackgroundResource(R.drawable.voice_shuffle_none_selector);
+            repeatBtn.setClickable(true);
         }
+        if (flag == Constants.PlayerMsg.PLAYING_MSG) { // 如果播放信息是正在播放
+            Intent intent = new Intent();
+            intent.setAction(SHOW_LRC);
+            intent.putExtra("listPosition", listPosition);
+            sendBroadcast(intent);
+        } else if (flag == Constants.PlayerMsg.PLAY_MSG) { // 如果是点击列表播放歌曲的话
+            playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
+            play();
+        } else if (flag == Constants.PlayerMsg.CONTINUE_MSG) {
+            Intent intent = new Intent(this, PlayerService.class);
+            playBtn.setBackgroundResource(R.drawable.voice_play_selector);
+            intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);	//继续播放音乐
+            startService(intent);
+        }
+
     }
 
     /**

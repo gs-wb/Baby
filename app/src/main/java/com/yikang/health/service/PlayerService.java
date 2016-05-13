@@ -1,6 +1,5 @@
 package com.yikang.health.service;
 
-import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,14 +11,11 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.animation.AnimationUtils;
 
-import com.yikang.health.R;
 import com.yikang.health.constant.Constants;
 import com.yikang.health.model.LrcContent;
 import com.yikang.health.model.Mp3Info;
 import com.yikang.health.ui.story.VoicePlayerActivity;
-import com.yikang.health.utils.MediaUtil;
 import com.yikang.health.widget.voice.LrcProcess;
 
 import java.util.ArrayList;
