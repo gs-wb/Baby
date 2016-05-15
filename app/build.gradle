@@ -6,10 +6,10 @@ android {
             try {
                 def Properties keyFile = new Properties()
                 keyFile.load(new FileInputStream(file('../local.properties')))
-                keyAlias 'yellfun'
-                keyPassword 'Yellfun20130226!'
+                keyAlias 'baby'
+                keyPassword 'baby123456'
                 storeFile file("${keyFile['keyFile']}")
-                storePassword 'Yellfun20130226!'
+                storePassword 'baby123456'
             } catch (ignore) {
                 throw new InvalidUserDataException("You should define keyFile path in root local.properties.")
             }

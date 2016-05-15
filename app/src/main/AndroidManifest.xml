@@ -43,7 +43,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="1O3yXiiGkOePbj41wZHifUP1" />
+            android:value="1Td6m70HDLAtju4bajjBBIEq4G7sreQy" />
         <activity
             android:name="com.yikang.health.ui.main.MainTabActivity"
             android:label="@string/app_name"

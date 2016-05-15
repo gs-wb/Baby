@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item name="btn_top_left" type="id"/>
-    <item name="btn_top_right" type="id"/>
-    <item name="tv_top_right" type="id"/>
-    <item name="lay_top_title" type="id"/>
-    <item name="txt_top_title" type="id"/>
-    <item name="lay_content" type="id"/>
-    <item name="base_list" type="id"/>
-    <item name="item_tag_viewhold" type="id"/>
-    <item name="item_tag_object" type="id"/>
-    <item name="no_data_lay" type="id"/>
+    <!--<item name="btn_top_left" type="id"/>-->
+    <!--<item name="btn_top_right" type="id"/>-->
+    <!--<item name="tv_top_right" type="id"/>-->
+    <!--<item name="lay_top_title" type="id"/>-->
+    <!--<item name="txt_top_title" type="id"/>-->
+    <!--<item name="lay_content" type="id"/>-->
+    <!--<item name="base_list" type="id"/>-->
+    <!--<item name="item_tag_viewhold" type="id"/>-->
+    <!--<item name="item_tag_object" type="id"/>-->
+    <!--<item name="no_data_lay" type="id"/>-->
     
     <!-- dialog -->
     <item name="dialog_confirm" type="id"></item>

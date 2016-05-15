@@ -9,7 +9,6 @@
     </style>
     
     <style name="top_lay">
-        <item name="android:id">@id/lay_top_title</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">@dimen/spacing_size_44</item>
         <item name="android:layout_alignParentTop">true</item>
@@ -20,14 +19,12 @@
         <item name="android:textSize">@dimen/spacing_size_15</item>
         <item name="android:layout_width">@dimen/spacing_size_38</item>
         <item name="android:layout_height">@dimen/spacing_size_38</item>
-        <item name="android:id">@id/btn_top_left</item>
         <item name="android:layout_alignParentLeft">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:background">@null</item>
     </style>
     
         <style name="top_text">
-        <item name="android:id">@id/txt_top_title</item>
         <item name="android:textSize">@dimen/spacing_size_18</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -37,7 +34,6 @@
     </style>
     
     <style name="top_txt_right_btn" parent="@style/top_btn_text">
-        <item name="android:id">@id/tv_top_right</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">fill_parent</item>
         <item name="android:gravity">center</item>
@@ -56,7 +52,6 @@
     </style>
     
     <style name="top_right_btn" parent="@style/top_btn_text">
-        <item name="android:id">@id/btn_top_right</item>
         <item name="android:padding">@dimen/spacing_size_7</item>
         <item name="android:layout_width">@dimen/spacing_size_38</item>
         <item name="android:layout_height">@dimen/spacing_size_38</item>

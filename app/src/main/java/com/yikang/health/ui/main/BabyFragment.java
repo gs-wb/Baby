@@ -1,25 +1,23 @@
 package com.yikang.health.ui.main;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yikang.health.R;
-import com.yikang.health.YIKApplication;
 import com.yikang.health.adapter.MainAdapter;
 import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.TodayReadInfo;
 import com.yikang.health.ui.BaseFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BabyFragment extends BaseFragment implements OnClickListener ,TaskExpandListener{
 	private SlideMenu slideMenu;
@@ -27,8 +25,8 @@ public class BabyFragment extends BaseFragment implements OnClickListener ,TaskE
 		super();
 		layoutResID = R.layout.fragment_main_baby_layout;
 	}
+	@SuppressLint("ValidFragment")
 	public BabyFragment(SlideMenu slideMenu) {
-		super();
 		layoutResID = R.layout.fragment_main_baby_layout;
 		this.slideMenu = slideMenu;
 	}
