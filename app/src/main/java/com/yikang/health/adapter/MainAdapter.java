@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yikang.health.R;
-import com.yikang.health.model.TodayReadInfo;
+import com.yikang.health.model.BabyLoreModel;
 /**
  * @author zwb
  *
@@ -20,12 +20,12 @@ import com.yikang.health.model.TodayReadInfo;
 public class MainAdapter extends BaseAdapter{
 	
 	private Context ctxt;
-	private List<TodayReadInfo> list = new ArrayList<TodayReadInfo>();
+	private List<BabyLoreModel> list = new ArrayList<BabyLoreModel>();
 	public MainAdapter(Context ctxt) {
 		this.ctxt = ctxt;
 	}
 
-	public void setData(List<TodayReadInfo> list) {
+	public void setData(List<BabyLoreModel> list) {
 		// TODO Auto-generated method stub
 		this.list = list;
 		this.notifyDataSetChanged();
@@ -72,7 +72,9 @@ public class MainAdapter extends BaseAdapter{
 		}else{
 			viewHolder.tvHead.setVisibility(View.GONE);
 		}
-		
+		viewHolder.tvTitle.setText(list.get(position).getTitle());
+		viewHolder.tvContent.setText(list.get(position).getDescription());
+//		viewHolder.ivIcon
 		return convertView;
 	}
 

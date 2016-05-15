@@ -10,10 +10,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yikang.health.R;
+import com.yikang.health.YIKApplication;
 import com.yikang.health.adapter.MainAdapter;
 import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
-import com.yikang.health.model.TodayReadInfo;
+import com.yikang.health.model.BabyLoreModel;
 import com.yikang.health.ui.BaseFragment;
 
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class BabyFragment extends BaseFragment implements OnClickListener ,TaskE
 	private TextView tvPregnantMsg;
 	private ListView lvTodayRead;
 	private MainAdapter mainAdapter;
-	private List<TodayReadInfo> readInfos = new ArrayList<TodayReadInfo>();
+	private List<BabyLoreModel> babyLoreList = new ArrayList<BabyLoreModel>();
 
 	/**
 	 * 初始化组件
@@ -82,11 +83,11 @@ public class BabyFragment extends BaseFragment implements OnClickListener ,TaskE
 
 	private void laodData() {
 		// TODO Auto-generated method stub
-		for (int i = 0; i < 6; i++) {
-			readInfos.add(new TodayReadInfo("", "", 1, ""));
-		}
-		mainAdapter.setData(readInfos);
-//		YIKApplication.client.getNoticeList(getActivity(),"1",this);
+//		for (int i = 0; i < 6; i++) {
+//			readInfos.add(new BabyLoreModel("", "", 1, ""));
+//		}
+		mainAdapter.setData(babyLoreList);
+		YIKApplication.client.getBabyLoresByGet(getActivity(), this);
 	}
 
 	@Override
@@ -102,14 +103,10 @@ public class BabyFragment extends BaseFragment implements OnClickListener ,TaskE
 
 	@Override
 	public <T> void onTaskCompleted(String resultCode, T result, int connId) {
-		if(resultCode.equals(Constants.RESULT_SUCCESS)){
-			switch (connId) {
-			case Constants.GET_NOTICE_LIST:
-				ToastShow(result.toString());
-				break;
-			}
-		}else{
-			ToastShow(result.toString());
+		switch (connId) {
+		case Constants.GET_BABYLORE_DATA:
+//			ToastShow(result.toString());
+			break;
 		}
 	}
 

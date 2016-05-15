@@ -150,10 +150,10 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 		LogUtils.d("params: " + hashMap);
 		// 发送请求 ...
 		String result;
-		if(requestUrl.contains("http://apis.baidu.com")){
-			result = requestByGet(requestUrl, hashMap);
-		}else{
+		if(requestUrl.contains("http://120.76.136.195")){
 			result = requestByPost(requestUrl, hashMap);
+		}else{
+			result = requestByGet(requestUrl, hashMap);
 		}
 
 		return result;
@@ -344,8 +344,8 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 		} catch (JSONException e) {
 			LogUtils
 					.printStackTrace(
-							"An error occurred when call the method {TaskResultHandler->handlerResult()}",
-							e);
+                            "An error occurred when call the method {TaskResultHandler->handlerResult()}",
+                            e);
 		}
 		return "-1";
 	}
@@ -378,7 +378,7 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 					}else{
 						((TaskExpandListener) mTaskCompleteListener)
 						.onTaskError(resultCode, connectionId,
-								ServerConnect.getResultInfo(Constants.STATUS_SYSTEM_ERROR));
+                                ServerConnect.getResultInfo(Constants.STATUS_SYSTEM_ERROR));
 					}
 				}
 				break;
@@ -387,7 +387,7 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 						&& mTaskCompleteListener instanceof TaskExpandListener) {
 					((TaskExpandListener) mTaskCompleteListener)
 							.onTaskError(resultCode, connectionId,
-									ServerConnect.getResultInfo(status_code));
+                                    ServerConnect.getResultInfo(status_code));
 				} else {
 					Toast.makeText(YIKApplication.getContext(),
 							ServerConnect.getResultInfo(status_code),

@@ -203,4 +203,15 @@ public class PublicHttpData {
     }
 
 
+    /**
+     * 查询天气
+     */
+    public void getBabyLoresByGet(Context context, TaskExpandListener listener) {
+        map = new HashMap<>();
+        String url = "http://www.tngou.net/api/lore/list?id=6&rows=10";
+        ServerConnect.getInstance().requestToServer(context, listener, url,
+                Constants.GET_BABYLORE_DATA, map, YIKApplication.getContext().getResources()
+                        .getString(R.string.request_dialog_loading_content));
+
+    }
 }

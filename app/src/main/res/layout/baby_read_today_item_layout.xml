@@ -17,7 +17,7 @@
             android:layout_height="30dp"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="今日必读"
+            android:text="孕婴手册"
             android:textColor="@color/txt_light" />
 
         <View
@@ -72,7 +72,8 @@
                     android:lines="1"
                     android:ellipsize="end"
                     android:textColor="@color/txt_light"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
             </LinearLayout>
             <ImageView
                 android:id="@+id/iv_icon"
