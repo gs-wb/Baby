@@ -109,5 +109,14 @@ public class Constants {
 		public static final int NEXT_MSG = 6;		//下一首
 		public static final int PROGRESS_CHANGE = 7;//进度改变
 		public static final int PLAYING_MSG = 8;	//正在播放
+
+		public static final String UPDATE_ACTION = "com.wwj.action.UPDATE_ACTION"; // 更新动作
+		public static final String CTL_ACTION = "com.wwj.action.CTL_ACTION"; // 控制动作
+		public static final String MUSIC_CURRENT = "com.wwj.action.MUSIC_CURRENT"; // 音乐当前时间改变动作
+		public static final String MUSIC_DURATION = "com.wwj.action.MUSIC_DURATION";// 音乐播放长度改变动作
+		public static final String MUSIC_PLAYING = "com.wwj.action.MUSIC_PLAYING"; // 音乐正在播放动作
+		public static final String REPEAT_ACTION = "com.wwj.action.REPEAT_ACTION"; // 音乐重复播放动作
+		public static final String SHUFFLE_ACTION = "com.wwj.action.SHUFFLE_ACTION";// 音乐随机播放动作
+		public static final String SHOW_LRC = "com.wwj.action.SHOW_LRC"; // 通知显示歌词
 	}
 }

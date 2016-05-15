@@ -8,14 +8,15 @@ import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
+import android.os.AsyncTask;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
 import android.util.Log;
 
 import com.yikang.health.constant.Constants;
 import com.yikang.health.model.LrcContent;
 import com.yikang.health.model.Mp3Info;
-import com.yikang.health.ui.story.VoicePlayerActivity;
 import com.yikang.health.widget.voice.LrcProcess;
 
 import java.util.ArrayList;
@@ -42,13 +43,6 @@ public class PlayerService extends Service {
     private List<LrcContent> lrcList = new ArrayList<LrcContent>(); //存放歌词列表对象
     private int index = 0;            //歌词检索值
 
-    //服务要发送的一些Action
-    public static final String UPDATE_ACTION = "com.wwj.action.UPDATE_ACTION";    //更新动作
-    public static final String CTL_ACTION = "com.wwj.action.CTL_ACTION";        //控制动作
-    public static final String MUSIC_CURRENT = "com.wwj.action.MUSIC_CURRENT";    //当前音乐播放时间更新动作
-    public static final String MUSIC_DURATION = "com.wwj.action.MUSIC_DURATION";//新音乐长度更新动作
-    public static final String SHOW_LRC = "com.wwj.action.SHOW_LRC";            //通知显示歌词
-
     /**
      * handler用来接收消息，来发送广播更新播放时间
      */
@@ -58,7 +52,7 @@ public class PlayerService extends Service {
                 if (mediaPlayer != null) {
                     currentTime = mediaPlayer.getCurrentPosition(); // 获取当前音乐播放的位置
                     Intent intent = new Intent();
-                    intent.setAction(MUSIC_CURRENT);
+                    intent.setAction(Constants.PlayerMsg.MUSIC_CURRENT);
                     intent.putExtra("currentTime", currentTime);
                     sendBroadcast(intent); // 给PlayerActivity发送广播
                     handler.sendEmptyMessageDelayed(1, 1000);
@@ -91,7 +85,7 @@ public class PlayerService extends Service {
                     if (current > mp3Infos.size() - 1) {    //变为第一首的位置继续播放
                         current = 0;
                     }
-                    Intent sendIntent = new Intent(UPDATE_ACTION);
+                    Intent sendIntent = new Intent(Constants.PlayerMsg.UPDATE_ACTION);
                     sendIntent.putExtra("current", current);
                     // 发送广播，将被Activity组件中的BroadcastReceiver接收到
                     sendBroadcast(sendIntent);
@@ -99,7 +93,7 @@ public class PlayerService extends Service {
                 } else if (status == 3) { // 顺序播放
                     current++;    //下一首位置
                     if (current <= mp3Infos.size() - 1) {
-                        Intent sendIntent = new Intent(UPDATE_ACTION);
+                        Intent sendIntent = new Intent(Constants.PlayerMsg.UPDATE_ACTION);
                         sendIntent.putExtra("current", current);
                         // 发送广播，将被Activity组件中的BroadcastReceiver接收到
                         sendBroadcast(sendIntent);
@@ -107,7 +101,7 @@ public class PlayerService extends Service {
                     } else {
                         mediaPlayer.seekTo(0);
                         current = 0;
-                        Intent sendIntent = new Intent(UPDATE_ACTION);
+                        Intent sendIntent = new Intent(Constants.PlayerMsg.UPDATE_ACTION);
                         sendIntent.putExtra("current", current);
                         // 发送广播，将被Activity组件中的BroadcastReceiver接收到
                         sendBroadcast(sendIntent);
@@ -115,7 +109,7 @@ public class PlayerService extends Service {
                 } else if (status == 4) {    //随机播放
                     current = getRandomIndex(mp3Infos.size() - 1);
                     System.out.println("currentIndex ->" + current);
-                    Intent sendIntent = new Intent(UPDATE_ACTION);
+                    Intent sendIntent = new Intent(Constants.PlayerMsg.UPDATE_ACTION);
                     sendIntent.putExtra("current", current);
                     // 发送广播，将被Activity组件中的BroadcastReceiver接收到
                     sendBroadcast(sendIntent);
@@ -126,8 +120,8 @@ public class PlayerService extends Service {
 
         myReceiver = new MyReceiver();
         IntentFilter filter = new IntentFilter();
-        filter.addAction(CTL_ACTION);
-        filter.addAction(SHOW_LRC);
+        filter.addAction(Constants.PlayerMsg.CTL_ACTION);
+        filter.addAction(Constants.PlayerMsg.SHOW_LRC);
         registerReceiver(myReceiver, filter);
     }
 
@@ -190,70 +184,81 @@ public class PlayerService extends Service {
 //		VoicePlayerActivity.lrcView.setAnimation(AnimationUtils.loadAnimation(PlayerService.this, R.anim.alpha_z));
 //		handler.post(mRunnable);
 //	}
-    Runnable mRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            VoicePlayerActivity.lrcView.setIndex(lrcIndex());
-            VoicePlayerActivity.lrcView.invalidate();
-            handler.postDelayed(mRunnable, 100);
-        }
-    };
+//    Runnable mRunnable = new Runnable() {
+//
+//        @Override
+//        public void run() {
+//            VoicePlayerActivity.lrcView.setIndex(lrcIndex());
+//            VoicePlayerActivity.lrcView.invalidate();
+//            handler.postDelayed(mRunnable, 100);
+//        }
+//    };
+//
+//    /**
+//     * 根据时间获取歌词显示的索引值
+//     *
+//     * @return
+//     */
+//    public int lrcIndex() {
+//        if (mediaPlayer.isPlaying()) {
+//            currentTime = mediaPlayer.getCurrentPosition();
+//            duration = mediaPlayer.getDuration();
+//        }
+//        if (currentTime < duration) {
+//            for (int i = 0; i < lrcList.size(); i++) {
+//                if (i < lrcList.size() - 1) {
+//                    if (currentTime < lrcList.get(i).getLrcTime() && i == 0) {
+//                        index = i;
+//                    }
+//                    if (currentTime > lrcList.get(i).getLrcTime()
+//                            && currentTime < lrcList.get(i + 1).getLrcTime()) {
+//                        index = i;
+//                    }
+//                }
+//                if (i == lrcList.size() - 1
+//                        && currentTime > lrcList.get(i).getLrcTime()) {
+//                    index = i;
+//                }
+//            }
+//        }
+//        return index;
+//    }
 
     /**
-     * 根据时间获取歌词显示的索引值
-     *
-     * @return
-     */
-    public int lrcIndex() {
-        if (mediaPlayer.isPlaying()) {
-            currentTime = mediaPlayer.getCurrentPosition();
-            duration = mediaPlayer.getDuration();
-        }
-        if (currentTime < duration) {
-            for (int i = 0; i < lrcList.size(); i++) {
-                if (i < lrcList.size() - 1) {
-                    if (currentTime < lrcList.get(i).getLrcTime() && i == 0) {
-                        index = i;
-                    }
-                    if (currentTime > lrcList.get(i).getLrcTime()
-                            && currentTime < lrcList.get(i + 1).getLrcTime()) {
-                        index = i;
-                    }
-                }
-                if (i == lrcList.size() - 1
-                        && currentTime > lrcList.get(i).getLrcTime()) {
-                    index = i;
-                }
-            }
-        }
-        return index;
-    }
-
-    /**
-     * 播放音乐
      *
      * @param currentTime
      */
     private void play(final int currentTime) {
 //			initLrc();
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    mediaPlayer.reset();// 把各项参数恢复到初始状态
-                    mediaPlayer.setDataSource(mp3Infos.get(current).getFile_url());
-                    mediaPlayer.prepare(); // 进行缓冲
-                    mediaPlayer.setOnPreparedListener(new PreparedListener(currentTime));// 注册一个监听器
-                    handler.sendEmptyMessage(1);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        playThread = new PlayThread(currentTime);
+        playThread.start();
+    }
+
+    PlayThread playThread;
+
+    class PlayThread extends Thread {
+        int currTime;
+
+        public PlayThread(int currentTime) {
+            this.currTime = currentTime;
+
+        }
+
+        @Override
+        public void run() {
+            if (mediaPlayer == null) {
+                return;
             }
-        }.start();
-
-
+            try {
+                mediaPlayer.reset();// 把各项参数恢复到初始状态
+                mediaPlayer.setDataSource(mp3Infos.get(current).getFile_url());
+                mediaPlayer.prepare(); // 进行缓冲
+                mediaPlayer.setOnPreparedListener(new PreparedListener(currTime));// 注册一个监听器
+                handler.sendEmptyMessage(1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -277,7 +282,7 @@ public class PlayerService extends Service {
      * 上一首
      */
     private void previous() {
-        Intent sendIntent = new Intent(UPDATE_ACTION);
+        Intent sendIntent = new Intent(Constants.PlayerMsg.UPDATE_ACTION);
         sendIntent.putExtra("current", current);
         // 发送广播，将被Activity组件中的BroadcastReceiver接收到
         sendBroadcast(sendIntent);
@@ -288,7 +293,7 @@ public class PlayerService extends Service {
      * 下一首
      */
     private void next() {
-        Intent sendIntent = new Intent(UPDATE_ACTION);
+        Intent sendIntent = new Intent(Constants.PlayerMsg.UPDATE_ACTION);
         sendIntent.putExtra("current", current);
         // 发送广播，将被Activity组件中的BroadcastReceiver接收到
         sendBroadcast(sendIntent);
@@ -316,7 +321,10 @@ public class PlayerService extends Service {
             mediaPlayer.release();
             mediaPlayer = null;
         }
-        handler.removeCallbacks(mRunnable);
+        if (playThread != null && !playThread.isAlive()) {
+            playThread.interrupt();
+        }
+//        handler.removeCallbacks(mRunnable);
     }
 
     /**
@@ -336,7 +344,7 @@ public class PlayerService extends Service {
                 mediaPlayer.seekTo(currentTime);
             }
             Intent intent = new Intent();
-            intent.setAction(MUSIC_DURATION);
+            intent.setAction(Constants.PlayerMsg.MUSIC_DURATION);
             duration = mediaPlayer.getDuration();
             intent.putExtra("duration", duration);    //通过Intent来传递歌曲的总长度
             sendBroadcast(intent);
@@ -364,7 +372,7 @@ public class PlayerService extends Service {
             }
 
             String action = intent.getAction();
-            if (action.equals(SHOW_LRC)) {
+            if (action.equals(Constants.PlayerMsg.SHOW_LRC)) {
                 current = intent.getIntExtra("listPosition", -1);
 //				initLrc();
             }

@@ -153,14 +153,18 @@
                 android:id="@+id/current_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/audioTrack" />
+                android:layout_below="@+id/audioTrack"
+                android:textColor="@color/txt_dark"
+                android:text="122"/>
 
             <TextView
                 android:id="@+id/final_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_below="@+id/audioTrack" />
+                android:layout_below="@+id/audioTrack"
+                android:textColor="@color/txt_dark"
+                android:text="145"/>
         </RelativeLayout>
 
         <RelativeLayout

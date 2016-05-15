@@ -22,6 +22,8 @@ public class Mp3Info extends BaseModel {
     private String file_url;
     private int sumnum;
     private String create_time;
+    private boolean isPlay;
+    private boolean notPause;
 
     public void setMp3_id(String mp3_id) {
         this.mp3_id = mp3_id;
@@ -93,5 +95,21 @@ public class Mp3Info extends BaseModel {
 
     public String getFile_name() {
         return file_name;
+    }
+
+    public boolean isPlay() {
+        return isPlay;
+    }
+
+    public void setIsPlay(boolean isPlay) {
+        this.isPlay = isPlay;
+    }
+
+    public boolean isNotPause() {
+        return notPause;
+    }
+
+    public void setNotPause(boolean notPause) {
+        this.notPause = notPause;
     }
 }

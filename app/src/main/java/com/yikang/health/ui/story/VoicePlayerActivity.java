@@ -85,7 +85,7 @@ public class VoicePlayerActivity extends BaseActivity {
 
     public VoicePlayerActivity() {
         super();
-        layoutResID = R.layout.play_activity_layout;
+        layoutResID = R.layout.activity_play_voice_layout;
     }
 
     @Override

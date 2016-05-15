@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/whell_gray">
+
+    <RelativeLayout
+        android:id="@+id/seekbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/player_progresslayout_bg">
+
+        <SeekBar
+            android:id="@+id/audioTrack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/voice_player_progress_bg"
+            android:progressDrawable="@drawable/voice_seekbar_img"
+            android:thumb="@drawable/voice_media_player_progress_button" />
+
+        <TextView
+            android:id="@+id/current_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/audioTrack"
+            android:text="122"
+            android:textColor="@color/txt_dark" />
+
+        <TextView
+            android:id="@+id/final_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/audioTrack"
+            android:text="145"
+            android:textColor="@color/txt_dark" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekbarLayout">
+
+
+        <Button
+            android:id="@+id/play_music"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/voice_play_selector" />
+
+        <ImageView
+            android:id="@+id/play_music_bg"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/buffer" />
+
+        <Button
+            android:id="@+id/next_music"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/play_music"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/play_music"
+            android:background="@drawable/voice_next_music_selector"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/previous_music"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/play_music"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/play_music"
+            android:background="@drawable/voice_previous_music_selector"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/play_queue"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/voice_play_queue_selector"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/ibtn_player_voice"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/adjustmusic_press" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,10 +1,19 @@
 package com.yikang.health.ui.story;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.yikang.health.R;
@@ -14,7 +23,9 @@ import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.Mp3Info;
 import com.yikang.health.server.GsonTools;
+import com.yikang.health.service.PlayerService;
 import com.yikang.health.ui.BaseActivity;
+import com.yikang.health.utils.MediaUtil;
 import com.yikang.health.utils.MyComparator;
 
 import java.util.ArrayList;
@@ -26,10 +37,11 @@ import java.util.List;
  */
 public class StoryDetailActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener, TaskExpandListener {
     private ListView mListView;
-    private StoryDetailListAdapter mAdapter;
-    private TextView tvSize,tvStoryName;
+    public StoryDetailListAdapter mAdapter;
+    private TextView tvSize,tvStoryName,tv_time;
     public ArrayList<Mp3Info> storyList = new ArrayList<Mp3Info>();
     private Mp3Info currMp3Info;
+    private VoicePlayFragment playFragment;
     public static StoryDetailActivity instance;
 
     public StoryDetailActivity() {
@@ -59,16 +71,19 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
         View v = LayoutInflater.from(this).inflate(R.layout.story_detail_head_layout,null);
         tvStoryName  = (TextView) v.findViewById(R.id.tv_story_name);
         tvSize = (TextView) v.findViewById(R.id.tv_size);
+        tv_time = (TextView) v.findViewById(R.id.tv_time);
         mListView = (ListView) findViewById(R.id.lv_story);
+
         mListView.addHeaderView(v);
         mAdapter = new StoryDetailListAdapter(this);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(this);
         loadData();
+
     }
 
     private void loadData() {
-        YIKApplication.client.getMp3List(this,"1", book_id, this);
+        YIKApplication.client.getMp3List(this, "1", book_id, this);
     }
 
     @Override
@@ -80,8 +95,6 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
                     if (storyList != null && !storyList.isEmpty()) {
                         parseStory();
                         mAdapter.setList(storyList);
-                        currMp3Info = storyList.get(0);
-                        setCurrMp3();
                         tvSize.setText("共" + storyList.size() + "条");
                     }
                     break;
@@ -102,6 +115,11 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
             mp3.setMp3_name(mp3.getMp3_name().replaceAll(mp3.getId(), "").replaceFirst("-", ""));
         }
         Collections.sort(storyList, new MyComparator());
+        setCurrMp3(0);
+        playFragment = new VoicePlayFragment(storyList, 0);
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.footer_layout, playFragment)
+                .show(playFragment).commit();
     }
     @Override
     public void onClick(View v) {
@@ -112,20 +130,38 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if(position != 0){
-            currMp3Info = storyList.get(position-1);
-            setCurrMp3();
-            Intent intent = new Intent(this,VoicePlayerActivity.class);
-            intent.putExtra("mp3Infos",storyList);
-            intent.putExtra("position",position-1);
-            startActivity(intent);
-        }
+//        if(position != 0){
+//            if(currMp3Info!=null){
+//                currMp3Info.setIsPlay(false);
+//            }
+//            currMp3Info = storyList.get(position-1);
+//            currMp3Info.setIsPlay(true);
+//            mAdapter.notifyDataSetChanged();
+//            setCurrMp3();
+////            Intent intent = new Intent(this,VoicePlayerActivity.class);
+////            intent.putExtra("mp3Infos",storyList);
+////            intent.putExtra("position",position-1);
+////            startActivity(intent);
+//        }
     }
 
-    private void setCurrMp3(){
+    public void setCurrMp3(int position){
+        mListView.setSelection(position);
         if(currMp3Info!=null){
-            tvStoryName.setText(currMp3Info.getMp3_name());
+            currMp3Info.setNotPause(false);
+            currMp3Info.setIsPlay(false);
         }
+        currMp3Info = storyList.get(position);
+        currMp3Info.setIsPlay(true);
+        currMp3Info.setNotPause(true);
+        mAdapter.notifyDataSetChanged();
+        tvStoryName.setText(currMp3Info.getMp3_name());
+        tv_time.setText(currMp3Info.getCreate_time());
+    }
+
+    public void updateItem(boolean notPause){
+        currMp3Info.setNotPause(notPause);
+        mAdapter.notifyDataSetChanged();
     }
     @Override
     public void initVariable() {

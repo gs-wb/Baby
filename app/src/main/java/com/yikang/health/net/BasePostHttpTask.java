@@ -289,7 +289,7 @@ public abstract class BasePostHttpTask extends AsyncTask<Object, Void, String> {
 			LogUtils.printStackTrace("IOException by request: " + url, e);
 			status_code = Constants.STATUS_NETWORK_ERROR;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 			conn.disconnect();
 			LogUtils.printStackTrace("Exception by request:" + url, e);
