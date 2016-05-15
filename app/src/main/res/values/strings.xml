@@ -52,4 +52,7 @@
     <string name="dialog_messenge">你确定要退出程序吗？</string>
     <string name="about_title">关于</string>
     <string name="menu_time_txt">定时关闭</string>
+
+    <!-- 天气-->
+    <string name="weather_unit">%1$s&#176;</string>
 </resources>

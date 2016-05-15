@@ -36,6 +36,7 @@ public class VoicePlayerActivity extends BaseActivity {
     private Button previousBtn; // 上一首
     private Button repeatBtn; // 重复（单曲循环、全部循环）
     private Button playBtn; // 播放（播放、暂停）
+    private ImageView play_music_bg; // 播放（播放、暂停）
     private Button shuffleBtn; // 随机播放
     private Button nextBtn; // 下一首
     private Button queueBtn; // 歌曲列表
@@ -71,7 +72,7 @@ public class VoicePlayerActivity extends BaseActivity {
     // 音量面板显示和隐藏动画
     private Animation showVoicePanelAnimation;
     private Animation hiddenVoicePanelAnimation;
-
+    private Animation loadingAnimation;
     private PlayerReceiver playerReceiver;
     public static final String UPDATE_ACTION = "com.wwj.action.UPDATE_ACTION"; // 更新动作
     public static final String CTL_ACTION = "com.wwj.action.CTL_ACTION"; // 控制动作
@@ -131,6 +132,7 @@ public class VoicePlayerActivity extends BaseActivity {
         previousBtn = (Button) findViewById(R.id.previous_music);
         repeatBtn = (Button) findViewById(R.id.repeat_music);
         playBtn = (Button) findViewById(R.id.play_music);
+        play_music_bg = (ImageView) findViewById(R.id.play_music_bg);
         shuffleBtn = (Button) findViewById(R.id.shuffle_music);
         nextBtn = (Button) findViewById(R.id.next_music);
         queueBtn = (Button) findViewById(R.id.play_queue);
@@ -143,6 +145,7 @@ public class VoicePlayerActivity extends BaseActivity {
         sb_player_voice = (SeekBar) findViewById(R.id.sb_player_voice);
         musicAlbum = (ImageView) findViewById(R.id.iv_music_ablum);
         musicAblumReflection = (ImageView) findViewById(R.id.iv_music_ablum_reflection);
+        loadingAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate_repeat);
     }
     private void registerReceiver() {
         //定义和注册广播接收器
@@ -202,7 +205,6 @@ public class VoicePlayerActivity extends BaseActivity {
             repeatBtn.setClickable(true);
         }
         if (flag == Constants.PlayerMsg.PLAYING_MSG) { // 如果播放信息是正在播放
-//			Toast.makeText(VoicePlayerActivity.this, "正在播放--" + title, Toast.LENGTH_LONG).show();
             Intent intent = new Intent();
             intent.setAction(SHOW_LRC);
             intent.putExtra("listPosition", listPosition);
@@ -218,11 +220,14 @@ public class VoicePlayerActivity extends BaseActivity {
         }
 
     }
+
     /**
      * 播放音乐
      */
     public void play() {
         // 开始播放的时候为顺序播放
+        play_music_bg.startAnimation(loadingAnimation);
+        play_music_bg.setVisibility(View.VISIBLE);
         repeat_none();
         Intent intent = new Intent(VoicePlayerActivity.this, PlayerService.class);
         intent.putExtra("mp3Infos", mp3Infos);
@@ -489,6 +494,8 @@ public class VoicePlayerActivity extends BaseActivity {
                 music_progressBar.setProgress(currentTime);
             } else if (action.equals(MUSIC_DURATION)) {
                 int duration = intent.getIntExtra("duration", -1);
+                play_music_bg.clearAnimation();
+                play_music_bg.setVisibility(View.GONE);
                 music_progressBar.setMax(duration);
                 finalProgress.setText(MediaUtil.formatTime(duration));
             } else if (action.equals(UPDATE_ACTION)) {
