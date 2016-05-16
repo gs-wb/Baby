@@ -1,6 +1,9 @@
 package com.yikang.health.model;
 
-public class TodayReadInfo {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class TodayReadInfo implements Parcelable {
 	String title;
 	String content;
 	int type;
@@ -36,5 +39,36 @@ public class TodayReadInfo {
 		this.type = type;
 		this.imgUrl = imgUrl;
 	}
-	
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(this.title);
+		dest.writeString(this.content);
+		dest.writeInt(this.type);
+		dest.writeString(this.imgUrl);
+	}
+
+	protected TodayReadInfo(Parcel in) {
+		this.title = in.readString();
+		this.content = in.readString();
+		this.type = in.readInt();
+		this.imgUrl = in.readString();
+	}
+
+	public static final Parcelable.Creator<TodayReadInfo> CREATOR = new Parcelable.Creator<TodayReadInfo>() {
+		@Override
+		public TodayReadInfo createFromParcel(Parcel source) {
+			return new TodayReadInfo(source);
+		}
+
+		@Override
+		public TodayReadInfo[] newArray(int size) {
+			return new TodayReadInfo[size];
+		}
+	};
 }

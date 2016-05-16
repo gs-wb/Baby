@@ -97,7 +97,7 @@ public class Constants {
 
 	//  http://apistore.baidu.com/apiworks/servicedetail/112.html
 	// 百度公共接口
-	public static final String  COMMON_API = "http://apis.baidu.com/apistore/";
+	public static final String  COMMON_API = "http://apis.baidu.com/";
 	// apikey
 	public static final String API_KEY_VALUE = "apikey";
 	// 百度公共接口 key

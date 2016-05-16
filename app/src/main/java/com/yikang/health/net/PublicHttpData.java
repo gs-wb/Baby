@@ -195,20 +195,20 @@ public class PublicHttpData {
     public void getWeatherByGet(Context context, String currentCity, TaskExpandListener listener) {
         map = new HashMap<>();
         map.put(Constants.API_KEY_VALUE, Constants.API_KEY);
-        String url = Constants.COMMON_API + "weatherservice/cityname?" + Constants.CITY_NAME + "=" + currentCity;
+        String url = Constants.COMMON_API + "apistore/weatherservice/cityname?" + Constants.CITY_NAME + "=" + currentCity;
         ServerConnect.getInstance().requestToServer(context, listener, url,
                 Constants.GET_WEATHER_DATA, map, YIKApplication.getContext().getResources()
                         .getString(R.string.request_dialog_loading_content));
 
     }
 
-
     /**
-     * 查询天气
+     * 孕婴手册 知识列表
      */
-    public void getBabyLoresByGet(Context context, TaskExpandListener listener) {
+    public void getBabyLoresByGet(Context context, String loreclass, TaskExpandListener listener) {
         map = new HashMap<>();
-        String url = "http://www.tngou.net/api/lore/list?id=6&rows=10";
+        map.put(Constants.API_KEY_VALUE, Constants.API_KEY);
+        String url = Constants.COMMON_API + "tngou/lore/list?id=" + loreclass + "rows=10";
         ServerConnect.getInstance().requestToServer(context, listener, url,
                 Constants.GET_BABYLORE_DATA, map, YIKApplication.getContext().getResources()
                         .getString(R.string.request_dialog_loading_content));

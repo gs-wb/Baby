@@ -1,9 +1,9 @@
 package com.yikang.health.model;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class ReplyInfo implements Serializable
-{
+public class ReplyInfo implements Parcelable {
     
     /**
      * 注释内容
@@ -144,4 +144,49 @@ public class ReplyInfo implements Serializable
     {
         this.receiverPhoneNumber = receiverPhoneNumber;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.sender);
+        dest.writeString(this.content);
+        dest.writeString(this.senderPhoneNumber);
+        dest.writeString(this.receiverPhoneNumber);
+        dest.writeString(this.pk_reply);
+        dest.writeString(this.receiver);
+        dest.writeString(this.pk_message);
+        dest.writeString(this.sendTime);
+        dest.writeString(this.sendType);
+    }
+
+    public ReplyInfo() {
+    }
+
+    protected ReplyInfo(Parcel in) {
+        this.sender = in.readString();
+        this.content = in.readString();
+        this.senderPhoneNumber = in.readString();
+        this.receiverPhoneNumber = in.readString();
+        this.pk_reply = in.readString();
+        this.receiver = in.readString();
+        this.pk_message = in.readString();
+        this.sendTime = in.readString();
+        this.sendType = in.readString();
+    }
+
+    public static final Parcelable.Creator<ReplyInfo> CREATOR = new Parcelable.Creator<ReplyInfo>() {
+        @Override
+        public ReplyInfo createFromParcel(Parcel source) {
+            return new ReplyInfo(source);
+        }
+
+        @Override
+        public ReplyInfo[] newArray(int size) {
+            return new ReplyInfo[size];
+        }
+    };
 }

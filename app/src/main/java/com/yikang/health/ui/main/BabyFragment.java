@@ -2,9 +2,11 @@ package com.yikang.health.ui.main;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,11 +18,12 @@ import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.BabyLoreModel;
 import com.yikang.health.ui.BaseFragment;
+import com.yikang.health.ui.baby.BabyLoreDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BabyFragment extends BaseFragment implements OnClickListener ,TaskExpandListener{
+public class BabyFragment extends BaseFragment implements OnClickListener ,AdapterView.OnItemClickListener,TaskExpandListener{
 	private SlideMenu slideMenu;
 	public BabyFragment(){
 		super();
@@ -73,7 +76,7 @@ public class BabyFragment extends BaseFragment implements OnClickListener ,TaskE
 		lvTodayRead = (ListView) v.findViewById(R.id.lv_today_read);
 		mainAdapter = new MainAdapter(getActivity());
 		lvTodayRead.setAdapter(mainAdapter);
-
+		lvTodayRead.setOnItemClickListener(this);
 		LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(
 				Context.LAYOUT_INFLATER_SERVICE);
 		View headerView = lif.inflate(R.layout.baby_list_head_layout, null);
@@ -83,11 +86,19 @@ public class BabyFragment extends BaseFragment implements OnClickListener ,TaskE
 
 	private void laodData() {
 		// TODO Auto-generated method stub
-//		for (int i = 0; i < 6; i++) {
-//			readInfos.add(new BabyLoreModel("", "", 1, ""));
-//		}
+		for (int i = 0; i < 6; i++) {
+			babyLoreList.add(new BabyLoreModel());
+		}
 		mainAdapter.setData(babyLoreList);
-		YIKApplication.client.getBabyLoresByGet(getActivity(), this);
+//		6 --- 孕婴手册
+		YIKApplication.client.getBabyLoresByGet(getActivity(),"6", this);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Intent intent = new Intent(getActivity(),BabyLoreDetailActivity.class);
+		intent.putExtra("babyLore",babyLoreList.get(position - 1));
+		startActivity(intent);
 	}
 
 	@Override

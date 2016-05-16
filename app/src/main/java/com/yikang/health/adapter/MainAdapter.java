@@ -72,9 +72,8 @@ public class MainAdapter extends BaseAdapter{
 		}else{
 			viewHolder.tvHead.setVisibility(View.GONE);
 		}
-		viewHolder.tvTitle.setText(list.get(position).getTitle());
-		viewHolder.tvContent.setText(list.get(position).getDescription());
-//		viewHolder.ivIcon
+//		viewHolder.tvTitle.setText(list.get(position).getTitle());
+//		viewHolder.tvContent.setText(list.get(position).getDescription());
 		return convertView;
 	}
 

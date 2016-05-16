@@ -1,8 +1,9 @@
 package com.yikang.health.model;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class BaseModel implements Serializable{
+public class BaseModel implements Parcelable {
 	int error;
 	String message;
 	String id;
@@ -30,4 +31,26 @@ public class BaseModel implements Serializable{
 	public String getMessage() {
 		return message;
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeInt(this.error);
+		dest.writeString(this.message);
+		dest.writeString(this.id);
+	}
+
+	public BaseModel() {
+	}
+
+	protected BaseModel(Parcel in) {
+		this.error = in.readInt();
+		this.message = in.readString();
+		this.id = in.readString();
+	}
+
 }

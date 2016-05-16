@@ -1,5 +1,7 @@
 package com.yikang.health.model;
 
+import android.os.Parcel;
+
 /**
  * Created by zwb on 2016/5/15.
  */
@@ -97,4 +99,51 @@ public class BabyLoreModel extends BaseModel{
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        super.writeToParcel(dest, flags);
+        dest.writeInt(this.count);
+        dest.writeString(this.description);
+        dest.writeInt(this.fcount);
+        dest.writeString(this.img);
+        dest.writeString(this.keywords);
+        dest.writeInt(this.loreclass);
+        dest.writeInt(this.rcount);
+        dest.writeLong(this.time);
+        dest.writeString(this.title);
+    }
+
+    public BabyLoreModel() {
+    }
+
+    protected BabyLoreModel(Parcel in) {
+        super(in);
+        this.count = in.readInt();
+        this.description = in.readString();
+        this.fcount = in.readInt();
+        this.img = in.readString();
+        this.keywords = in.readString();
+        this.loreclass = in.readInt();
+        this.rcount = in.readInt();
+        this.time = in.readLong();
+        this.title = in.readString();
+    }
+
+    public static final Creator<BabyLoreModel> CREATOR = new Creator<BabyLoreModel>() {
+        @Override
+        public BabyLoreModel createFromParcel(Parcel source) {
+            return new BabyLoreModel(source);
+        }
+
+        @Override
+        public BabyLoreModel[] newArray(int size) {
+            return new BabyLoreModel[size];
+        }
+    };
 }

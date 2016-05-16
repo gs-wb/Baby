@@ -1,10 +1,12 @@
 package com.yikang.health.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class WorkCircleInfo implements Serializable
-{
+public class WorkCircleInfo implements Parcelable {
     
     /**
      * 注释内容
@@ -209,4 +211,57 @@ public class WorkCircleInfo implements Serializable
     {
         this.senderPhoneNumber = senderPhoneNumber;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.sender);
+        dest.writeString(this.avatar);
+        dest.writeString(this.sendtype);
+        dest.writeString(this.senderPhoneNumber);
+        dest.writeString(this.content);
+        dest.writeString(this.address);
+        dest.writeString(this.pk_message);
+        dest.writeString(this.image);
+        dest.writeStringList(this.thumbImageUrls);
+        dest.writeStringList(this.imageUrls);
+        dest.writeTypedList(this.replyInfoList);
+        dest.writeString(this.urlLink);
+        dest.writeString(this.sendtime);
+    }
+
+    public WorkCircleInfo() {
+    }
+
+    protected WorkCircleInfo(Parcel in) {
+        this.sender = in.readString();
+        this.avatar = in.readString();
+        this.sendtype = in.readString();
+        this.senderPhoneNumber = in.readString();
+        this.content = in.readString();
+        this.address = in.readString();
+        this.pk_message = in.readString();
+        this.image = in.readString();
+        this.thumbImageUrls = in.createStringArrayList();
+        this.imageUrls = in.createStringArrayList();
+        this.replyInfoList = in.createTypedArrayList(ReplyInfo.CREATOR);
+        this.urlLink = in.readString();
+        this.sendtime = in.readString();
+    }
+
+    public static final Parcelable.Creator<WorkCircleInfo> CREATOR = new Parcelable.Creator<WorkCircleInfo>() {
+        @Override
+        public WorkCircleInfo createFromParcel(Parcel source) {
+            return new WorkCircleInfo(source);
+        }
+
+        @Override
+        public WorkCircleInfo[] newArray(int size) {
+            return new WorkCircleInfo[size];
+        }
+    };
 }

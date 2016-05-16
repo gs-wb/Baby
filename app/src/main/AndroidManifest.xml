@@ -118,6 +118,11 @@
             android:name="com.yikang.health.ui.menu.WeatherActivity"
             android:theme="@style/FullTransparent"/>
 
+        <!-- 婴儿知识 -->
+        <activity
+            android:name="com.yikang.health.ui.baby.BabyLoreDetailActivity"
+            android:theme="@style/FullTransparent"/>
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
