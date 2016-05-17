@@ -92,7 +92,10 @@ public class Constants {
 	//获取天气的接口
 	public static final int GET_WEATHER_DATA = 91;
 
-	//获取天气的接口
+	//孕婴手册 知识详情
+	public static final int GET_BABYLORE_DETAIL_DATA = 92;
+
+	//孕婴手册 知识列表
 	public static final int GET_BABYLORE_DATA = 92;
 
 	//  http://apistore.baidu.com/apiworks/servicedetail/112.html

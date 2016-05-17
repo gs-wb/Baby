@@ -26,31 +26,26 @@ public class MainAdapter extends BaseAdapter{
 	}
 
 	public void setData(List<BabyLoreModel> list) {
-		// TODO Auto-generated method stub
 		this.list = list;
 		this.notifyDataSetChanged();
 	}
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return list.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
 		return list.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
 		final ViewHolder viewHolder;
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
@@ -72,8 +67,8 @@ public class MainAdapter extends BaseAdapter{
 		}else{
 			viewHolder.tvHead.setVisibility(View.GONE);
 		}
-//		viewHolder.tvTitle.setText(list.get(position).getTitle());
-//		viewHolder.tvContent.setText(list.get(position).getDescription());
+		viewHolder.tvTitle.setText(list.get(position).getTitle());
+		viewHolder.tvContent.setText(list.get(position).getDescription());
 		return convertView;
 	}
 

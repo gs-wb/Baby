@@ -17,120 +17,125 @@ import com.yikang.health.adapter.MainAdapter;
 import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.BabyLoreModel;
+import com.yikang.health.model.Mp3Info;
+import com.yikang.health.server.GsonTools;
+import com.yikang.health.server.JsonParser;
 import com.yikang.health.ui.BaseFragment;
 import com.yikang.health.ui.baby.BabyLoreDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BabyFragment extends BaseFragment implements OnClickListener ,AdapterView.OnItemClickListener,TaskExpandListener{
-	private SlideMenu slideMenu;
-	public BabyFragment(){
-		super();
-		layoutResID = R.layout.fragment_main_baby_layout;
-	}
-	@SuppressLint("ValidFragment")
-	public BabyFragment(SlideMenu slideMenu) {
-		layoutResID = R.layout.fragment_main_baby_layout;
-		this.slideMenu = slideMenu;
-	}
+public class BabyFragment extends BaseFragment implements OnClickListener, AdapterView.OnItemClickListener, TaskExpandListener {
+    private SlideMenu slideMenu;
 
-	@Override
-	protected void mSetTitleText(TextView mTitle) {
-		// TODO Auto-generated method stub
-		super.mSetTitleText(mTitle);
-		mTitle.setText("宝贝");
-	}
-	@Override
-	public void initControl(View v) {
-		// 初始化组件
-		initComponent(v);
-		laodData();
-	}
+    public BabyFragment() {
+        super();
+        layoutResID = R.layout.fragment_main_baby_layout;
+    }
 
-	@Override
-	public void initObserver() {
-		// TODO Auto-generated method stub
+    @SuppressLint("ValidFragment")
+    public BabyFragment(SlideMenu slideMenu) {
+        layoutResID = R.layout.fragment_main_baby_layout;
+        this.slideMenu = slideMenu;
+    }
 
-	}
+    @Override
+    protected void mSetTitleText(TextView mTitle) {
+        // TODO Auto-generated method stub
+        super.mSetTitleText(mTitle);
+        mTitle.setText("宝贝");
+    }
 
-	@Override
-	public void onHiddenChanged(boolean hidden) {
-		super.onHiddenChanged(hidden);
-	}
+    @Override
+    public void initControl(View v) {
+        // 初始化组件
+        initComponent(v);
+        laodData();
+    }
 
-	// 4月1日,怀孕44周，0天后出生
-	private TextView tvPregnantMsg;
-	private ListView lvTodayRead;
-	private MainAdapter mainAdapter;
-	private List<BabyLoreModel> babyLoreList = new ArrayList<BabyLoreModel>();
+    @Override
+    public void initObserver() {
+        // TODO Auto-generated method stub
 
-	/**
-	 * 初始化组件
-	 */
-	private void initComponent(View v) {
-		ImageView menuImg = (ImageView) v.findViewById(R.id.btn_top_left);
-		menuImg.setImageResource(R.drawable.nemu);
-		menuImg.setOnClickListener(this);
-		tvPregnantMsg = (TextView) v.findViewById(R.id.tv_pregnant_msg);
-		lvTodayRead = (ListView) v.findViewById(R.id.lv_today_read);
-		mainAdapter = new MainAdapter(getActivity());
-		lvTodayRead.setAdapter(mainAdapter);
-		lvTodayRead.setOnItemClickListener(this);
-		LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(
-				Context.LAYOUT_INFLATER_SERVICE);
-		View headerView = lif.inflate(R.layout.baby_list_head_layout, null);
-		lvTodayRead.addHeaderView(headerView);
+    }
 
-	}
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
 
-	private void laodData() {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < 6; i++) {
-			babyLoreList.add(new BabyLoreModel());
-		}
-		mainAdapter.setData(babyLoreList);
+    // 4月1日,怀孕44周，0天后出生
+    private TextView tvPregnantMsg;
+    private ListView lvTodayRead;
+    private MainAdapter mainAdapter;
+    private List<BabyLoreModel> babyLoreList = new ArrayList<BabyLoreModel>();
+
+    /**
+     * 初始化组件
+     */
+    private void initComponent(View v) {
+        ImageView menuImg = (ImageView) v.findViewById(R.id.btn_top_left);
+        menuImg.setImageResource(R.drawable.nemu);
+        menuImg.setOnClickListener(this);
+        tvPregnantMsg = (TextView) v.findViewById(R.id.tv_pregnant_msg);
+        lvTodayRead = (ListView) v.findViewById(R.id.lv_today_read);
+        mainAdapter = new MainAdapter(getActivity());
+        lvTodayRead.setAdapter(mainAdapter);
+        lvTodayRead.setOnItemClickListener(this);
+        LayoutInflater lif = (LayoutInflater) getActivity().getSystemService(
+                Context.LAYOUT_INFLATER_SERVICE);
+        View headerView = lif.inflate(R.layout.baby_list_head_layout, null);
+        lvTodayRead.addHeaderView(headerView);
+
+    }
+
+    private void laodData() {
+        // TODO Auto-generated method stub
+//		for (int i = 0; i < 6; i++) {
+//			babyLoreList.add(new BabyLoreModel());
+//		}
+//		mainAdapter.setData(babyLoreList);
 //		6 --- 孕婴手册
-		YIKApplication.client.getBabyLoresByGet(getActivity(),"6", this);
-	}
+        YIKApplication.client.getBabyLoresByGet(getActivity(), "6", this);
+    }
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Intent intent = new Intent(getActivity(),BabyLoreDetailActivity.class);
-		intent.putExtra("babyLore",babyLoreList.get(position - 1));
-		startActivity(intent);
-	}
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(getActivity(), BabyLoreDetailActivity.class);
+        intent.putExtra("babyLore", babyLoreList.get(position-1));
+        startActivity(intent);
+    }
 
-	@Override
-	public void onClick(View v) {
-		if (v.getId() == R.id.btn_top_left) {
-			if (slideMenu.isMainScreenShowing()) {
-				slideMenu.openMenu();
-			} else {
-				slideMenu.closeMenu();
-			}
-		}
-	}
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.btn_top_left) {
+            if (slideMenu.isMainScreenShowing()) {
+                slideMenu.openMenu();
+            } else {
+                slideMenu.closeMenu();
+            }
+        }
+    }
 
-	@Override
-	public <T> void onTaskCompleted(String resultCode, T result, int connId) {
-		switch (connId) {
-		case Constants.GET_BABYLORE_DATA:
-//			ToastShow(result.toString());
-			break;
-		}
-	}
+    @Override
+    public <T> void onTaskCompleted(String resultCode, T result, int connId) {
+        switch (connId) {
+            case Constants.GET_BABYLORE_DATA:
+                babyLoreList = (ArrayList) JsonParser.getInstance().jsonToList(result.toString(), BabyLoreModel.class, "tngou");
+                if (babyLoreList != null) mainAdapter.setData(babyLoreList);
+                break;
+        }
+    }
 
-	@Override
-	public void onTaskCanceled() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void onTaskCanceled() {
 
-	@Override
-	public void onTaskError(String resultCode, int conId, String msg) {
-		// TODO Auto-generated method stub
-		
-	}
+    }
+
+    @Override
+    public void onTaskError(String resultCode, int conId, String msg) {
+
+    }
 
 }

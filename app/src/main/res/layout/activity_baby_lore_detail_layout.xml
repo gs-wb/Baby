@@ -13,59 +13,70 @@
     </View>
 
     <include layout="@layout/headtitle_plus" />
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
-        >
-        <TextView
+        android:scrollbars="none">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/txt_dark"
-            android:text="在春天时的精子质量最好"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@color/whell_gray"
-            android:textSize="14sp"
-            android:textColor="@color/txt_dark"
-            android:text="2016-05-11 20:09:27    访问量:11    收藏量:0    评论量:0"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/story_default_img"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/whell_gray"
-            android:textSize="14sp"
-            android:textColor="@color/txt_light"
-            android:text="涨知识 ： 春天精子最健康 怀孕好时机 冬季怀孕：中医不主张最开始提到的以色列的研究报告中，同时指出了正常人在冬天时每毫升精液中有7000万个精子，其中5%的精子游得很快;春天时每毫升精液中有6800万个精子，其中3%的精子游动速度很快"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            >
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/txt_dark"
+                android:text="在春天时的精子质量最好"/>
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@color/whell_gray"
+                android:textSize="14sp"
+                android:textColor="@color/txt_dark"
+                android:text="2016-05-11 20:09:27    访问量:11    收藏量:0    评论量:0"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/story_default_img"/>
+            <TextView
+                android:id="@+id/tv_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lineSpacingExtra="5dp"
+                android:background="@color/whell_gray"
+                android:textSize="14sp"
+                android:textColor="@color/txt_light"
+                android:text="涨知识 ： 春天精子最健康 怀孕好时机 冬季怀孕：中医不主张最开始提到的以色列的研究报告中，同时指出了正常人在冬天时每毫升精液中有7000万个精子，其中5%的精子游得很快;春天时每毫升精液中有6800万个精子，其中3%的精子游动速度很快"/>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/txt_dark"
-            android:text="涨知识 ： 春天精子最健康 怀孕好时机 冬季怀孕：中医不主张最开始提到的以色列的研究报告中，同时指出了正常人在冬天时每毫升精液中有7000万个精子，其中5%的精子游得很快;春天时每毫升精液中有6800万个精子，其中3%的精子游动速度很快"/>
+            <WebView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/webView"
+                >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:background="@color/whell_gray"
-            android:gravity="center_vertical"
-            android:drawablePadding="20dp"
-            android:drawableLeft="@drawable/green_line"
-            android:textSize="18sp"
-            android:textColor="@color/txt_light"
-            android:text="精子 怀孕 精液 季节 男性"/>
-    </LinearLayout>
+            </WebView>
+
+            <TextView
+                android:id="@+id/tv_key"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/whell_gray"
+                android:gravity="center_vertical"
+                android:drawablePadding="20dp"
+                android:drawableLeft="@drawable/green_line"
+                android:textSize="16sp"
+                android:textColor="@color/txt_light"
+                android:text="精子 怀孕 精液 季节 男性"/>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
