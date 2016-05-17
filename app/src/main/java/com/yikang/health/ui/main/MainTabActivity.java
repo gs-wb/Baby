@@ -11,7 +11,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.yikang.health.R;
+import com.yikang.health.YIKApplication;
 import com.yikang.health.cache.DataCache;
+import com.yikang.health.service.PlayerService;
 import com.yikang.health.ui.BaseActivity;
 import com.yikang.health.ui.menu.WeatherActivity;
 import com.yikang.health.utils.DisplayUtil;
@@ -64,7 +66,7 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 				.add(R.id.fragment_container, findFragment).hide(findFragment)
 				.add(R.id.fragment_container, meFragment).hide(meFragment)
 				.show(babyFragment).commit();
-		
+		YIKApplication.instance.startService(new Intent(YIKApplication.instance, PlayerService.class));
 	}
 	/**
 	 * 初始化组件
@@ -139,7 +141,6 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 		}
 	}
 	private void swichFragment() {
-		// TODO Auto-generated method stub
 		if (currentTabIndex != index) {
 			FragmentTransaction trx = getSupportFragmentManager().beginTransaction();
 			trx.hide(fragments[currentTabIndex]);
@@ -152,8 +153,7 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 	}
 	@Override
 	public void initVariable() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -163,12 +163,12 @@ public class MainTabActivity extends BaseActivity implements OnClickListener{
 
 	@Override
 	public void saveData() {
-		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void backBtnFunction() {
-		// TODO Auto-generated method stub
 		DataCache.getDataCache().clean();
+		YIKApplication.instance.stopService(new Intent(YIKApplication.instance, PlayerService.class));
+		System.gc();
 	}
 }

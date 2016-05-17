@@ -8,16 +8,13 @@ import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
-import android.os.AsyncTask;
+import android.os.Binder;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.IBinder;
 import android.util.Log;
 
 import com.yikang.health.constant.Constants;
-import com.yikang.health.model.LrcContent;
 import com.yikang.health.model.Mp3Info;
-import com.yikang.health.widget.voice.LrcProcess;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,18 +27,12 @@ import java.util.List;
  */
 public class PlayerService extends Service {
     private MediaPlayer mediaPlayer; // 媒体播放器对象
-    //	private String path; 			// 音乐文件路径
-    private int msg;                //播放信息
+//    private int msg;                //播放信息
     private boolean isPause;        // 暂停状态
     private int current = 0;        // 记录当前正在播放的音乐
-    private List<Mp3Info> mp3Infos;    //存放Mp3Info对象的集合
+    private List<Mp3Info> mp3Infos = new ArrayList<>();    //存放Mp3Info对象的集合
     private int status = 3;            //播放状态，默认为顺序播放
-    private MyReceiver myReceiver;    //自定义广播接收器
     private int currentTime;        //当前播放进度
-    private int duration;            //播放长度
-    private LrcProcess mLrcProcess;    //歌词处理
-    private List<LrcContent> lrcList = new ArrayList<LrcContent>(); //存放歌词列表对象
-    private int index = 0;            //歌词检索值
 
     /**
      * handler用来接收消息，来发送广播更新播放时间
@@ -62,15 +53,23 @@ public class PlayerService extends Service {
 
         ;
     };
+    public class PlayerBinder extends Binder {
+        public PlayerService getService() {
+            return PlayerService.this;
+        }
+    }
 
+    private final IBinder mBinder = new PlayerBinder();
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return mBinder;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
         Log.d("service", "service created");
         mediaPlayer = new MediaPlayer();
-//		if(get.getSerializableExtra("mp3Infos")!=null)
-//			mp3Infos = (ArrayList<Mp3Info>)intent.getSerializableExtra("mp3Infos");
-
         /**
          * 设置音乐播放完成时的监听器
          */
@@ -117,12 +116,6 @@ public class PlayerService extends Service {
                 }
             }
         });
-
-        myReceiver = new MyReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Constants.PlayerMsg.CTL_ACTION);
-        filter.addAction(Constants.PlayerMsg.SHOW_LRC);
-        registerReceiver(myReceiver, filter);
     }
 
     /**
@@ -137,99 +130,42 @@ public class PlayerService extends Service {
     }
 
     @Override
-    public IBinder onBind(Intent arg0) {
-        return null;
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (intent != null) {
-            if (intent.getSerializableExtra("mp3Infos") != null)
-                mp3Infos = (ArrayList<Mp3Info>) intent.getSerializableExtra("mp3Infos");
-            current = intent.getIntExtra("listPosition", 0);    //当前播放歌曲的在mp3Infos的位置
-            msg = intent.getIntExtra("MSG", 0);            //播放信息
-            if (msg == Constants.PlayerMsg.PLAY_MSG) {    //直接播放音乐
-                play(0);
-            } else if (msg == Constants.PlayerMsg.PAUSE_MSG) {    //暂停
-                pause();
-            } else if (msg == Constants.PlayerMsg.STOP_MSG) {        //停止
-                stop();
-            } else if (msg == Constants.PlayerMsg.CONTINUE_MSG) {    //继续播放
-                resume();
-            } else if (msg == Constants.PlayerMsg.PRIVIOUS_MSG) {    //上一首
-                previous();
-            } else if (msg == Constants.PlayerMsg.NEXT_MSG) {        //下一首
-                next();
-            } else if (msg == Constants.PlayerMsg.PROGRESS_CHANGE) {    //进度更新
-                currentTime = intent.getIntExtra("progress", -1);
-                play(currentTime);
-            } else if (msg == Constants.PlayerMsg.PLAYING_MSG) {
-                handler.sendEmptyMessage(1);
-            }
-        }
         return super.onStartCommand(intent, flags, startId);
     }
 
-    /**
-     * 初始化歌词配置
-     */
-//	public void initLrc(){
-//		mLrcProcess = new LrcProcess();
-//		//读取歌词文件
-//		mLrcProcess.readLRC(mp3Infos.get(current).getFile_url());
-//		//传回处理后的歌词文件
-//		lrcList = mLrcProcess.getLrcList();
-//		VoicePlayerActivity.lrcView.setmLrcList(lrcList);
-//		//切换带动画显示歌词
-//		VoicePlayerActivity.lrcView.setAnimation(AnimationUtils.loadAnimation(PlayerService.this, R.anim.alpha_z));
-//		handler.post(mRunnable);
-//	}
-//    Runnable mRunnable = new Runnable() {
-//
-//        @Override
-//        public void run() {
-//            VoicePlayerActivity.lrcView.setIndex(lrcIndex());
-//            VoicePlayerActivity.lrcView.invalidate();
-//            handler.postDelayed(mRunnable, 100);
-//        }
-//    };
-//
-//    /**
-//     * 根据时间获取歌词显示的索引值
-//     *
-//     * @return
-//     */
-//    public int lrcIndex() {
-//        if (mediaPlayer.isPlaying()) {
-//            currentTime = mediaPlayer.getCurrentPosition();
-//            duration = mediaPlayer.getDuration();
-//        }
-//        if (currentTime < duration) {
-//            for (int i = 0; i < lrcList.size(); i++) {
-//                if (i < lrcList.size() - 1) {
-//                    if (currentTime < lrcList.get(i).getLrcTime() && i == 0) {
-//                        index = i;
-//                    }
-//                    if (currentTime > lrcList.get(i).getLrcTime()
-//                            && currentTime < lrcList.get(i + 1).getLrcTime()) {
-//                        index = i;
-//                    }
-//                }
-//                if (i == lrcList.size() - 1
-//                        && currentTime > lrcList.get(i).getLrcTime()) {
-//                    index = i;
-//                }
-//            }
-//        }
-//        return index;
-//    }
+
+    public void setDate(List<Mp3Info> mp3Infos,int listPosition){
+        this.mp3Infos = mp3Infos;
+        current = listPosition;    //当前播放歌曲的在mp3Infos的位置
+    }
+
+    public void updatePlayMsg(int msg,int progress){
+        if (msg == Constants.PlayerMsg.PLAY_MSG) {    //直接播放音乐
+            play(-1);
+        } else if (msg == Constants.PlayerMsg.PAUSE_MSG) {    //暂停
+            pause();
+        } else if (msg == Constants.PlayerMsg.STOP_MSG) {        //停止
+            stop();
+        } else if (msg == Constants.PlayerMsg.CONTINUE_MSG) {    //继续播放
+            resume();
+        } else if (msg == Constants.PlayerMsg.PRIVIOUS_MSG) {    //上一首
+            previous();
+        } else if (msg == Constants.PlayerMsg.NEXT_MSG) {        //下一首
+            next();
+        } else if (msg == Constants.PlayerMsg.PROGRESS_CHANGE) {    //进度更新
+            currentTime = progress;
+            play(currentTime);
+        } else if (msg == Constants.PlayerMsg.PLAYING_MSG) {
+            handler.sendEmptyMessage(1);
+        }
+    }
 
     /**
      *
      * @param currentTime
      */
     private void play(final int currentTime) {
-//			initLrc();
         playThread = new PlayThread(currentTime);
         playThread.start();
     }
@@ -324,7 +260,6 @@ public class PlayerService extends Service {
         if (playThread != null && !playThread.isAlive()) {
             playThread.interrupt();
         }
-//        handler.removeCallbacks(mRunnable);
     }
 
     /**
@@ -345,38 +280,9 @@ public class PlayerService extends Service {
             }
             Intent intent = new Intent();
             intent.setAction(Constants.PlayerMsg.MUSIC_DURATION);
-            duration = mediaPlayer.getDuration();
+            int duration = mediaPlayer.getDuration();
             intent.putExtra("duration", duration);    //通过Intent来传递歌曲的总长度
             sendBroadcast(intent);
         }
     }
-
-    public class MyReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int control = intent.getIntExtra("control", -1);
-            switch (control) {
-                case 1:
-                    status = 1; // 将播放状态置为1表示：单曲循环
-                    break;
-                case 2:
-                    status = 2;    //将播放状态置为2表示：全部循环
-                    break;
-                case 3:
-                    status = 3;    //将播放状态置为3表示：顺序播放
-                    break;
-                case 4:
-                    status = 4;    //将播放状态置为4表示：随机播放
-                    break;
-            }
-
-            String action = intent.getAction();
-            if (action.equals(Constants.PlayerMsg.SHOW_LRC)) {
-                current = intent.getIntExtra("listPosition", -1);
-//				initLrc();
-            }
-        }
-    }
-
 }

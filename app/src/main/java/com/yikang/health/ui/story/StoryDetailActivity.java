@@ -1,8 +1,11 @@
 package com.yikang.health.ui.story;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -121,6 +124,7 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
                 .add(R.id.footer_layout, playFragment)
                 .show(playFragment).commit();
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

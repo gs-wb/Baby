@@ -2,9 +2,12 @@ package com.yikang.health.ui.story;
 
 import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -52,7 +55,7 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
     private PlayerReceiver playerReceiver;
 
 
-    public VoicePlayFragment(ArrayList<Mp3Info> mp3Infos,int listPosition) {
+    public VoicePlayFragment(ArrayList<Mp3Info> mp3Infos, int listPosition) {
         super();
         layoutResID = R.layout.play_voice_layout;
         this.mp3Infos = mp3Infos;
@@ -63,9 +66,28 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
     public void initControl(View view) {
         findViewById(view);
         registerReceiver();
-        initView();		//初始化视图
+        initView();        //初始化视图
+        getActivity().bindService(new Intent(getActivity(), PlayerService.class),
+                mConnection, Context.BIND_AUTO_CREATE | Context.BIND_DEBUG_UNBIND);
 //        setBarColor(getResources().getColor(R.color.color_ffffff));
     }
+
+    private void unbindService() {
+        if (mConnection != null) getActivity().unbindService(mConnection);
+    }
+
+    private PlayerService mService;
+    private ServiceConnection mConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            mService = ((PlayerService.PlayerBinder) service).getService();
+            mService.setDate(mp3Infos,listPosition);
+            mService.updatePlayMsg(Constants.PlayerMsg.PLAY_MSG, 0);
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            mService = null;
+        }
+    };
 
     /**
      * 从界面上根据id获取按钮
@@ -81,6 +103,7 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         finalProgress = (TextView) view.findViewById(R.id.final_progress);
         loadingAnimation = AnimationUtils.loadAnimation(getActivity(), R.anim.rotate_repeat);
     }
+
     private void registerReceiver() {
         //定义和注册广播接收器
         playerReceiver = new PlayerReceiver();
@@ -90,6 +113,7 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         filter.addAction(Constants.PlayerMsg.MUSIC_DURATION);
         getActivity().registerReceiver(playerReceiver, filter);
     }
+
     @Override
     public void initObserver() {
         ViewOnclickListener ViewOnClickListener = new ViewOnclickListener();
@@ -108,12 +132,14 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         isPause = false;
         if (flag == Constants.PlayerMsg.PLAY_MSG) { // 如果是点击列表播放歌曲的话
             playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
-            play();
+//            play();
         } else if (flag == Constants.PlayerMsg.CONTINUE_MSG) {
-            Intent intent = new Intent(getActivity(), PlayerService.class);
             playBtn.setBackgroundResource(R.drawable.voice_play_selector);
-            intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);	//继续播放音乐
-            getActivity().startService(intent);
+//            mService.updatePlayMsg(Constants.PlayerMsg.CONTINUE_MSG, 0);
+//            Intent intent = new Intent(getActivity(), PlayerService.class);
+//            playBtn.setBackgroundResource(R.drawable.voice_play_selector);
+//            intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);	//继续播放音乐
+//            getActivity().startService(intent);
         }
 
     }
@@ -127,24 +153,27 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         play_music_bg.setVisibility(View.VISIBLE);
         repeat_none();
         mp3Infos.get(listPosition).setNotPause(true);
-        Intent intent = new Intent(getActivity(), PlayerService.class);
-        intent.putExtra("mp3Infos", mp3Infos);
-        intent.putExtra("listPosition", listPosition);
-        intent.putExtra("MSG", flag);
-        getActivity().startService(intent);
+//        mService.updatePlayMsg(Constants.PlayerMsg.PLAY_MSG, 0);
+//        Intent intent = new Intent(getActivity(), PlayerService.class);
+//        intent.putExtra("mp3Infos", mp3Infos);
+//        intent.putExtra("listPosition", listPosition);
+//        intent.putExtra("MSG", flag);
+//        getActivity().startService(intent);
     }
 
     /**
      * 播放进度改变
+     *
      * @param progress
      */
     public void audioTrackChange(int progress) {
-        Intent intent = new Intent(getActivity(), PlayerService.class);
-        intent.putExtra("url", mp3Infos.get(listPosition).getFile_url());
-        intent.putExtra("listPosition", listPosition);
-        intent.putExtra("MSG", Constants.PlayerMsg.PROGRESS_CHANGE);
-        intent.putExtra("progress", progress);
-        getActivity().startService(intent);
+        mService.updatePlayMsg(Constants.PlayerMsg.PROGRESS_CHANGE, progress);
+//        Intent intent = new Intent(getActivity(), PlayerService.class);
+//        intent.putExtra("url", mp3Infos.get(listPosition).getFile_url());
+//        intent.putExtra("listPosition", listPosition);
+//        intent.putExtra("MSG", Constants.PlayerMsg.PROGRESS_CHANGE);
+//        intent.putExtra("progress", progress);
+//        getActivity().startService(intent);
     }
 
     /**
@@ -166,12 +195,14 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
             play_music_bg.startAnimation(loadingAnimation);
             play_music_bg.setVisibility(View.VISIBLE);
             StoryDetailActivity.instance.setCurrMp3(listPosition);
-            Mp3Info mp3Info = mp3Infos.get(listPosition); // 上一首MP3
-            Intent intent = new Intent(getActivity(), PlayerService.class);
-            intent.putExtra("url", mp3Info.getFile_url());
-            intent.putExtra("listPosition", listPosition);
-            intent.putExtra("MSG", Constants.PlayerMsg.PRIVIOUS_MSG);
-            getActivity().startService(intent);
+//            Mp3Info mp3Info = mp3Infos.get(listPosition); // 上一首MP3
+            mService.setDate(mp3Infos,listPosition);
+            mService.updatePlayMsg(Constants.PlayerMsg.PRIVIOUS_MSG, 0);
+//            Intent intent = new Intent(getActivity(), PlayerService.class);
+//            intent.putExtra("url", mp3Info.getFile_url());
+//            intent.putExtra("listPosition", listPosition);
+//            intent.putExtra("MSG", Constants.PlayerMsg.PRIVIOUS_MSG);
+//            getActivity().startService(intent);
         } else {
             listPosition = 0;
             ToastShow("没有上一首了");
@@ -188,12 +219,14 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
             play_music_bg.startAnimation(loadingAnimation);
             play_music_bg.setVisibility(View.VISIBLE);
             StoryDetailActivity.instance.setCurrMp3(listPosition);
-            Mp3Info mp3Info = mp3Infos.get(listPosition);
-            Intent intent = new Intent(getActivity(), PlayerService.class);
-            intent.putExtra("url", mp3Info.getFile_url());
-            intent.putExtra("listPosition", listPosition);
-            intent.putExtra("MSG", Constants.PlayerMsg.NEXT_MSG);
-            getActivity().startService(intent);
+            mService.setDate(mp3Infos, listPosition);
+            mService.updatePlayMsg(Constants.PlayerMsg.NEXT_MSG, 0);
+//            Mp3Info mp3Info = mp3Infos.get(listPosition);
+//            Intent intent = new Intent(getActivity(), PlayerService.class);
+//            intent.putExtra("url", mp3Info.getFile_url());
+//            intent.putExtra("listPosition", listPosition);
+//            intent.putExtra("MSG", Constants.PlayerMsg.NEXT_MSG);
+//            getActivity().startService(intent);
 
         } else {
             listPosition = mp3Infos.size() - 1;
@@ -216,23 +249,23 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.play_music:
-                    Intent intent = new Intent(getActivity(), PlayerService.class);
-                    intent.putExtra("mp3Infos", mp3Infos);
-                    intent.putExtra("listPosition", listPosition);
+//                    Intent intent = new Intent(getActivity(), PlayerService.class);
+//                    intent.putExtra("mp3Infos", mp3Infos);
+//                    intent.putExtra("listPosition", listPosition);
                     if (isPlaying) {
                         StoryDetailActivity.instance.updateItem(false);
-//                        mp3Infos.get(listPosition).setNotPause(false);
                         playBtn.setBackgroundResource(R.drawable.voice_play_selector);
-                        intent.putExtra("MSG", Constants.PlayerMsg.PAUSE_MSG);
-                        getActivity().startService(intent);
+                        mService.updatePlayMsg(Constants.PlayerMsg.PAUSE_MSG, 0);
+//                        intent.putExtra("MSG", Constants.PlayerMsg.PAUSE_MSG);
+//                        getActivity().startService(intent);
                         isPlaying = false;
                         isPause = true;
                     } else if (isPause) {
                         StoryDetailActivity.instance.updateItem(true);
-//                        mp3Infos.get(listPosition).setNotPause(true);
                         playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
-                        intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);
-                        getActivity().startService(intent);
+                        mService.updatePlayMsg(Constants.PlayerMsg.CONTINUE_MSG, 0);
+//                        intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);
+//                        getActivity().startService(intent);
                         isPause = false;
                         isPlaying = true;
                     }
@@ -247,17 +280,17 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
             }
         }
     }
+
     /**
      * 实现监听Seekbar的类
      *
      * @author wwj
-     *
      */
     private class SeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            switch(seekBar.getId()) {
+            switch (seekBar.getId()) {
                 case R.id.audioTrack:
                     if (fromUser) {
                         audioTrackChange(progress); // 用户控制进度的改变
@@ -277,6 +310,7 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         }
 
     }
+
     /**
      * 用来接收从service传回来的广播的内部类
      *
@@ -311,9 +345,10 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(playerReceiver!=null){
+        if (playerReceiver != null) {
             getActivity().unregisterReceiver(playerReceiver);
         }
-        getActivity().stopService(new Intent(getActivity(),PlayerService.class));
+        unbindService();
+//        getActivity().stopService(new Intent(getActivity(),PlayerService.class));
     }
 }
