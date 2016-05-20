@@ -132,6 +132,9 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         isPause = false;
         if (flag == Constants.PlayerMsg.PLAY_MSG) { // 如果是点击列表播放歌曲的话
             playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
+            play_music_bg.startAnimation(loadingAnimation);
+            play_music_bg.setVisibility(View.VISIBLE);
+            repeat_none();
 //            play();
         } else if (flag == Constants.PlayerMsg.CONTINUE_MSG) {
             playBtn.setBackgroundResource(R.drawable.voice_play_selector);
@@ -148,17 +151,19 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
      * 播放音乐
      */
     public void play() {
-        // 开始播放的时候为顺序播放
-        play_music_bg.startAnimation(loadingAnimation);
-        play_music_bg.setVisibility(View.VISIBLE);
-        repeat_none();
-        mp3Infos.get(listPosition).setNotPause(true);
-//        mService.updatePlayMsg(Constants.PlayerMsg.PLAY_MSG, 0);
-//        Intent intent = new Intent(getActivity(), PlayerService.class);
-//        intent.putExtra("mp3Infos", mp3Infos);
-//        intent.putExtra("listPosition", listPosition);
-//        intent.putExtra("MSG", flag);
-//        getActivity().startService(intent);
+        if (isPlaying) {
+            StoryDetailActivity.instance.updateItem(false);
+            playBtn.setBackgroundResource(R.drawable.voice_play_selector);
+            mService.updatePlayMsg(Constants.PlayerMsg.PAUSE_MSG, 0);
+            isPlaying = false;
+            isPause = true;
+        } else if (isPause) {
+            StoryDetailActivity.instance.updateItem(true);
+            playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
+            mService.updatePlayMsg(Constants.PlayerMsg.CONTINUE_MSG, 0);
+            isPause = false;
+            isPlaying = true;
+        }
     }
 
     /**
@@ -221,12 +226,6 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
             StoryDetailActivity.instance.setCurrMp3(listPosition);
             mService.setDate(mp3Infos, listPosition);
             mService.updatePlayMsg(Constants.PlayerMsg.NEXT_MSG, 0);
-//            Mp3Info mp3Info = mp3Infos.get(listPosition);
-//            Intent intent = new Intent(getActivity(), PlayerService.class);
-//            intent.putExtra("url", mp3Info.getFile_url());
-//            intent.putExtra("listPosition", listPosition);
-//            intent.putExtra("MSG", Constants.PlayerMsg.NEXT_MSG);
-//            getActivity().startService(intent);
 
         } else {
             listPosition = mp3Infos.size() - 1;
@@ -249,27 +248,7 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.play_music:
-//                    Intent intent = new Intent(getActivity(), PlayerService.class);
-//                    intent.putExtra("mp3Infos", mp3Infos);
-//                    intent.putExtra("listPosition", listPosition);
-                    if (isPlaying) {
-                        StoryDetailActivity.instance.updateItem(false);
-                        playBtn.setBackgroundResource(R.drawable.voice_play_selector);
-                        mService.updatePlayMsg(Constants.PlayerMsg.PAUSE_MSG, 0);
-//                        intent.putExtra("MSG", Constants.PlayerMsg.PAUSE_MSG);
-//                        getActivity().startService(intent);
-                        isPlaying = false;
-                        isPause = true;
-                    } else if (isPause) {
-                        StoryDetailActivity.instance.updateItem(true);
-                        playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
-                        mService.updatePlayMsg(Constants.PlayerMsg.CONTINUE_MSG, 0);
-//                        intent.putExtra("MSG", Constants.PlayerMsg.CONTINUE_MSG);
-//                        getActivity().startService(intent);
-                        isPause = false;
-                        isPlaying = true;
-                    }
-//                    StoryDetailActivity.instance.mAdapter.notifyDataSetChanged();
+                    play();
                     break;
                 case R.id.previous_music: // 上一首歌曲
                     previous_music();

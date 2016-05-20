@@ -1,5 +1,6 @@
 package com.yikang.health;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,11 +18,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.yikang.health.cache.DataCache;
 import com.yikang.health.cache.LogUtils;
 import com.yikang.health.net.PublicHttpData;
 import com.yikang.health.utils.SharePreferenceUtil;
 import com.yikang.health.utils.SharedPreferencesUtils;
+import com.yikang.health.utils.image.LocalImageHelper;
 
 /**
  * Application
@@ -67,7 +74,9 @@ public class YIKApplication extends Application {
 		 * 初始化表情Map
 		 */
 		initFaceMap();
-		
+		initImageLoader(getApplicationContext());
+		//本地图片辅助类初始化
+		LocalImageHelper.init(this);
 		// ImageLoaderConfiguration config = new
 		// ImageLoaderConfiguration.Builder(getApplicationContext())
 		// .discCacheSize(50 * 1024 * 1024).discCacheFileCount(100)
@@ -94,7 +103,31 @@ public class YIKApplication extends Application {
 		}
 		return props;
 	}
+	public static void initImageLoader(Context context) {
+		ImageLoaderConfiguration.Builder config = new ImageLoaderConfiguration.Builder(context);
+		config.threadPriority(Thread.NORM_PRIORITY);
+		config.denyCacheImageMultipleSizesInMemory();
+		config.memoryCacheSize((int) Runtime.getRuntime().maxMemory() / 4);
+		config.diskCacheFileNameGenerator(new Md5FileNameGenerator());
+		config.diskCacheSize(100 * 1024 * 1024); // 100 MiB
+		config.tasksProcessingOrder(QueueProcessingType.LIFO);
+		//修改连接超时时间5秒，下载超时时间5秒
+		config.imageDownloader(new BaseImageDownloader(instance, 5 * 1000, 5 * 1000));
+		//		config.writeDebugLogs(); // Remove for release app
+		// Initialize ImageLoader with configuration.
+		ImageLoader.getInstance().init(config.build());
+	}
 
+	public String getCachePath() {
+		File cacheDir;
+		if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
+			cacheDir = getExternalCacheDir();
+		else
+			cacheDir = getCacheDir();
+		if (!cacheDir.exists())
+			cacheDir.mkdirs();
+		return cacheDir.getAbsolutePath();
+	}
 	public void exit0() {
 		final Timer exitTimer = new Timer();
 		exitTimer.schedule(new TimerTask() {

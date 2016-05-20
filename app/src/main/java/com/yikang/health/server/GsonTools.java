@@ -35,10 +35,7 @@ public class GsonTools {
     public static <T> List<T> getList(String jsonData, Class<T> cls) {
         if (TextUtils.isEmpty(jsonData))return null;
         try {
-            org.json.JSONObject object = new org.json.JSONObject(jsonData);
-            if (!TextUtils.isEmpty(object.getString("data")))
-                return JSON.parseArray(object.getString("data"), cls);
-            else return null;
+            return JSON.parseArray(jsonData, cls);
         } catch (Exception e) {
             // TODO: handle exception
             return null;

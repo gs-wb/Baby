@@ -4,21 +4,42 @@
     android:layout_height="match_parent"
     android:background="#F5E8E0"
     android:orientation="vertical" >
-
     <include
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         layout="@layout/headtitle_plus" />
-
-    <ListView
-        android:id="@+id/lv_today_read"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:cacheColorHint="@color/color_translate"
-        android:divider="#DBD9DA"
-        android:dividerHeight="0.5dp"
-        android:scrollbars="none" >
-    </ListView>
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/baby_top_layout" />
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                layout="@layout/baby_expert_layout" />
+            <com.yikang.health.widget.NoScrollListView
+                android:id="@+id/lv_today_read"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@color/color_translate"
+                android:divider="#DBD9DA"
+                android:dividerHeight="0.5dp"
+                android:scrollbars="none" >
+            </com.yikang.health.widget.NoScrollListView>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

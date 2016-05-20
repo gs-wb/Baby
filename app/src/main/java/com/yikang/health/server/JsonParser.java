@@ -3,6 +3,7 @@ package com.yikang.health.server;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -113,11 +114,13 @@ public class JsonParser {
 	 * @param jsonKey 基本JSON数据中的某个Key值
 	 * @return
 	 */
-	public ArrayList<Object> jsonToList(String orgJson, Class<?> cls,String jsonKey) {
+	public List<?> jsonToList(String orgJson, Class<?> cls, String jsonKey) {
 		try {
 			
 			JSONObject jsonObj = new JSONObject(orgJson);
-			return jsonToList(jsonObj.getString(jsonKey),cls);
+
+			return GsonTools.getList(jsonObj.getString(jsonKey),cls);
+//			return jsonToList(jsonObj.getString(jsonKey),cls);
 
 		} catch (Exception e) {
 			return null;

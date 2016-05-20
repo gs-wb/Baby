@@ -40,7 +40,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="100dp"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingLeft="10dp"
@@ -56,7 +56,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center"
                     android:text="宝宝身长"
                     android:textColor="@color/color_ffffff"
@@ -72,8 +72,8 @@
                         android:id="@+id/tv_fetus_height"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:text="260~280"
                         android:textColor="@color/color_ffffff"
@@ -91,7 +91,7 @@
 			<ImageView 
 			    android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="20dp"
                 android:background="@color/color_ffffff"
 			    />
@@ -105,7 +105,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:gravity="center"
                     android:text="宝宝体重"
                     android:textColor="@color/color_ffffff"
@@ -121,8 +121,8 @@
                         android:id="@+id/tv_fetus_weight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="20dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
                         android:gravity="center"
                         android:text="3200"
                         android:textColor="@color/color_ffffff"

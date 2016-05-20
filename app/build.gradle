@@ -15,12 +15,12 @@ android {
 //            }
 //        }
 //    }
-    compileSdkVersion 21
+    compileSdkVersion 22
     buildToolsVersion '23.0.2'
     defaultConfig {
         applicationId "com.yikang.health"
         minSdkVersion 15
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0.0.0"
     }
@@ -45,5 +45,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:support-v4:24.0.0-alpha1'
-//    compile project(':library')
+//    compile 'com.zhy:autolayout:1.4.3'
+    //    compile project(':library')
+    compile files('libs/uil.jar')
 }

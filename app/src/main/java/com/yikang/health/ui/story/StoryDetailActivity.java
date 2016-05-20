@@ -26,6 +26,7 @@ import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.Mp3Info;
 import com.yikang.health.server.GsonTools;
+import com.yikang.health.server.JsonParser;
 import com.yikang.health.service.PlayerService;
 import com.yikang.health.ui.BaseActivity;
 import com.yikang.health.utils.MediaUtil;
@@ -94,7 +95,7 @@ public class StoryDetailActivity extends BaseActivity implements View.OnClickLis
         if (resultCode.equals(Constants.RESULT_SUCCESS)) {
             switch (connId) {
                 case Constants.GET_MP3_LIST:
-                    storyList = (ArrayList)GsonTools.getList(result.toString(), Mp3Info.class);
+                    storyList = (ArrayList<Mp3Info>) JsonParser.getInstance().jsonToList(result.toString(),Mp3Info.class,"data");//GsonTools.getList(result.toString(), Mp3Info.class);
                     if (storyList != null && !storyList.isEmpty()) {
                         parseStory();
                         mAdapter.setList(storyList);

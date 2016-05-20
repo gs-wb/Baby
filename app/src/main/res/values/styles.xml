@@ -1,5 +1,5 @@
 <resources>
-
+    <!--<style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar"/>-->
     <style name="AppBaseTheme" parent="android:Theme.Light">
     </style>
 	<style name="AppTheme" parent="AppBaseTheme">

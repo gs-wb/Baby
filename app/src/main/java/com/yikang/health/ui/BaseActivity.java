@@ -244,7 +244,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	 * 
 	 * @param pClass
 	 *            要启动的类
-	 * @param pBundle
+	 * @param bundle
 	 *            要传递的参数
 	 */
 	protected void openActivity(Class<?> pClass, Bundle bundle) {

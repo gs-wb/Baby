@@ -41,6 +41,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+        <!--<meta-data android:name="design_width" android:value="768"/>-->
+        <!--<meta-data android:name="design_height" android:value="1280"/>-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="1Td6m70HDLAtju4bajjBBIEq4G7sreQy" />
@@ -87,6 +89,10 @@
         <!--照片管理-->
         <activity
             android:name="com.yikang.health.ui.me.PhotoManageActivity"
+            android:theme="@style/FullTransparent"/>
+        <!--照片管理-->
+        <activity
+            android:name="com.yikang.health.ui.me.PhotoListActivity"
             android:theme="@style/FullTransparent"/>
         <!--找一找-->
         <activity
