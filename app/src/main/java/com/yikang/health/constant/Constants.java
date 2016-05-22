@@ -117,6 +117,10 @@ public class Constants {
 		public static final int PROGRESS_CHANGE = 7;//进度改变
 		public static final int PLAYING_MSG = 8;	//正在播放
 
+		public static final String STATUS_BAR_PLAY_CLICK_ACTION = "play";
+		public static final String STATUS_BAR_NEXT_CLICK_ACTION = "next";
+		public static final String STATUS_BAR_PREV_CLICK_ACTION = "prev";
+
 		public static final String UPDATE_ACTION = "com.wwj.action.UPDATE_ACTION"; // 更新动作
 		public static final String CTL_ACTION = "com.wwj.action.CTL_ACTION"; // 控制动作
 		public static final String MUSIC_CURRENT = "com.wwj.action.MUSIC_CURRENT"; // 音乐当前时间改变动作

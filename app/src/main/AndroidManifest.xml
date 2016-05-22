@@ -123,6 +123,18 @@
         <activity
             android:name="com.yikang.health.ui.menu.WeatherActivity"
             android:theme="@style/FullTransparent"/>
+        <!--数胎动-->
+        <activity
+            android:name="com.yikang.health.ui.menu.CountFetalMoveActivity"
+            android:theme="@style/FullTransparent"/>
+        <!--孕期食谱-->
+        <activity
+            android:name="com.yikang.health.ui.menu.PregnancyRecipesActivity"
+            android:theme="@style/FullTransparent"/>
+        <!--孕期食谱-->
+        <activity
+            android:name="com.yikang.health.ui.menu.ReadedBmodeUSActivity"
+            android:theme="@style/FullTransparent"/>
 
         <!-- 婴儿知识 -->
         <activity

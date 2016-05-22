@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/idr_StatusBar"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/main_bg" />
+
+    <include layout="@layout/headtitle_plus" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/color_ffffff"
+        >
+        <HorizontalScrollView
+            android:id="@+id/scroll_veiw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+            <include layout="@layout/pregnancy_recipes_layout"/>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/goto_first"-->
+                    <!--android:layout_width="70dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:background="@drawable/login_btn_selector"-->
+                    <!--android:textColor="@color/whell_gray"-->
+                    <!--android:text="孕1月"/>-->
+
+                <!--<Button-->
+                    <!--android:id="@+id/goto_last"-->
+                    <!--android:layout_width="70dp"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:background="@drawable/login_btn_selector"-->
+                    <!--android:textColor="@color/whell_gray"-->
+                    <!--android:text="孕2月"/>-->
+            <!--</LinearLayout>-->
+
+
+        </HorizontalScrollView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/txt_light" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</LinearLayout>

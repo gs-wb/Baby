@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/pregnancy_1"
+                style="@style/recipes_radio_style"
+                android:checked="true"
+                android:text="孕1月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_2"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕2月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_3"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕3月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_4"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕4月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_5"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕5月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_6"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕6月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_7"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕7月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_8"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕8月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_9"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕9月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_10"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="孕10月" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_11"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="坐月子" />
+
+            <RadioButton
+                android:id="@+id/pregnancy_12"
+                style="@style/recipes_radio_style"
+                android:layout_marginLeft="10dp"
+                android:text="哺乳期" />
+        </RadioGroup>
+
+
+    </HorizontalScrollView>
+</LinearLayout>

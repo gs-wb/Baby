@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="营养提示"
+            android:textColor="@color/txt_light"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_E6E6E6"/>
+        <TextView
+            android:id="@+id/tv_recipes_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:lineSpacingExtra="5dp"
+            android:text="怀孕第9个月，请继续控制食盐的摄入量，以减少清水，请继续控制食盐的摄入量，以减少清水，请继续控制食盐的摄入量，以减少清水，请继续控制食盐的摄入量，以减少清水，请继续控制食盐的摄入量，以减少清水，请继续控制食盐的摄入量，以减少清水，请继续控制食盐的摄入量，以减少清水，请继续控制食盐的摄入量。"
+            android:textColor="@color/txt_dark"/>
+
+    </LinearLayout>
+
+</LinearLayout>
