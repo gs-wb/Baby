@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/thirty_transparent_black"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+        <!-- 图标 -->
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:src="@drawable/ic_launcher"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <!-- 音乐名 -->
+        <TextView
+            android:id="@+id/trackname"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:singleLine="true"
+            android:text="ddddddd"
+            android:textColor="@color/whell_gray" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- 上一首 -->
+            <ImageView
+                android:id="@+id/statusbar_prev"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/voice_previous"
+                />
+            <!-- 暂停/播放 -->
+            <ImageView
+                android:id="@+id/statusbar_pause"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/voice_play" />
+            <!-- 下一首 -->
+            <ImageView
+                android:id="@+id/statusbar_next"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/next"
+                android:gravity="right" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout> 

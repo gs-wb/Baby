@@ -29,7 +29,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             android:src="@drawable/menu_baby_header" />
 
         <TextView
@@ -52,18 +52,17 @@
 
         <LinearLayout
             android:id="@+id/ll_menu_dongtai"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
+            android:background="@drawable/common_list_selector"
             android:orientation="horizontal"
             android:paddingLeft="25dp" >
 
             <ImageView
                 android:id="@+id/iv_dongtai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/menu_dongtai"
                 android:contentDescription="@null" />
@@ -84,18 +83,17 @@
 
         <LinearLayout
             android:id="@+id/ll_menu_shipu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
+            android:background="@drawable/common_list_selector"
             android:orientation="horizontal"
             android:paddingLeft="25dp" >
 
             <ImageView
                 android:id="@+id/iv_menu_shipu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/menu_shipu"
                 android:contentDescription="@null" />
@@ -116,18 +114,17 @@
 
         <LinearLayout
             android:id="@+id/ll_menu_bchao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
+            android:background="@drawable/common_list_selector"
             android:orientation="horizontal"
             android:paddingLeft="25dp" >
 
             <ImageView
                 android:id="@+id/iv_menu_bchao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/menu_bchao"
                 android:contentDescription="@null" />
@@ -148,18 +145,17 @@
 
         <LinearLayout
             android:id="@+id/ll_menu_chanjian_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
+            android:background="@drawable/common_list_selector"
             android:orientation="horizontal"
             android:paddingLeft="25dp" >
 
             <ImageView
                 android:id="@+id/iv_menu_chanjian_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/menu_chanjian_time"
                 android:contentDescription="@null" />
@@ -181,9 +177,7 @@
         <LinearLayout
             android:id="@+id/ll_menu_tianqi"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
             android:background="@drawable/common_list_selector"
             android:orientation="horizontal"
@@ -191,8 +185,8 @@
 
             <ImageView
                 android:id="@+id/iv_menu_tianqi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/menu_tianqi"
                 android:contentDescription="@null" />

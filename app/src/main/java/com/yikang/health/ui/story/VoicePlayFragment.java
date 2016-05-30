@@ -111,6 +111,9 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
         filter.addAction(Constants.PlayerMsg.UPDATE_ACTION);
         filter.addAction(Constants.PlayerMsg.MUSIC_CURRENT);
         filter.addAction(Constants.PlayerMsg.MUSIC_DURATION);
+        filter.addAction(Constants.PlayerMsg.STATUS_BAR_NEXT_CLICK_ACTION);
+        filter.addAction(Constants.PlayerMsg.STATUS_BAR_PLAY_CLICK_ACTION);
+        filter.addAction(Constants.PlayerMsg.STATUS_BAR_PREV_CLICK_ACTION);
         getActivity().registerReceiver(playerReceiver, filter);
     }
 
@@ -135,7 +138,6 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
             play_music_bg.startAnimation(loadingAnimation);
             play_music_bg.setVisibility(View.VISIBLE);
             repeat_none();
-//            play();
         } else if (flag == Constants.PlayerMsg.CONTINUE_MSG) {
             playBtn.setBackgroundResource(R.drawable.voice_play_selector);
 //            mService.updatePlayMsg(Constants.PlayerMsg.CONTINUE_MSG, 0);
@@ -173,12 +175,6 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
      */
     public void audioTrackChange(int progress) {
         mService.updatePlayMsg(Constants.PlayerMsg.PROGRESS_CHANGE, progress);
-//        Intent intent = new Intent(getActivity(), PlayerService.class);
-//        intent.putExtra("url", mp3Infos.get(listPosition).getFile_url());
-//        intent.putExtra("listPosition", listPosition);
-//        intent.putExtra("MSG", Constants.PlayerMsg.PROGRESS_CHANGE);
-//        intent.putExtra("progress", progress);
-//        getActivity().startService(intent);
     }
 
     /**
@@ -200,14 +196,8 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
             play_music_bg.startAnimation(loadingAnimation);
             play_music_bg.setVisibility(View.VISIBLE);
             StoryDetailActivity.instance.setCurrMp3(listPosition);
-//            Mp3Info mp3Info = mp3Infos.get(listPosition); // 上一首MP3
             mService.setDate(mp3Infos,listPosition);
             mService.updatePlayMsg(Constants.PlayerMsg.PRIVIOUS_MSG, 0);
-//            Intent intent = new Intent(getActivity(), PlayerService.class);
-//            intent.putExtra("url", mp3Info.getFile_url());
-//            intent.putExtra("listPosition", listPosition);
-//            intent.putExtra("MSG", Constants.PlayerMsg.PRIVIOUS_MSG);
-//            getActivity().startService(intent);
         } else {
             listPosition = 0;
             ToastShow("没有上一首了");
@@ -317,6 +307,12 @@ public class VoicePlayFragment extends BaseFragment implements View.OnClickListe
                     playBtn.setBackgroundResource(R.drawable.voice_pause_selector);
                     isPause = true;
                 }
+            }else if(action.equals(Constants.PlayerMsg.STATUS_BAR_PLAY_CLICK_ACTION)){
+                play();
+            }else if(action.equals(Constants.PlayerMsg.STATUS_BAR_NEXT_CLICK_ACTION)){
+                next_music();
+            }else if(action.equals(Constants.PlayerMsg.STATUS_BAR_PREV_CLICK_ACTION)){
+                previous_music();
             }
         }
     }
