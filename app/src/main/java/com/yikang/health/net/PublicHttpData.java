@@ -208,7 +208,7 @@ public class PublicHttpData {
     public void getBabyLoresByGet(Context context, String loreclass, TaskExpandListener listener) {
         map = new HashMap<>();
         map.put(Constants.API_KEY_VALUE, Constants.API_KEY);
-        String url = Constants.COMMON_API + "tngou/lore/list?id=" + loreclass + "&rows=5";
+        String url = Constants.COMMON_API + "tngou/lore/list?id=" + loreclass + "&rows=10";
         ServerConnect.getInstance().requestToServer(context, listener, url,
                 Constants.GET_BABYLORE_DATA, map, YIKApplication.getContext().getResources()
                         .getString(R.string.request_dialog_loading_content));

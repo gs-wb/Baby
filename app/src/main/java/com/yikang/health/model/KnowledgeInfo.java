@@ -33,35 +33,4 @@ public class KnowledgeInfo extends BaseModel{
 		this.isSelected = isSelected;
 	}
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		super.writeToParcel(dest, flags);
-		dest.writeString(this.name);
-		dest.writeInt(this.icon);
-		dest.writeByte(this.isSelected ? (byte) 1 : (byte) 0);
-	}
-
-	protected KnowledgeInfo(Parcel in) {
-		super(in);
-		this.name = in.readString();
-		this.icon = in.readInt();
-		this.isSelected = in.readByte() != 0;
-	}
-
-	public static final Creator<KnowledgeInfo> CREATOR = new Creator<KnowledgeInfo>() {
-		@Override
-		public KnowledgeInfo createFromParcel(Parcel source) {
-			return new KnowledgeInfo(source);
-		}
-
-		@Override
-		public KnowledgeInfo[] newArray(int size) {
-			return new KnowledgeInfo[size];
-		}
-	};
 }

@@ -1,13 +1,15 @@
 package com.yikang.health.ui.me;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.yikang.health.R;
+import com.yikang.health.net.retrofit.ComApi;
+import com.yikang.health.net.retrofit.model.HttpResult;
 import com.yikang.health.ui.BaseActivity;
 import com.yikang.health.ui.login.ChoseBabyActivity;
-import com.yikang.health.ui.login.PrePregnantActivity;
 
 /**
  * Created by zwb on 2016/5/2.
@@ -36,6 +38,13 @@ public class MyInfoSetintActivity extends BaseActivity implements View.OnClickLi
         ll_state = findViewById(R.id.ll_state);
         ll_reserve1 = findViewById(R.id.ll_reserve1);
         ll_reserve2 = findViewById(R.id.ll_reserve2);
+        add(ComApi.getInstance().getMp3List(1,"1")
+                .doOnNext(mp3Infos -> Log.e("data",mp3Infos.toString()))
+                .doOnError(throwable -> {
+                    ToastShow("获取数据失败");
+                })
+                .onErrorResumeNext(rx.Observable.empty())
+                .subscribe());
     }
 
 

@@ -3,6 +3,7 @@ package com.yikang.health.ui.main;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,13 +19,18 @@ import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.BabyLoreModel;
 import com.yikang.health.model.Mp3Info;
+import com.yikang.health.net.retrofit.ComApi;
 import com.yikang.health.server.GsonTools;
 import com.yikang.health.server.JsonParser;
 import com.yikang.health.ui.BaseFragment;
 import com.yikang.health.ui.baby.BabyLoreDetailActivity;
+import com.yikang.health.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.functions.Action1;
+import rx.functions.Func1;
 
 public class BabyFragment extends BaseFragment implements OnClickListener, AdapterView.OnItemClickListener, TaskExpandListener {
     private SlideMenu slideMenu;
@@ -87,10 +93,6 @@ public class BabyFragment extends BaseFragment implements OnClickListener, Adapt
     }
 
     private void laodData() {
-//		for (int i = 0; i < 6; i++) {
-//			babyLoreList.add(new BabyLoreModel());
-//		}
-//		mainAdapter.setData(babyLoreList);
 //		6 --- 孕婴手册
         YIKApplication.client.getBabyLoresByGet(getActivity(), "6", this);
     }

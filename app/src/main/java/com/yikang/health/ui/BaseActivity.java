@@ -23,6 +23,9 @@ import com.yikang.health.YIKApplication;
 import com.yikang.health.cache.DataCache;
 import com.yikang.health.widget.dialog.CustomProgressLoad;
 
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
+
 
 public abstract class BaseActivity extends FragmentActivity {
 
@@ -33,6 +36,7 @@ public abstract class BaseActivity extends FragmentActivity {
 	protected int titleBarHeight;
 	private CustomProgressLoad progressDialog;
 	protected YIKApplication application = YIKApplication.getContext();
+	protected CompositeSubscription subscription = new CompositeSubscription();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -137,13 +141,6 @@ public abstract class BaseActivity extends FragmentActivity {
 		// TODO Auto-generated method stub
 		super.onPause();
 		saveData();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		System.gc();
-//		DataCache.getDataCache().removeRuningActivitys(this);
 	}
 
 	/**
@@ -350,5 +347,19 @@ public abstract class BaseActivity extends FragmentActivity {
 		}
 		
 	}
-    
+	protected void add(Subscription sub) {
+		if (this.subscription != null && sub != null) {
+			this.subscription.add(sub);
+		}
+	}
+
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		if (this.subscription != null && !this.subscription.isUnsubscribed()) {
+			this.subscription.unsubscribe();
+		}
+		System.gc();
+	}
 }

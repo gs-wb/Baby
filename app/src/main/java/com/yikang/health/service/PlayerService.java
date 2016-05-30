@@ -65,6 +65,17 @@ public class PlayerService extends Service {
     public IBinder onBind(Intent intent) {
         return mBinder;
     }
+
+    @Override
+    public void onRebind(Intent intent) {
+        super.onRebind(intent);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return true;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();

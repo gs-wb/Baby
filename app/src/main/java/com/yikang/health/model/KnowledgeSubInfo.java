@@ -28,34 +28,4 @@ public class KnowledgeSubInfo extends BaseModel{
 		this.parentId = parentId;
 		this.name = name;
 	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		super.writeToParcel(dest, flags);
-		dest.writeString(this.name);
-		dest.writeString(this.parentId);
-	}
-
-	protected KnowledgeSubInfo(Parcel in) {
-		super(in);
-		this.name = in.readString();
-		this.parentId = in.readString();
-	}
-
-	public static final Creator<KnowledgeSubInfo> CREATOR = new Creator<KnowledgeSubInfo>() {
-		@Override
-		public KnowledgeSubInfo createFromParcel(Parcel source) {
-			return new KnowledgeSubInfo(source);
-		}
-
-		@Override
-		public KnowledgeSubInfo[] newArray(int size) {
-			return new KnowledgeSubInfo[size];
-		}
-	};
 }
