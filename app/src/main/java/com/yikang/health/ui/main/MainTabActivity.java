@@ -16,6 +16,8 @@ import com.yikang.health.cache.DataCache;
 import com.yikang.health.service.PlayerService;
 import com.yikang.health.ui.BaseActivity;
 import com.yikang.health.ui.menu.CountFetalMoveActivity;
+import com.yikang.health.ui.menu.HealthLoreActivity;
+import com.yikang.health.ui.menu.HealthNutritionActivity;
 import com.yikang.health.ui.menu.PregnancyRecipesActivity;
 import com.yikang.health.ui.menu.ReadedBmodeUSActivity;
 import com.yikang.health.ui.menu.WeatherActivity;
@@ -54,7 +56,7 @@ public class MainTabActivity extends BaseActivity implements OnClickListener {
     @Override
     public void initControl() {
         initView();
-        findViewById(R.id.ll_menu_dongtai).setOnClickListener(this);
+        findViewById(R.id.ll_menu_lore).setOnClickListener(this);
         findViewById(R.id.ll_menu_shipu).setOnClickListener(this);
         findViewById(R.id.ll_menu_bchao).setOnClickListener(this);
         findViewById(R.id.ll_menu_tianqi).setOnClickListener(this);
@@ -148,14 +150,16 @@ public class MainTabActivity extends BaseActivity implements OnClickListener {
                 swichFragment();
                 setBarColor(getResources().getColor(R.color.main_red));
                 break;
-            case R.id.ll_menu_dongtai:
-                startActivity(new Intent(this, CountFetalMoveActivity.class));
+            case R.id.ll_menu_lore:
+                startActivity(new Intent(this, HealthLoreActivity.class));
                 break;
             case R.id.ll_menu_shipu:
-                startActivity(new Intent(this, PregnancyRecipesActivity.class));
+                startActivity(new Intent(this, HealthNutritionActivity.class));
+//                startActivity(new Intent(this, PregnancyRecipesActivity.class));
                 break;
             case R.id.ll_menu_bchao:
-                startActivity(new Intent(this, ReadedBmodeUSActivity.class));
+                startActivity(new Intent(this, CountFetalMoveActivity.class));
+//                startActivity(new Intent(this, ReadedBmodeUSActivity.class));
                 break;
             case R.id.ll_menu_tianqi:
                 startActivity(new Intent(this, WeatherActivity.class));

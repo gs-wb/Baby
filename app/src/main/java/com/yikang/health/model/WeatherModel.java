@@ -1,50 +1,60 @@
 package com.yikang.health.model;
 
-import android.os.Parcel;
+import java.util.List;
 
 /**
  * Created by admin on 2016/5/13.
  */
-public class WeatherModel extends BaseModel {
+public class WeatherModel{
 
 
     /**
-     * city : 北京
-     * pinyin : beijing
-     * citycode : 101010100  //城市编码
-     * date : 15-02-11  //日期
-     * time : 11:00  //发布时间
-     * postCode : 100000  //邮编
-     * longitude : 116.391  //经度
-     * latitude : 39.904  //维度
-     * altitude : 33  //海拔
-     * weather : 晴  //天气情况
-     * temp : 10  //气温
-     * l_tmp : -4
-     * h_tmp : 10
-     * WD : 无持续风向  //风向
-     * WS : 微风(<10m/h)  //风力
-     * sunrise : 07:12  //日出时间
-     * sunset : 17:44
+     * city : 上海
+     * cityid : 101020100
+     * today : {"date":"2016-05-31","week":"星期二","curTemp":"28℃","aqi":"91","fengxiang":"东南风","fengli":"微风级","hightemp":"27℃","lowtemp":"20℃","type":"阵雨","index":[{"name":"感冒指数","code":"gm","index":"","details":"天气转凉，空气湿度较大，较易发生感冒，体质较弱的朋友请注意适当防护。","otherName":""},{"code":"fs","details":"紫外线强度较弱，建议涂擦SPF在12-15之间，PA+的防晒护肤品。","index":"较弱","name":"防晒指数","otherName":""},{"code":"ct","details":"建议着长袖T恤、衬衫加单裤等服装。年老体弱者宜着针织长袖衬衫、马甲和长裤。","index":"舒适","name":"穿衣指数","otherName":""},{"code":"yd","details":"有降水，推荐您在室内进行健身休闲运动；若坚持户外运动，须注意携带雨具并注意避雨防滑。","index":"较不宜","name":"运动指数","otherName":""},{"code":"xc","details":"不宜洗车，未来24小时内有雨，如果在此期间洗车，雨水和路上的泥水可能会再次弄脏您的爱车。","index":"不宜","name":"洗车指数","otherName":""},{"code":"ls","details":"有降水，可能会淋湿晾晒的衣物，不太适宜晾晒。请随时注意天气变化。","index":"不太适宜","name":"晾晒指数","otherName":""}]}
+     * forecast : [{"date":"2016-06-01","week":"星期三","fengxiang":"东北风","fengli":"3-4级","hightemp":"22℃","lowtemp":"18℃","type":"中雨"},{"date":"2016-06-02","week":"星期四","fengxiang":"东北风","fengli":"微风级","hightemp":"26℃","lowtemp":"20℃","type":"多云"},{"date":"2016-06-03","week":"星期五","fengxiang":"东北风","fengli":"微风级","hightemp":"22℃","lowtemp":"19℃","type":"中雨"},{"date":"2016-06-04","week":"星期六","fengxiang":"东北风","fengli":"微风级","hightemp":"23℃","lowtemp":"19℃","type":"小雨"}]
+     * history : [{"date":"2016-05-24","week":"星期二","aqi":"103","fengxiang":"西北风","fengli":"微风级","hightemp":"24℃","lowtemp":"19℃","type":"小雨"},{"date":"2016-05-25","week":"星期三","aqi":"115","fengxiang":"东南风","fengli":"微风级","hightemp":"28℃","lowtemp":"21℃","type":"多云"},{"date":"2016-05-26","week":"星期四","aqi":"133","fengxiang":"北风","fengli":"微风级","hightemp":"25℃","lowtemp":"20℃","type":"小雨"},{"date":"2016-05-27","week":"星期五","aqi":"42","fengxiang":"东北风","fengli":"微风级","hightemp":"22℃","lowtemp":"20℃","type":"中雨"},{"date":"2016-05-28","week":"星期六","aqi":"39","fengxiang":"东北风","fengli":"微风级","hightemp":"23℃","lowtemp":"19℃","type":"大雨"},{"date":"2016-05-29","week":"星期天","aqi":"93","fengxiang":"西北风","fengli":"微风级","hightemp":"23℃","lowtemp":"19℃","type":"小雨"},{"date":"2016-05-30","week":"星期一","aqi":"93","fengxiang":"东风","fengli":"微风级","hightemp":"26℃","lowtemp":"20℃","type":"阴"}]
      */
 
     private String city;
-    private String pinyin;
-    private String citycode;
-    private String date;
-    private String time;
-    private String postCode;
-    private double longitude;
-    private double latitude;
-    private String altitude;
-    private String weather;
-    private String temp;
-    private String l_tmp;
-    private String h_tmp;
-    private String WD;
-    private String WS;
-    private String sunrise;
-    private String sunset;
+    private String cityid;
+    /**
+     * date : 2016-05-31
+     * week : 星期二
+     * curTemp : 28℃
+     * aqi : 91
+     * fengxiang : 东南风
+     * fengli : 微风级
+     * hightemp : 27℃
+     * lowtemp : 20℃
+     * type : 阵雨
+     * index : [{"name":"感冒指数","code":"gm","index":"","details":"天气转凉，空气湿度较大，较易发生感冒，体质较弱的朋友请注意适当防护。","otherName":""},{"code":"fs","details":"紫外线强度较弱，建议涂擦SPF在12-15之间，PA+的防晒护肤品。","index":"较弱","name":"防晒指数","otherName":""},{"code":"ct","details":"建议着长袖T恤、衬衫加单裤等服装。年老体弱者宜着针织长袖衬衫、马甲和长裤。","index":"舒适","name":"穿衣指数","otherName":""},{"code":"yd","details":"有降水，推荐您在室内进行健身休闲运动；若坚持户外运动，须注意携带雨具并注意避雨防滑。","index":"较不宜","name":"运动指数","otherName":""},{"code":"xc","details":"不宜洗车，未来24小时内有雨，如果在此期间洗车，雨水和路上的泥水可能会再次弄脏您的爱车。","index":"不宜","name":"洗车指数","otherName":""},{"code":"ls","details":"有降水，可能会淋湿晾晒的衣物，不太适宜晾晒。请随时注意天气变化。","index":"不太适宜","name":"晾晒指数","otherName":""}]
+     */
+
+    private TodayBean today;
+    /**
+     * date : 2016-06-01
+     * week : 星期三
+     * fengxiang : 东北风
+     * fengli : 3-4级
+     * hightemp : 22℃
+     * lowtemp : 18℃
+     * type : 中雨
+     */
+
+    private List<ForecastBean> forecast;
+    /**
+     * date : 2016-05-24
+     * week : 星期二
+     * aqi : 103
+     * fengxiang : 西北风
+     * fengli : 微风级
+     * hightemp : 24℃
+     * lowtemp : 19℃
+     * type : 小雨
+     */
+
+    private List<HistoryBean> history;
 
     public String getCity() {
         return city;
@@ -54,132 +64,325 @@ public class WeatherModel extends BaseModel {
         this.city = city;
     }
 
-    public String getPinyin() {
-        return pinyin;
+    public String getCityid() {
+        return cityid;
     }
 
-    public void setPinyin(String pinyin) {
-        this.pinyin = pinyin;
+    public void setCityid(String cityid) {
+        this.cityid = cityid;
     }
 
-    public String getCitycode() {
-        return citycode;
+    public TodayBean getToday() {
+        return today;
     }
 
-    public void setCitycode(String citycode) {
-        this.citycode = citycode;
+    public void setToday(TodayBean today) {
+        this.today = today;
     }
 
-    public String getDate() {
-        return date;
+    public List<ForecastBean> getForecast() {
+        return forecast;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setForecast(List<ForecastBean> forecast) {
+        this.forecast = forecast;
     }
 
-    public String getTime() {
-        return time;
+    public List<HistoryBean> getHistory() {
+        return history;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setHistory(List<HistoryBean> history) {
+        this.history = history;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public static class TodayBean {
+        private String date;
+        private String week;
+        private String curTemp;
+        private String aqi;
+        private String fengxiang;
+        private String fengli;
+        private String hightemp;
+        private String lowtemp;
+        private String type;
+        /**
+         * name : 感冒指数
+         * code : gm
+         * index :
+         * details : 天气转凉，空气湿度较大，较易发生感冒，体质较弱的朋友请注意适当防护。
+         * otherName :
+         */
+
+        private List<IndexBean> index;
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public String getWeek() {
+            return week;
+        }
+
+        public void setWeek(String week) {
+            this.week = week;
+        }
+
+        public String getCurTemp() {
+            return curTemp;
+        }
+
+        public void setCurTemp(String curTemp) {
+            this.curTemp = curTemp;
+        }
+
+        public String getAqi() {
+            return aqi;
+        }
+
+        public void setAqi(String aqi) {
+            this.aqi = aqi;
+        }
+
+        public String getFengxiang() {
+            return fengxiang;
+        }
+
+        public void setFengxiang(String fengxiang) {
+            this.fengxiang = fengxiang;
+        }
+
+        public String getFengli() {
+            return fengli;
+        }
+
+        public void setFengli(String fengli) {
+            this.fengli = fengli;
+        }
+
+        public String getHightemp() {
+            return hightemp;
+        }
+
+        public void setHightemp(String hightemp) {
+            this.hightemp = hightemp;
+        }
+
+        public String getLowtemp() {
+            return lowtemp;
+        }
+
+        public void setLowtemp(String lowtemp) {
+            this.lowtemp = lowtemp;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public List<IndexBean> getIndex() {
+            return index;
+        }
+
+        public void setIndex(List<IndexBean> index) {
+            this.index = index;
+        }
+
+        public static class IndexBean {
+            private String name;
+            private String code;
+            private String index;
+            private String details;
+            private String otherName;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getCode() {
+                return code;
+            }
+
+            public void setCode(String code) {
+                this.code = code;
+            }
+
+            public String getIndex() {
+                return index;
+            }
+
+            public void setIndex(String index) {
+                this.index = index;
+            }
+
+            public String getDetails() {
+                return details;
+            }
+
+            public void setDetails(String details) {
+                this.details = details;
+            }
+
+            public String getOtherName() {
+                return otherName;
+            }
+
+            public void setOtherName(String otherName) {
+                this.otherName = otherName;
+            }
+        }
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public static class ForecastBean {
+        private String date;
+        private String week;
+        private String fengxiang;
+        private String fengli;
+        private String hightemp;
+        private String lowtemp;
+        private String type;
+
+        public String getDate() {
+            return date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public String getWeek() {
+            return week;
+        }
+
+        public void setWeek(String week) {
+            this.week = week;
+        }
+
+        public String getFengxiang() {
+            return fengxiang;
+        }
+
+        public void setFengxiang(String fengxiang) {
+            this.fengxiang = fengxiang;
+        }
+
+        public String getFengli() {
+            return fengli;
+        }
+
+        public void setFengli(String fengli) {
+            this.fengli = fengli;
+        }
+
+        public String getHightemp() {
+            return hightemp;
+        }
+
+        public void setHightemp(String hightemp) {
+            this.hightemp = hightemp;
+        }
+
+        public String getLowtemp() {
+            return lowtemp;
+        }
+
+        public void setLowtemp(String lowtemp) {
+            this.lowtemp = lowtemp;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
     }
 
-    public double getLongitude() {
-        return longitude;
-    }
+    public static class HistoryBean {
+        private String date;
+        private String week;
+        private String aqi;
+        private String fengxiang;
+        private String fengli;
+        private String hightemp;
+        private String lowtemp;
+        private String type;
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
+        public String getDate() {
+            return date;
+        }
 
-    public double getLatitude() {
-        return latitude;
-    }
+        public void setDate(String date) {
+            this.date = date;
+        }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
+        public String getWeek() {
+            return week;
+        }
 
-    public String getAltitude() {
-        return altitude;
-    }
+        public void setWeek(String week) {
+            this.week = week;
+        }
 
-    public void setAltitude(String altitude) {
-        this.altitude = altitude;
-    }
+        public String getAqi() {
+            return aqi;
+        }
 
-    public String getWeather() {
-        return weather;
-    }
+        public void setAqi(String aqi) {
+            this.aqi = aqi;
+        }
 
-    public void setWeather(String weather) {
-        this.weather = weather;
-    }
+        public String getFengxiang() {
+            return fengxiang;
+        }
 
-    public String getTemp() {
-        return temp;
-    }
+        public void setFengxiang(String fengxiang) {
+            this.fengxiang = fengxiang;
+        }
 
-    public void setTemp(String temp) {
-        this.temp = temp;
-    }
+        public String getFengli() {
+            return fengli;
+        }
 
-    public String getL_tmp() {
-        return l_tmp;
-    }
+        public void setFengli(String fengli) {
+            this.fengli = fengli;
+        }
 
-    public void setL_tmp(String l_tmp) {
-        this.l_tmp = l_tmp;
-    }
+        public String getHightemp() {
+            return hightemp;
+        }
 
-    public String getH_tmp() {
-        return h_tmp;
-    }
+        public void setHightemp(String hightemp) {
+            this.hightemp = hightemp;
+        }
 
-    public void setH_tmp(String h_tmp) {
-        this.h_tmp = h_tmp;
-    }
+        public String getLowtemp() {
+            return lowtemp;
+        }
 
-    public String getWD() {
-        return WD;
-    }
+        public void setLowtemp(String lowtemp) {
+            this.lowtemp = lowtemp;
+        }
 
-    public void setWD(String WD) {
-        this.WD = WD;
-    }
+        public String getType() {
+            return type;
+        }
 
-    public String getWS() {
-        return WS;
+        public void setType(String type) {
+            this.type = type;
+        }
     }
-
-    public void setWS(String WS) {
-        this.WS = WS;
-    }
-
-    public String getSunrise() {
-        return sunrise;
-    }
-
-    public void setSunrise(String sunrise) {
-        this.sunrise = sunrise;
-    }
-
-    public String getSunset() {
-        return sunset;
-    }
-
-    public void setSunset(String sunset) {
-        this.sunset = sunset;
-    }
-
 }

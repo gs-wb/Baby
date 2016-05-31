@@ -100,13 +100,12 @@ public class Constants {
 
 	//  http://apistore.baidu.com/apiworks/servicedetail/112.html
 	// 百度公共接口
-	public static final String  COMMON_API = "http://apis.baidu.com/";
+	public static final String  COMMON_API = "http://apis.baidu.com";
 	// apikey
-	public static final String API_KEY_VALUE = "apikey";
+	public static final String API_KEY = "apikey";
 	// 百度公共接口 key
-	public static final String  API_KEY = "9cb6019d0dbf074445e4b4f21f989784";
-	// 百度公共接口 城市名称
-	public static final String  CITY_NAME = "cityname";
+	public static final String  API_KEY_VALUE = "9cb6019d0dbf074445e4b4f21f989784";
+
 	public class PlayerMsg {
 		public static final int PLAY_MSG = 1;		//播放
 		public static final int PAUSE_MSG = 2;		//暂停

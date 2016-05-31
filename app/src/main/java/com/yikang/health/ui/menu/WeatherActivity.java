@@ -2,24 +2,34 @@ package com.yikang.health.ui.menu;
 
 import android.graphics.Paint;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yikang.health.R;
 import com.yikang.health.YIKApplication;
+import com.yikang.health.adapter.WeatherIndexAdapter;
 import com.yikang.health.constant.Constants;
 import com.yikang.health.interfaces.TaskExpandListener;
 import com.yikang.health.model.WeatherModel;
+import com.yikang.health.net.retrofit.ComApi;
 import com.yikang.health.server.JsonParser;
 import com.yikang.health.ui.BaseActivity;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import rx.Observable;
+import rx.functions.Action1;
+
 /**
  * Created by zwb on 2016/5/2.
  */
-public class WeatherActivity extends BaseActivity implements View.OnClickListener, TaskExpandListener {
+public class WeatherActivity extends BaseActivity implements View.OnClickListener {
     private TextView tv_date, tv_city, tv_temp, tv_temp_update, tv_temp_diff;
     private TextView tv_weather, tv_wd_ws, tv_sunrise, tv_sunset;
+    private ListView indexListView;
 
     public WeatherActivity() {
         super();
@@ -49,8 +59,16 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
         tv_wd_ws = (TextView) findViewById(R.id.tv_wd_ws);
         tv_sunrise = (TextView) findViewById(R.id.tv_sunrise);
         tv_sunset = (TextView) findViewById(R.id.tv_sunset);
+        indexListView = (ListView) findViewById(R.id.indexListView);
+        loadData();
+    }
 
-        YIKApplication.client.getWeatherByGet(this, "上海", this);
+    private void loadData() {
+        add(ComApi.getInstance().getWeather("上海")
+                .doOnNext(this::setWeatherView)
+                .doOnError(Throwable::printStackTrace)
+                .onErrorResumeNext(Observable.empty())
+                .subscribe());
     }
 
     @Override
@@ -65,46 +83,21 @@ public class WeatherActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void onClick(View v) {
     }
-    WeatherModel weatherModel;
-    @Override
-    public <T> void onTaskCompleted(String resultCode, T result, int connId) {
-        if (connId == Constants.GET_WEATHER_DATA) {
-            try {
-                JSONObject object = new JSONObject(result.toString());
-                JSONObject retData = object.getJSONObject("retData");
-                weatherModel = (WeatherModel) JsonParser.getInstance().jsonToEntity(retData.toString(), WeatherModel.class);
-                setWeatherView();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
-    private void setWeatherView() {
-        if(weatherModel!=null){
-            tv_date.setText(weatherModel.getDate());
-            tv_city.setText(weatherModel.getCity()+"【切换】");
+    private void setWeatherView(WeatherModel weatherModel) {
+        if (weatherModel != null) {
+            tv_date.setText(weatherModel.getToday().getDate() + " " + weatherModel.getToday().getWeek());
+            tv_city.setText(weatherModel.getCity() + "【切换】");
             tv_city.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG); //下划线
-            tv_temp_update.setText("【"+weatherModel.getTime()+"更新】");
-            tv_temp_diff.setText(String.format(getResources().getString(R.string.weather_unit), weatherModel.getL_tmp())
-                    +"~"+String.format(getResources().getString(R.string.weather_unit), weatherModel.getH_tmp()));
-            tv_temp.setText("【实时】"+String.format(getResources().getString(R.string.weather_unit), weatherModel.getTemp()));
+            tv_temp_diff.setText(weatherModel.getToday().getLowtemp() + "~" + weatherModel.getToday().getHightemp());
+            tv_temp.setText(weatherModel.getToday().getCurTemp());
 
-            tv_weather.setText(weatherModel.getWeather());
-            tv_wd_ws.setText(weatherModel.getWD()+" "+weatherModel.getWS());
-            tv_sunrise.setText("日出"+weatherModel.getSunrise());
-            tv_sunset.setText("日落"+weatherModel.getSunset());
+            tv_weather.setText(weatherModel.getToday().getType());
+            tv_wd_ws.setText(weatherModel.getToday().getFengxiang() + " " + weatherModel.getToday().getFengli());
+            WeatherIndexAdapter indexAdapter = new WeatherIndexAdapter(this);
+            indexListView.setAdapter(indexAdapter);
+            indexAdapter.setData(weatherModel.getToday().getIndex());
         }
-    }
-
-    @Override
-    public void onTaskCanceled() {
-
-    }
-
-    @Override
-    public void onTaskError(String resultCode, int conId, String msg) {
-
     }
 
     @Override

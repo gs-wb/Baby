@@ -123,6 +123,16 @@
         <activity
             android:name="com.yikang.health.ui.menu.WeatherActivity"
             android:theme="@style/FullTransparent"/>
+        <!--基础知识-->
+        <activity
+            android:name="com.yikang.health.ui.menu.HealthLoreActivity"
+            android:theme="@style/FullTransparent"/>
+        <!--基础知识-->
+        <activity
+            android:name="com.yikang.health.ui.menu.HealthNutritionActivity"
+            android:theme="@style/FullTransparent"/>
+
+
         <!--数胎动-->
         <activity
             android:name="com.yikang.health.ui.menu.CountFetalMoveActivity"

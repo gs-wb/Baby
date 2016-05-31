@@ -22,13 +22,14 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="15dp"
             android:layout_marginTop="30dp"
-            android:src="@drawable/menu_baby_header" />
+            android:src="@drawable/menu_baby_header"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/iv_baby_header"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="60dp"
             android:src="@drawable/menu_baby_header" />
 
@@ -36,7 +37,7 @@
             android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:layout_below="@+id/iv_baby_header"
             android:text="宝贝名字"
@@ -51,7 +52,7 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:id="@+id/ll_menu_dongtai"
+            android:id="@+id/ll_menu_lore"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_vertical"
@@ -60,7 +61,7 @@
             android:paddingLeft="25dp" >
 
             <ImageView
-                android:id="@+id/iv_dongtai"
+                android:id="@+id/iv_lore"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="15dp"
@@ -68,10 +69,10 @@
                 android:contentDescription="@null" />
 
             <TextView
-                android:id="@+id/tv_dongtai"
+                android:id="@+id/tv_lore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="数胎动"
+                android:text="基础知识"
                 android:textColor="@color/txt_dark"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -102,7 +103,7 @@
                 android:id="@+id/tv_menu_shipu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="孕期食谱"
+                android:text="备孕营养"
                 android:textColor="@color/txt_dark"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -133,7 +134,7 @@
                 android:id="@+id/tv_menu_bchao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="看懂B超单"
+                android:text="测量心率"
                 android:textColor="@color/txt_dark"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -164,7 +165,7 @@
                 android:id="@+id/tv_menu_chanjian_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="产检时间表"
+                android:text="生男生女"
                 android:textColor="@color/txt_dark"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -195,7 +196,7 @@
                 android:id="@+id/tv_menu_tianqi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="天气及其他"
+                android:text="天气"
                 android:textColor="@color/txt_dark"
                 android:textSize="16sp" />
         </LinearLayout>

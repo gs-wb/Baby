@@ -1,7 +1,11 @@
 package com.yikang.health.net.retrofit;
 
+import com.yikang.health.model.BabyLoreModel;
 import com.yikang.health.model.Mp3Info;
+import com.yikang.health.model.WeatherModel;
+import com.yikang.health.net.retrofit.model.HttpLoreResult;
 import com.yikang.health.net.retrofit.model.HttpResult;
+import com.yikang.health.net.retrofit.model.HttpWeatherResult;
 import com.yikang.health.net.retrofit.utils.RxUtil;
 
 import java.util.List;
@@ -29,6 +33,7 @@ public class ComApi {
     public ComApi() {
         mComInterface = NetClient.newRetrofit().create(ComInterface.class);
     }
+
     /**
      * 用来统一处理Http的resultCode,并将HttpResult的Data部分剥离出来返回给subscriber
      *
@@ -44,11 +49,12 @@ public class ComApi {
             return httpResult.getData();
         }
     }
+
     /**
      * 查询音频信息
      */
     public Observable<List<Mp3Info>> getMp3List(int currentPage, String book_id) {
-        return mComInterface.getMp3List(currentPage,book_id)
+        return mComInterface.getMp3List(currentPage, book_id)
                 .map(new HttpResultFunc<>())
                 .compose(RxUtil.background());
     }
@@ -56,6 +62,32 @@ public class ComApi {
 
     public Observable<HttpResult> getContentList(int currentPage) {
         return mComInterface.getContentList(currentPage).compose(RxUtil.background());
+    }
+
+
+    /**
+     * 百度接口  获取孕婴知识
+     * @param id
+     * @return
+     */
+    public Observable<HttpLoreResult<List<BabyLoreModel>>> getHealthLoreByGet(String id) {
+        return mComInterface.getHealthLoreByGet(id).compose(RxUtil.background());
+    }
+
+    /**
+     * 百度接口  获取天气
+     * @param currentCity
+     * @return
+     */
+    public Observable<WeatherModel> getWeather(String currentCity) {
+        return mComInterface.getWeatherByGet(currentCity)
+                .map(weatherResult -> {
+                    if (!weatherResult.isSuccess()) {
+                        return null;
+                    }
+                    return weatherResult.getRetData();
+                })
+                .compose(RxUtil.background());
     }
 
 }

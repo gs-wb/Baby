@@ -221,8 +221,8 @@ public class JsonParser {
 		}
 		return alObjects;
 	}
-	
-	
+
+
 	/**
 	 * {@code 实体数据结构模型}<br>
 	 * @param cls 对应的JSON字符串实体对象

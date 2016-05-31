@@ -9,11 +9,12 @@
         android:id="@+id/idr_StatusBar"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:visibility="gone"
-        android:background="@color/main_bg"></View>
+        android:background="@color/main_bg"
+        android:visibility="gone"></View>
 
-    <include layout="@layout/headtitle_plus"
-        android:visibility="gone"/>
+    <include
+        layout="@layout/headtitle_plus"
+        android:visibility="gone" />
     <!-- android:background="@drawable/me_top_bg"-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,8 +24,8 @@
         <RelativeLayout
             android:id="@+id/rl_t"
             android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:id="@+id/tv_date"
@@ -43,7 +44,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@+id/tv_date"
                 android:text="[11:00更新]"
-                android:textColor="@color/txt_dark" />
+                android:textColor="@color/txt_dark"
+                android:visibility="invisible" />
 
             <TextView
                 android:id="@+id/tv_temp"
@@ -104,6 +106,7 @@
                 android:id="@+id/tv_wd_ws"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:text="无持续风向 微风(10m/h)"
                 android:textColor="@color/txt_dark" />
@@ -114,7 +117,8 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
 
                 <TextView
@@ -140,5 +144,22 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/txt_dark"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"
+        android:text="生活指数"/>
+    <ListView
+        android:id="@+id/indexListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:cacheColorHint="@color/color_translate"
+        android:listSelector="@color/color_translate"
+        android:divider="@color/whell_gray"
+        android:dividerHeight="1dp"
+        />
 </LinearLayout>
